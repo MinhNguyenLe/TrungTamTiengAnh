@@ -1,4 +1,5 @@
-###shortkey (open terminal) : npm run install:clean -> npm install --force -> npm run dev -> open localhost:3000 on browser
+### shortkey 
+(open terminal) : npm run install:clean -> npm install --force -> npm run dev -> open localhost:3000 on browser
 
 ### Get Started
 
