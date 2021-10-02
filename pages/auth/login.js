@@ -89,6 +89,16 @@ export default function Login() {
                       Sign In
                     </button>
                   </div>
+                  <div className="text-center mt-6">
+                    <Link href="/auth/register">
+                      <button
+                        className="bg-blueGray-400 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        type="button"
+                      >
+                        Create New Account
+                      </button>
+                    </Link>
+                  </div>
                 </form>
               </div>
             </div>
