@@ -5,7 +5,7 @@ import Link from "next/link";
 import Auth from "layouts/Auth.js";
 
 export default function Register() {
-  
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -41,13 +41,14 @@ export default function Register() {
                   <small>Or sign up with credentials</small>
                 </div>
                 <form>
-                  <div className="relative w-full mb-3">
-                    <ul>
-                      <li>
+                  <div className=" flex flex-wrap" >
+                    
+                      <div className="md:w-4/12">
+                     
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="grid-password"
-                          >
+                        >
                           First Name
                         </label>
                         <input
@@ -55,12 +56,12 @@ export default function Register() {
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           placeholder="Name"
                         />
-                      </li>
-                      <li>
+                      </div>
+                      <div className="md:w-4/12 md:ml-64">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="grid-password"
-                          >
+                        >
                           Last Name
                         </label>
                         <input
@@ -68,12 +69,11 @@ export default function Register() {
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           placeholder="Name"
                         />
-                      </li>
-                    </ul>
-                   
+                      </div>
+
                   </div>
 
-                  <div className="relative w-full mb-3">
+                  <div className="relative w-full mb-3 mt-4">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
@@ -101,8 +101,8 @@ export default function Register() {
                     />
                   </div>
 
-                  <div>
-                    <label className="inline-flex items-center cursor-pointer">
+                  <div className="text-center mt-6 ">
+                    <label className="inline-flex items-center cursor-pointer ">
                       <input
                         id="customCheckLogin"
                         type="checkbox"
@@ -121,27 +121,27 @@ export default function Register() {
                     </label>
                   </div>
 
-                  <div className="text-center mt-6">
+                  <div className="text-center mt-6  ">
                     <button
-                      className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                      className=" md:w-4/12 bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
                     >
                       Create Account
                     </button>
                   </div>
-                  
-                  <div className="text-center mt-6">
-                  <Link href="/auth/login">
-                  <button
-                        className="bg-blueGray-400 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+
+                  <div className="text-center mt-6 ">
+                    <Link href="/auth/login">
+                      <button
+                        className="md:w-4/12 bg-blueGray-400 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                         type="button"
                       >
                         Login
                       </button>
-                  </Link>
-                     
+                    </Link>
+
                   </div>
-                  
+
                 </form>
               </div>
             </div>
