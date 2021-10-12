@@ -1,11 +1,32 @@
 import React from "react";
 import Link from "next/link";
-
+import axios from "axios";
 // layout for page
 
 import Auth from "layouts/Auth.js";
 
 export default function Login() {
+  // const validateLoginAPI = async () => {
+  //   try {
+  //     const res = await axios.get("http://localhost:8888/api/users");
+  //     const data = res.data;
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const validateLoginAPI = () => {
+    Promise.all([axios.get("http://localhost:8888/api/users")])
+      .then(([data]) => {
+        console.log(1);
+        console.log(data.data);
+      })
+      .catch((err) => {
+        console.log(1);
+        console.log(err);
+      });
+  };
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -83,6 +104,7 @@ export default function Login() {
 
                   <div className="text-center mt-6">
                     <button
+                      onClick={() => validateLoginAPI()}
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
                     >
