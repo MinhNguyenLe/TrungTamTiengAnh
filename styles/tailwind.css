@@ -2337,7 +2337,12 @@ select {
 .ml-3 {
   margin-left: 0.75rem;
 }
-
+.ml-10rem{
+  margin-left: 10rem;
+}
+.ml-4rem{
+  margin-left: 4rem;
+}
 .mt-4 {
   margin-top: 1rem;
 }
@@ -3552,7 +3557,9 @@ select {
 .w-6\/12 {
   width: 50%;
 }
-
+.w-72{
+  width: 72%;
+}
 .w-10\/12 {
   width: 83.333333%;
 }

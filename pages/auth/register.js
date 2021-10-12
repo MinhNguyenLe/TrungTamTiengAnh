@@ -43,63 +43,183 @@ export default function Register() {
                 <form>
                   <div className=" flex flex-wrap" >
                     
-                      <div className="md:w-4/12">
-                     
-                        <label
-                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          First Name
-                        </label>
-                        <input
-                          type="email"
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          placeholder="Name"
-                        />
-                      </div>
-                      <div className="md:w-4/12 md:ml-64">
-                        <label
-                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Last Name
-                        </label>
-                        <input
-                          type="email"
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                          placeholder="Name"
-                        />
-                      </div>
+                    <div className="md:w-4/12 ml-10rem">
+                    
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        First Name
+                      </label>
+                      <input
+                        type="First Name"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="First Name"
+                      />
+                    </div>
+                    <div className="md:w-4/12 ml-4rem" >
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Last Name
+                      </label>
+                      <input
+                        type="Last Name"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Last Name"
+                      />
+                    </div>
+
+                  </div>
+                  <div className=" flex flex-wrap mb-3 mt-4" >
+                    
+                    <div className="md:w-4/12 ml-10rem">
+                    
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        UserName
+                      </label>
+                      <input
+                        type="UserName"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="UserName"
+                      />
+                    </div>
+                    <div className="md:w-4/12 ml-4rem" >
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Password
+                      </label>
+                      <input
+                        type="password"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="password"
+                      />
+                    </div>
 
                   </div>
 
-                  <div className="relative w-full mb-3 mt-4">
-                    <label
-                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Email"
-                    />
+                  <div className=" flex flex-wrap mb-3 mt-4" >
+                    
+                    <div className="md:w-4/12 ml-10rem">
+                    
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Email"
+                      />
+                    </div>
+                    <div className="md:w-4/12 ml-4rem" >
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Gender
+                      </label>
+                      <input
+                        type="Gender"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Gender"
+                      />
+                    </div>
+
+                  </div>
+                  <div className=" flex flex-wrap mb-3 mt-4" >
+                    
+                    <div className="md:w-4/12 ml-10rem">
+                    
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Phone
+                      </label>
+                      <input
+                        type="Phone"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Phone"
+                      />
+                    </div>
+                    <div className="md:w-4/12 ml-4rem" >
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Ethenic Type
+                      </label>
+                      <input
+                        type="Ethenic Type"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Ethenic Type"
+                      />
+                    </div>
+
+                  </div>
+                  <div className=" flex flex-wrap mb-3 mt-4" >
+                    
+                    <div className="md:w-4/12 ml-10rem">
+                    
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Date Of Birth
+                      </label>
+                      <input
+                        type="Date Of Birth"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Date Of Birth"
+                      />
+                    </div>
+                    <div className="md:w-4/12 ml-4rem" >
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Place Of Birth
+                      </label>
+                      <input
+                        type="Place Of Birth"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Place Of Birth"
+                      />
+                    </div>
+
+                  </div>
+                  <div className=" flex flex-wrap mb-3 mt-4" >
+                    
+                    <div className="w-72 ml-10rem">
+                    
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Address
+                      </label>
+                      <input
+                        type="Address"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Address"
+                      />
+                    </div>
+                    
+
                   </div>
 
-                  <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Password"
-                    />
-                  </div>
+
+
+                 
 
                   <div className="text-center mt-6 ">
                     <label className="inline-flex items-center cursor-pointer ">
@@ -130,7 +250,7 @@ export default function Register() {
                     </button>
                   </div>
 
-                  <div className="text-center mt-6 ">
+                  <div className="text-center mt-4 ">
                     <Link href="/auth/login">
                       <button
                         className="md:w-4/12 bg-blueGray-400 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
