@@ -4,6 +4,8 @@ import Link from "next/link";
 import axios from "axios";
 
 import Auth from "layouts/Auth.js";
+
+import { useSelector } from "react-redux";
 export default function Register() {
   const userName = useRef("");
   const email = useRef("");
@@ -16,6 +18,8 @@ export default function Register() {
   const ethetic = useRef("");
   const dateBirth = useRef("");
   const placeBirth = useRef("");
+
+  // const user = useSelector((state) => state.user);
 
   const createAccount = () => {
     Promise.all([
@@ -42,7 +46,7 @@ export default function Register() {
   };
 
   const inputAccount = () => {
-    console.log(userName.current.value);
+    console.log();
   };
   return (
     <>
