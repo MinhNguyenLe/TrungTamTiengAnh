@@ -1,11 +1,49 @@
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 // layout for page
+import axios from "axios";
 
 import Auth from "layouts/Auth.js";
-
 export default function Register() {
+  const userName = useRef("");
+  const email = useRef("");
+  const firstName = useRef("");
+  const lastName = useRef("");
+  const password = useRef("");
+  const gender = useRef(false); // false : Nu, true : Nam
+  const address = useRef("");
+  const phone = useRef("");
+  const ethetic = useRef("");
+  const dateBirth = useRef("");
+  const placeBirth = useRef("");
 
+  const createAccount = () => {
+    Promise.all([
+      axios.post("http://localhost:8888/api/users/register", {
+        account: {
+          userName: userName.current.value,
+          password: password.current.value,
+          phoneNumber: phone.current.value,
+          email: email.current.value,
+          firstName: firstName.current.value,
+          lastName: lastName.current.value,
+          dateBirth: dateBirth.current.value,
+          placeBirth: placeBirth.current.value,
+          gender: gender.current.value ? 1 : 0,
+          address: address.current.value,
+          roleId: 1,
+        },
+      }),
+    ])
+      .then(([res]) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const inputAccount = () => {
+    console.log(userName.current.value);
+  };
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -41,10 +79,8 @@ export default function Register() {
                   <small>Or sign up with credentials</small>
                 </div>
                 <form>
-                  <div className=" flex flex-wrap" >
-                    
+                  <div className=" flex flex-wrap">
                     <div className="md:w-4/12 ml-10rem">
-                    
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -52,12 +88,13 @@ export default function Register() {
                         First Name
                       </label>
                       <input
+                        ref={firstName}
                         type="First Name"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="First Name"
                       />
                     </div>
-                    <div className="md:w-4/12 ml-4rem" >
+                    <div className="md:w-4/12 ml-4rem">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -65,17 +102,15 @@ export default function Register() {
                         Last Name
                       </label>
                       <input
+                        ref={lastName}
                         type="Last Name"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Last Name"
                       />
                     </div>
-
                   </div>
-                  <div className=" flex flex-wrap mb-3 mt-4" >
-                    
+                  <div className=" flex flex-wrap mb-3 mt-4">
                     <div className="md:w-4/12 ml-10rem">
-                    
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -83,12 +118,14 @@ export default function Register() {
                         UserName
                       </label>
                       <input
+                        ref={userName}
+                        onChange={() => inputAccount()}
                         type="UserName"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="UserName"
                       />
                     </div>
-                    <div className="md:w-4/12 ml-4rem" >
+                    <div className="md:w-4/12 ml-4rem">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -96,18 +133,16 @@ export default function Register() {
                         Password
                       </label>
                       <input
+                        ref={password}
                         type="password"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="password"
                       />
                     </div>
-
                   </div>
 
-                  <div className=" flex flex-wrap mb-3 mt-4" >
-                    
+                  <div className=" flex flex-wrap mb-3 mt-4">
                     <div className="md:w-4/12 ml-10rem">
-                    
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -115,12 +150,13 @@ export default function Register() {
                         Email
                       </label>
                       <input
+                        ref={email}
                         type="email"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Email"
                       />
                     </div>
-                    <div className="md:w-4/12 ml-4rem" >
+                    <div className="md:w-4/12 ml-4rem">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -128,17 +164,15 @@ export default function Register() {
                         Gender
                       </label>
                       <input
+                        ref={gender}
                         type="Gender"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Gender"
                       />
                     </div>
-
                   </div>
-                  <div className=" flex flex-wrap mb-3 mt-4" >
-                    
+                  <div className=" flex flex-wrap mb-3 mt-4">
                     <div className="md:w-4/12 ml-10rem">
-                    
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -146,12 +180,13 @@ export default function Register() {
                         Phone
                       </label>
                       <input
+                        ref={phone}
                         type="Phone"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Phone"
                       />
                     </div>
-                    <div className="md:w-4/12 ml-4rem" >
+                    <div className="md:w-4/12 ml-4rem">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -159,17 +194,15 @@ export default function Register() {
                         Ethenic Type
                       </label>
                       <input
+                        ref={ethetic}
                         type="Ethenic Type"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Ethenic Type"
                       />
                     </div>
-
                   </div>
-                  <div className=" flex flex-wrap mb-3 mt-4" >
-                    
+                  <div className=" flex flex-wrap mb-3 mt-4">
                     <div className="md:w-4/12 ml-10rem">
-                    
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -177,12 +210,13 @@ export default function Register() {
                         Date Of Birth
                       </label>
                       <input
+                        ref={dateBirth}
                         type="Date Of Birth"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Date Of Birth"
                       />
                     </div>
-                    <div className="md:w-4/12 ml-4rem" >
+                    <div className="md:w-4/12 ml-4rem">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -190,17 +224,15 @@ export default function Register() {
                         Place Of Birth
                       </label>
                       <input
+                        ref={placeBirth}
                         type="Place Of Birth"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Place Of Birth"
                       />
                     </div>
-
                   </div>
-                  <div className=" flex flex-wrap mb-3 mt-4" >
-                    
+                  <div className=" flex flex-wrap mb-3 mt-4">
                     <div className="w-72 ml-10rem">
-                    
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -208,18 +240,13 @@ export default function Register() {
                         Address
                       </label>
                       <input
+                        ref={address}
                         type="Address"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Address"
                       />
                     </div>
-                    
-
                   </div>
-
-
-
-                 
 
                   <div className="text-center mt-6 ">
                     <label className="inline-flex items-center cursor-pointer ">
@@ -243,6 +270,7 @@ export default function Register() {
 
                   <div className="text-center mt-6  ">
                     <button
+                      onClick={createAccount}
                       className=" md:w-4/12 bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
                     >
@@ -259,9 +287,7 @@ export default function Register() {
                         Login
                       </button>
                     </Link>
-
                   </div>
-
                 </form>
               </div>
             </div>
