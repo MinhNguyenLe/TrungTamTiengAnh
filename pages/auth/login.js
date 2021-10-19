@@ -1,32 +1,41 @@
-import React from "react";
 import Link from "next/link";
 import axios from "axios";
 // layout for page
-
+import React, { useRef } from "react";
 import Auth from "layouts/Auth.js";
 
 export default function Login() {
-  // const validateLoginAPI = async () => {
-  //   try {
-  //     const res = await axios.get("http://localhost:8888/api/users");
-  //     const data = res.data;
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  const validateLoginAPI = () => {
-    Promise.all([axios.get("http://localhost:8888/api/users")])
-      .then(([data]) => {
-        console.log(1);
-        console.log(data.data);
-      })
+ 
+  const userName = useRef("");
+  const password = useRef("");
+  const Login = () => {
+    Promise.all([
+      axios.post("http://localhost:8888/api/auth/login", {
+        username: userName.current.value,
+        password: password.current.value,
+      }),
+    ])
+      .then(([res]) => {
+        console.log(res.data);
+       })
       .catch((err) => {
-        console.log(1);
-        console.log(err);
+        console.log(JSON.stringify(err));
       });
   };
+//  const Login = async () => {
+//     try {
+//       const res = await axios.post("http://localhost:8888/api/auth/login",{
+//               account: {
+//                 userName: userName.current.value,
+//                 password: password.current.value,
+//               },
+//             });
+//       const data = res.data;
+//       console.log(data);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -67,9 +76,10 @@ export default function Login() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Email
+                      UserName
                     </label>
                     <input
+                      ref={userName}
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
@@ -84,6 +94,7 @@ export default function Login() {
                       Password
                     </label>
                     <input
+                      ref={password}
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
@@ -104,7 +115,7 @@ export default function Login() {
 
                   <div className="text-center mt-6">
                     <button
-                      onClick={() => validateLoginAPI()}
+                      onClick={Login}
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
                     >
