@@ -19,8 +19,7 @@ export default function Register() {
   const dateBirth = useRef("");
   const placeBirth = useRef("");
 
-  // const user = useSelector((state) => state.user);
-
+  // const { user } = useSelector((state) => state.user);
   const createAccount = () => {
     Promise.all([
       axios.post("http://localhost:8888/api/users/register", {
@@ -46,7 +45,7 @@ export default function Register() {
   };
 
   const inputAccount = () => {
-    console.log();
+    // console.log(111, user);
   };
   return (
     <>

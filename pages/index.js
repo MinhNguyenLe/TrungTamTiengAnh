@@ -5,12 +5,9 @@ import Link from "next/link";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
-import { Provider } from "react-redux";
-import { store, persistor } from "../redux";
-import { PersistGate } from "redux-persist/integration/react";
 export default function Index() {
   return (
-    <Provider store={store}>
+    <>
       <IndexNavbar fixed />
       <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
         <div className="container mx-auto items-center flex flex-wrap">
@@ -665,6 +662,6 @@ export default function Index() {
         </div>
       </section>
       <Footer />
-    </Provider>
+    </>
   );
 }
