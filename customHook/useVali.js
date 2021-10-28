@@ -16,39 +16,44 @@ const require = {
 
 function validate(obj) {
   if (obj.require === 1 || obj.require === require["1"]) {
-    return {
-      value: obj.value,
-      err: true,
-      mess: "This field is required !",
-    };
+    if (!obj.value || !obj.value.length) {
+      return {
+        err: true,
+        mess: "This field is required !",
+      };
+    }
   }
   if (obj.require === 2 || obj.require === require["2"]) {
-    return {
-      value: obj.value,
-      err: true,
-      mess: `Min value is ${obj.requireValue}!`,
-    };
+    if (parseInt(obj.value) < parseInt(obj.requireValue)) {
+      return {
+        err: true,
+        mess: `Min value is ${obj.requireValue}!`,
+      };
+    }
   }
   if (obj.require === 3 || obj.require === require["3"]) {
-    return {
-      value: obj.value,
-      err: true,
-      mess: `Max value is ${obj.requireValue}!`,
-    };
+    if (parseInt(obj.value) > parseInt(obj.requireValue)) {
+      return {
+        err: true,
+        mess: `Max value is ${obj.requireValue}!`,
+      };
+    }
   }
   if (obj.require === 4 || obj.require === require["4"]) {
-    return {
-      value: obj.value,
-      err: true,
-      mess: `Min length is ${obj.requireValue}!`,
-    };
+    if (obj.value.length < obj.requireValue) {
+      return {
+        err: true,
+        mess: `Min length is ${obj.requireValue}!`,
+      };
+    }
   }
   if (obj.require === 5 || obj.require === require["5"]) {
-    return {
-      value: obj.value,
-      err: true,
-      mess: `Max length value is ${obj.requireValue}!`,
-    };
+    if (obj.value.length > obj.requireValue) {
+      return {
+        err: true,
+        mess: `Max length value is ${obj.requireValue}!`,
+      };
+    }
   }
   return { err: false };
 }
@@ -57,6 +62,7 @@ export const useVali = (obj) => {
   const ref = useRef("");
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const checkErr = () => {
     for (let i = 0; i < obj.require.length; i++) {
@@ -67,11 +73,13 @@ export const useVali = (obj) => {
       });
       if (out.err) {
         setError(out.mess);
-        return true;
+        setSuccess(true);
+        return;
       }
     }
-    return false;
+    setError("");
+    setSuccess(false);
   };
 
-  return { checkErr, ref: ref, error };
+  return { checkErr, ref: ref, error, success };
 };
