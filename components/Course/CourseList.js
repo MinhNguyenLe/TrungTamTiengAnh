@@ -87,16 +87,21 @@ export default function ClassList() {
                     {course.members}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    sessions
+                    {course.idClass.length}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.tuition}
+                    {new Intl.NumberFormat("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    }).format(course.tuition)}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.timeBegin}
+                    {new Date(course.timeBegin).toLocaleDateString()}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.timeEnd}
+                    {new Date(course.timeEnd).toLocaleDateString()}
                   </td>
                 </tr>
               ))}

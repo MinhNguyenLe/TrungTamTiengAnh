@@ -63,6 +63,15 @@ export default function AddClass() {
       ])
         .then(([res]) => {
           dispatch(setListCourse(res.data));
+
+          name.ref.current.value = "";
+          infor.ref.current.value = "";
+          level.ref.current.value = "";
+          docs.ref.current.value = "";
+          tuition.ref.current.value = "";
+          mems.ref.current.value = "";
+          begin.ref.current.value = "";
+          end.ref.current.value = "";
         })
         .catch((err) => {
           console.log(err);
