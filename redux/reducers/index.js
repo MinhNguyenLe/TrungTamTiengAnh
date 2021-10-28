@@ -3,6 +3,7 @@ import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 
 import { reducerUser } from "./user.js";
+import { reducerCourse } from "./course.js";
 
 const userPersist = {
   key: "user",
@@ -12,6 +13,7 @@ const userPersist = {
 
 const reducers = combineReducers({
   user: persistReducer(userPersist, reducerUser),
+  course: reducerCourse,
 });
 
 export default reducers;

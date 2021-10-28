@@ -6,9 +6,16 @@ import axios from "axios";
 // components
 
 import { useVali } from "customHook/useVali";
+import { useHostAPI } from "customHook/useHostAPI";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setListCourse } from "redux/actions/course";
 
 export default function AddClass() {
   const t = use18n();
+  const host = useHostAPI();
+
+  const dispatch = useDispatch();
 
   const level = useVali({ require: [1, 4], requireValue: 3 });
   const name = useVali({ require: [1, 4], requireValue: 3, test: 1 });
@@ -20,6 +27,7 @@ export default function AddClass() {
   const end = useVali({ require: [1] });
 
   const createCourse = () => {
+    // check error for each field
     name.checkErr();
     level.checkErr();
     docs.checkErr();
@@ -39,7 +47,7 @@ export default function AddClass() {
       end.success
     ) {
       Promise.all([
-        axios.post("http://localhost:8888/api/courses/create", {
+        axios.post(`${host}/api/courses/create`, {
           content: {
             name: name.ref.current.value,
             information: infor.ref.current.value,
@@ -53,13 +61,16 @@ export default function AddClass() {
           },
         }),
       ])
-        .then(([res]) => {})
+        .then(([res]) => {
+          dispatch(setListCourse(res.data));
+        })
         .catch((err) => {
           console.log(err);
         });
     }
   };
 
+  // debounce when fill input
   const debLevel = debounce(() => {
     level.checkErr();
   }, 500);
