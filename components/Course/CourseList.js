@@ -76,7 +76,10 @@ export default function ClassList() {
             </thead>
             <tbody>
               {listCourse.map((course) => (
-                <tr>
+                <tr
+                  className="cursor-pointer hover:bg-lightBlue-600"
+                  key={`list-course-${course.id}`}
+                >
                   <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                     {course.name}
                   </th>
