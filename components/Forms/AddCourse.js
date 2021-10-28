@@ -10,21 +10,16 @@ import { useVali } from "customHook/useVali";
 export default function AddClass() {
   const t = use18n();
 
-  const name = useVali({ require: [1, 4], requireValue: 3 });
   const level = useVali({ require: [1, 4], requireValue: 3 });
+  const name = useVali({ require: [1, 4], requireValue: 3, test: 1 });
   const docs = useVali({ require: [1, 4], requireValue: 3 });
   const mems = useVali({ require: [1, 3], requireValue: 30 });
   const tuition = useVali({ require: [1, 2], requireValue: 1 });
   const infor = useVali({ require: [1, 4], requireValue: 6 });
-  const begin = useVali({ require: [1] });
+  const begin = useVali({ require: [1], test: 1 });
   const end = useVali({ require: [1] });
 
   const createCourse = () => {
-    deb();
-    console.log(begin.ref.current?.value);
-  };
-
-  const deb = debounce(() => {
     name.checkErr();
     level.checkErr();
     docs.checkErr();
@@ -33,7 +28,62 @@ export default function AddClass() {
     infor.checkErr();
     begin.checkErr();
     end.checkErr();
-  }, 1000);
+    if (
+      name.success &&
+      level.success &&
+      docs.success &&
+      mems.success &&
+      tuition.success &&
+      infor.success &&
+      begin.success &&
+      end.success
+    ) {
+      Promise.all([
+        axios.post("http://localhost:8888/api/courses/create", {
+          content: {
+            name: name.ref.current.value,
+            information: infor.ref.current.value,
+            level: level.ref.current.value,
+            docs: docs.ref.current.value,
+            tuition: parseInt(tuition.ref.current.value),
+            members: parseInt(mems.ref.current.value),
+            idClass: [],
+            timeBegin: begin.ref.current.value,
+            timeEnd: end.ref.current.value,
+          },
+        }),
+      ])
+        .then(([res]) => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const debLevel = debounce(() => {
+    level.checkErr();
+  }, 500);
+  const debName = debounce(() => {
+    name.checkErr();
+  }, 500);
+  const debInfor = debounce(() => {
+    infor.checkErr();
+  }, 500);
+  const debDocs = debounce(() => {
+    docs.checkErr();
+  }, 500);
+  const debMems = debounce(() => {
+    mems.checkErr();
+  }, 500);
+  const debTuition = debounce(() => {
+    tuition.checkErr();
+  }, 500);
+  const debBegin = debounce(() => {
+    begin.checkErr();
+  }, 500);
+  const debEnd = debounce(() => {
+    end.checkErr();
+  }, 500);
 
   return (
     <>
@@ -67,6 +117,7 @@ export default function AddClass() {
                     {t["7"]}
                   </label>
                   <input
+                    onInput={() => debName()}
                     ref={name.ref}
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -85,6 +136,7 @@ export default function AddClass() {
                     {t["5"]}
                   </label>
                   <input
+                    onInput={() => debLevel()}
                     ref={level.ref}
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -103,6 +155,7 @@ export default function AddClass() {
                     {t["6"]}
                   </label>
                   <input
+                    onInput={() => debDocs()}
                     ref={docs.ref}
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -121,6 +174,10 @@ export default function AddClass() {
                     {t["8"]}
                   </label>
                   <input
+                    onChange={(e) => {
+                      console.log("changee date");
+                      debBegin();
+                    }}
                     ref={begin.ref}
                     type="date"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -139,6 +196,7 @@ export default function AddClass() {
                     {t["9"]}
                   </label>
                   <input
+                    onInput={() => debEnd()}
                     ref={end.ref}
                     type="date"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -157,6 +215,7 @@ export default function AddClass() {
                     {t["10"]}
                   </label>
                   <input
+                    onInput={() => debMems()}
                     ref={mems.ref}
                     type="number"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -175,6 +234,7 @@ export default function AddClass() {
                     {t["11"]}
                   </label>
                   <input
+                    onInput={() => debTuition()}
                     ref={tuition.ref}
                     type="number"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -196,6 +256,7 @@ export default function AddClass() {
                     {t["4"]}
                   </label>
                   <textarea
+                    onInput={() => debInfor()}
                     ref={infor.ref}
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
