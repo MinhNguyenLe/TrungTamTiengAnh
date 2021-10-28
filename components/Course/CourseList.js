@@ -8,6 +8,8 @@ import { useHostAPI } from "customHook/useHostAPI";
 import { useDispatch, useSelector } from "react-redux";
 import { setListCourse } from "redux/actions/course";
 
+import Link from "next/link";
+
 export default function ClassList() {
   const t = use18n();
 
@@ -76,9 +78,12 @@ export default function ClassList() {
             </thead>
             <tbody>
               {listCourse.map((course) => (
-                <tr>
+                <tr
+                  className="cursor-pointer hover:bg-lightBlue-600"
+                  key={`list-course-${course.id}`}
+                >
                   <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {course.name}
+                    <Link href={`/course/${course.id}`}>{course.name}</Link>
                   </th>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {course.level}
@@ -87,16 +92,21 @@ export default function ClassList() {
                     {course.members}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    sessions
+                    {course.idClass.length}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.tuition}
+                    {new Intl.NumberFormat("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    }).format(course.tuition)}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.timeBegin}
+                    {new Date(course.timeBegin).toLocaleDateString()}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.timeEnd}
+                    {new Date(course.timeEnd).toLocaleDateString()}
                   </td>
                 </tr>
               ))}

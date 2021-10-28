@@ -14,11 +14,11 @@ export const en = {
   // course list component
   12: "List courses",
   13: "See all",
-  14: "Course name",
+  14: "Click to see course detail",
   15: "Members",
-  16: "Sessions",
+  16: "Classes",
   17: "Tuition",
   18: "Begin at",
   19: "End at",
-  20: "Level/Goal",
+  20: "Level",
 };
