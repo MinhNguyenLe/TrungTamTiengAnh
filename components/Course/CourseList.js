@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import use18n from "i18n/use18n";
 // components
 import axios from "axios";
-import { useHostAPI } from "customHook/useHostAPI";
+import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setListCourse } from "redux/actions/course";

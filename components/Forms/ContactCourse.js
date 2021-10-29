@@ -6,7 +6,7 @@ import axios from "axios";
 // components
 
 import { useVali } from "customHook/useVali";
-import { useHostAPI } from "customHook/useHostAPI";
+import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setListCourse } from "redux/actions/course";
