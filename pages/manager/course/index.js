@@ -9,12 +9,14 @@ import ClassList from "components/Course/CourseList.js";
 
 import Admin from "layouts/Admin.js";
 
+import use18n from "i18n/use18n";
 export default function Courses() {
+  const t = use18n();
   return (
     <>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-12/12 px-4">
-          <ContactCourse page="create" />
+          <ContactCourse page={t["33"]} />
         </div>
         <div className="w-full lg:w-12/12 px-4">
           <ClassList />
