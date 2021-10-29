@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import use18n from "i18n/use18n";
 import debounce from "lodash.debounce";
 
@@ -10,8 +10,9 @@ import { useHostAPI } from "customHook/useHostAPI";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setListCourse } from "redux/actions/course";
+import router from "next/router";
 
-export default function AddClass() {
+export default function ContactCourse({ page }) {
   const t = use18n();
   const host = useHostAPI();
 
@@ -25,6 +26,23 @@ export default function AddClass() {
   const infor = useVali({ require: [1, 4], requireValue: 6 });
   const begin = useVali({ require: [1], test: 1 });
   const end = useVali({ require: [1] });
+
+  useEffect(() => {
+    Promise.all([axios.get(`${host}/api/courses/${router.query.id}`)])
+      .then(([res]) => {
+        name.ref.current.value = res.data.name;
+        level.ref.current.value = res.data.level;
+        docs.ref.current.value = res.data.docs;
+        infor.ref.current.value = res.data.information;
+        mems.ref.current.value = res.data.members;
+        tuition.ref.current.value = res.data.tuition;
+        begin.ref.current.value = res.data.timeBegin.slice(0, 10);
+        end.ref.current.value = res.data.timeEnd.slice(0, 10);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const createCourse = () => {
     // check error for each field
@@ -79,6 +97,59 @@ export default function AddClass() {
     }
   };
 
+  const editCourse = () => {
+    // check error for each field
+    name.checkErr();
+    level.checkErr();
+    docs.checkErr();
+    mems.checkErr();
+    tuition.checkErr();
+    infor.checkErr();
+    begin.checkErr();
+    end.checkErr();
+    if (
+      name.success &&
+      level.success &&
+      docs.success &&
+      mems.success &&
+      tuition.success &&
+      infor.success &&
+      begin.success &&
+      end.success
+    ) {
+      Promise.all([
+        axios.post(`${host}/api/courses/edit`, {
+          content: {
+            id: router.query.id,
+            name: name.ref.current.value,
+            information: infor.ref.current.value,
+            level: level.ref.current.value,
+            docs: docs.ref.current.value,
+            tuition: parseInt(tuition.ref.current.value),
+            members: parseInt(mems.ref.current.value),
+            timeBegin: begin.ref.current.value,
+            timeEnd: end.ref.current.value,
+          },
+        }),
+      ])
+        .then(([res]) => {
+          dispatch(setListCourse(res.data));
+
+          name.ref.current.value = "";
+          infor.ref.current.value = "";
+          level.ref.current.value = "";
+          docs.ref.current.value = "";
+          tuition.ref.current.value = "";
+          mems.ref.current.value = "";
+          begin.ref.current.value = "";
+          end.ref.current.value = "";
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   // debounce when fill input
   const debLevel = debounce(() => {
     level.checkErr();
@@ -110,15 +181,17 @@ export default function AddClass() {
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
         <div className="rounded-t bg-white mb-0 px-6 py-6">
           <div className="text-center flex justify-between">
-            <h6 className="text-blueGray-700 text-xl font-bold">{t["1"]}</h6>
+            <h6 className="text-blueGray-700 text-xl font-bold">
+              {page === "create" ? t["1"] : t["25"]}
+            </h6>
             <button
               onClick={() => {
-                createCourse();
+                page === "create" ? createCourse() : editCourse();
               }}
               className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
             >
-              {t["2"]}
+              {page === "create" ? t["2"] : t["26"]}
             </button>
           </div>
         </div>
