@@ -19,6 +19,7 @@ export default function ClassList() {
   const listCourse = useSelector((state) => state.course.list);
 
   useEffect(() => {
+    console.log("effectttt");
     Promise.all([axios.get(`${host}/api/courses`)])
       .then(([res]) => {
         dispatch(setListCourse(res.data));
@@ -27,6 +28,16 @@ export default function ClassList() {
         console.log(err);
       });
   }, []);
+
+  const deleteCourse = (id) => {
+    Promise.all([axios.delete(`${host}/api/courses/${id}`)])
+      .then(([res]) => {
+        dispatch(setListCourse(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -74,42 +85,67 @@ export default function ClassList() {
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   {t["19"]}
                 </th>
+                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  {t["21"]}
+                </th>
+                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  {t["23"]}
+                </th>
+                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  {t["22"]}
+                </th>
               </tr>
             </thead>
             <tbody>
-              {listCourse.map((course) => (
-                <tr
-                  className="cursor-pointer hover:bg-lightBlue-600"
-                  key={`list-course-${course.id}`}
-                >
-                  <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    <Link href={`/course/${course.id}`}>{course.name}</Link>
-                  </th>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.level}
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.members}
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.idClass.length}
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {new Intl.NumberFormat("vi-VN", {
-                      style: "currency",
-                      currency: "VND",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 0,
-                    }).format(course.tuition)}
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {new Date(course.timeBegin).toLocaleDateString()}
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {new Date(course.timeEnd).toLocaleDateString()}
-                  </td>
-                </tr>
-              ))}
+              {
+                //   listCourse?.map((course) => (
+                //   <tr
+                //     className="cursor-pointer hover:bg-lightBlue-600"
+                //     key={`list-course-${course.id}`}
+                //   >
+                //     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                //       {course.name}
+                //     </th>
+                //     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                //       {course.level}
+                //     </td>
+                //     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                //       {course.members}
+                //     </td>
+                //     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                //       {course.idClass.length}
+                //     </td>
+                //     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                //       {new Intl.NumberFormat("vi-VN", {
+                //         style: "currency",
+                //         currency: "VND",
+                //         minimumFractionDigits: 0,
+                //         maximumFractionDigits: 0,
+                //       }).format(course.tuition)}
+                //     </td>
+                //     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                //       {new Date(course.timeBegin).toLocaleDateString()}
+                //     </td>
+                //     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                //       {new Date(course.timeEnd).toLocaleDateString()}
+                //     </td>
+                //     <th className="text-lightBlue-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                //       <Link href={`course/${course.id}`}>{t["24"]}</Link>
+                //     </th>
+                //     <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                //       <Link href={`course/${course.id}/edit`}>{t["23"]}</Link>
+                //     </th>
+                //     <th className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                //       <button
+                //         className="outline-none focus:outline-none"
+                //         onClick={() => deleteCourse(course.id)}
+                //       >
+                //         {t["22"]}
+                //       </button>
+                //     </th>
+                //   </tr>
+                // ))
+              }
             </tbody>
           </table>
         </div>
