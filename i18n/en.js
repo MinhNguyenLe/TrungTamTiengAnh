@@ -1,5 +1,10 @@
+/**
+ * number present : 32
+ */
 export const en = {
-  //add course component
+  /*
+   *components/Forms/ContactCourse.js
+   */
   1: "Create new course",
   2: "add course",
   3: "Course information",
@@ -11,7 +16,9 @@ export const en = {
   9: "Date end",
   10: "Number of students",
   11: "Tuition",
-  // course list component
+  /*
+   * components/Course/CourseList.js -> create course
+   */
   12: "List courses",
   13: "See all",
   14: "Course name",
@@ -25,21 +32,45 @@ export const en = {
   22: "Delete",
   23: "Edit",
   24: "Detail",
-  // edit course
+  /*
+   * components/Course/CourseList.js -> edit course
+   */
   25: "Edit course information",
   26: "save",
-  27: "",
-  28: "",
-  29: "",
-  30: "",
-  31: "",
-  32: "",
-  33: "",
-  34: "",
-  35: "",
-  36: "",
-  37: "",
-  38: "",
-  39: "",
-  40: "",
+  /*
+   *components/Sidebar/Sidebar.js
+   */
+  27: "MANAGER",
+  28: "COURSES",
+  29: "CLASSROOMS",
+  /**
+   * ROUTER
+   */
+  30: "manager",
+  31: "course",
+  32: "classroom",
+  /**
+   * TYPE PAGE
+   */
+  33: "create",
+  34: "edit",
+  /**
+   * components/Forms/ContactClassRoom.js"
+   */
+  35: "Create new classroom",
+  36: "SAVE",
+  37: "", //"Classroom information",
+  38: "Name",
+  39: "Address",
+  /**
+   *components/ClassRoom/ClassRoomList.js"
+   */
+  40: "List classroom",
+  41: "SEE ALL",
+  42: "name",
+  43: "address",
+  44: "time table",
+  45: "delete",
+  46: "edit",
+  47: "detail",
 };

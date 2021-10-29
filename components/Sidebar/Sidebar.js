@@ -5,9 +5,13 @@ import { useRouter } from "next/router";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
+import use18n from "i18n/use18n";
+
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const router = useRouter();
+
+  const t = use18n();
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -84,18 +88,18 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Manager
+              {t["27"]}
             </h6>
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
-                <Link href="/manager/course">
+                <Link href={`/${t["30"]}/${t["31"]}`}>
                   <a
                     href="#pablo"
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/manager/course") !== -1
+                      (router.pathname.indexOf(`/${t["30"]}/${t["31"]}`) !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -103,12 +107,37 @@ export default function Sidebar() {
                     <i
                       className={
                         "fas fa-tools mr-2 text-sm " +
-                        (router.pathname.indexOf("/manager/course") !== -1
+                        (router.pathname.indexOf(`/${t["30"]}/${t["31"]}`) !==
+                        -1
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
                     ></i>{" "}
-                    Courses
+                    {t["28"]}
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href={`/${t["30"]}/${t["32"]}`}>
+                  <a
+                    href="#pablo"
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf(`/${t["30"]}/${t["32"]}`) !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-tools mr-2 text-sm " +
+                        (router.pathname.indexOf(`/${t["30"]}/${t["32"]}`) !==
+                        -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                    {t["29"]}
                   </a>
                 </Link>
               </li>
