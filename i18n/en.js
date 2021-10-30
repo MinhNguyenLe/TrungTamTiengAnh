@@ -70,7 +70,8 @@ export const en = {
   42: "name",
   43: "address",
   44: "time table",
-  45: "delete",
-  46: "edit",
-  47: "detail",
+  45: "Delete",
+  46: "Edit",
+  47: "Detail",
+  48: "Add timetable",
 };
