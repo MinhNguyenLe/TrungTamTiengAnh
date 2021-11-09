@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 // layout for page
 import axios from "axios";
@@ -7,6 +8,8 @@ import Auth from "layouts/Auth.js";
 
 import { useSelector } from "react-redux";
 export default function Register() {
+  const router = useRouter();
+
   const userName = useRef("");
   const email = useRef("");
   const firstName = useRef("");
@@ -47,6 +50,10 @@ export default function Register() {
   const inputAccount = () => {
     // console.log(111, user);
   };
+
+  const pushRouter = () => {
+    router.push("./login");
+  };
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -61,6 +68,7 @@ export default function Register() {
                 </div>
                 <div className="btn-wrapper text-center">
                   <button
+                    onClick={pushRouter}
                     className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
                   >
