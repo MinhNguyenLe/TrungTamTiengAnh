@@ -10,8 +10,8 @@ const require = {
   1: "check null",
   2: "min",
   3: "max",
-  4: "max length",
-  5: "min length",
+  4: "min length",
+  5: "max length",
 };
 
 function validate(obj) {

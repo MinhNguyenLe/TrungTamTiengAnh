@@ -114,7 +114,7 @@ export default function ClassList() {
                     {course.members}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.idClass.length}
+                    {course.idClass?.length}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {new Intl.NumberFormat("vi-VN", {
