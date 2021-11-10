@@ -3,9 +3,9 @@ import axios from "axios";
 // layout for page
 import React, { useRef } from "react";
 import Auth from "layouts/Auth.js";
-
+import { useRouter } from "next/router";
 export default function Login() {
- 
+  const router = useRouter();
   const userName = useRef("");
   const password = useRef("");
   const Login = () => {
@@ -16,7 +16,8 @@ export default function Login() {
       }),
     ])
       .then(([res]) => {
-        console.log(res.data);
+        router.push("../admin/dashboard");
+        console.log(JSON.stringify(res.data));
        })
       .catch((err) => {
         console.log(JSON.stringify(err));
