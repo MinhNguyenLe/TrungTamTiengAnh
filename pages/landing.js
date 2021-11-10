@@ -2,14 +2,15 @@ import React from "react";
 import Link from "next/link";
 
 // components
-
+import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
 export default function Landing() {
   return (
     <>
-      <Navbar transparent />
+      <IndexNavbar transparent />
+      {/* <Navbar transparent /> */}
       <main>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
@@ -118,9 +119,7 @@ export default function Landing() {
                   English for Business
                 </h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-                  Don't let your uses guess by attaching tooltips and popoves to
-                  any element. Just make sure you enable them first via
-                  JavaScript.
+                  We offer a wide range of general and industry-specific courses. Training is available at an ILA Training Centre or at your company premises. We establish training needs through a client consultation and a pre-training English language assessment of all potential participants. We employ a communicative approach in our training programmes. Our trainers aim to maximise input, interaction and communication from all participants.
                 </p>
                 <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600">
                   The kit comes with three pre-built pages to help you get
@@ -130,7 +129,7 @@ export default function Landing() {
                 </p>
                 <Link href="/">
                   <a href="#pablo" className="font-bold text-blueGray-700 mt-8">
-                    Check Notus NextJS!
+                    Check courses!
                   </a>
                 </Link>
               </div>
@@ -155,12 +154,10 @@ export default function Landing() {
                       ></polygon>
                     </svg>
                     <h4 className="text-xl font-bold text-white">
-                      Top Notch Services
+                      ENGLISH FOR SPECIFIC SKILLS
                     </h4>
                     <p className="text-md font-light mt-2 text-white">
-                      The Arctic Ocean freezes every winter and much of the
-                      sea-ice then thaws every summer, and that process will
-                      continue whatever happens.
+                      A wide range of specialized short courses, each focused on a particular business situation or skill. Participants learn specific vocabulary and essential skills to enable them to communicate confidently and effectively.
                     </p>
                   </blockquote>
                 </div>
@@ -259,7 +256,7 @@ export default function Landing() {
             </div>
           </div>
         </section>
-
+{/* 
         <section className="pt-20 pb-48">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-24">
@@ -277,11 +274,11 @@ export default function Landing() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src="/img/team-1-800x800.jpg"
+                    src="https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.18169-9/18664568_1888197294801546_5994602151833589855_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=fSr3r_qO6d4AX94XXq5&_nc_ht=scontent.fsgn8-2.fna&oh=232bc39965923b1449b6723dfcd17f3d&oe=61B00A5B"
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Ryan Tompson</h5>
+                    <h5 className="text-xl font-bold">Dương Nguyễn</h5>
                     <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
                       Web Developer
                     </p>
@@ -415,7 +412,7 @@ export default function Landing() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section className="pb-20 relative block bg-blueGray-800">
           <div
