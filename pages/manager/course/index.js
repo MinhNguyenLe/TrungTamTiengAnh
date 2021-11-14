@@ -1,9 +1,9 @@
-import React from "react";
-
+import { Fragment, useRef, useState } from "react";
 // components
 
 import ContactCourse from "components/Forms/ContactCourse.js";
-import ClassList from "components/Course/CourseList.js";
+import CourseList from "components/Course/CourseList.js";
+import CourseForm from "components/Dialog/CourseForm";
 
 // layout for page
 
@@ -16,10 +16,10 @@ export default function Courses() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-12/12 px-4">
-          <ContactCourse page={t["33"]} />
+          <CourseForm page="create" />
         </div>
         <div className="w-full lg:w-12/12 px-4">
-          <ClassList />
+          <CourseList />
         </div>
       </div>
     </>
