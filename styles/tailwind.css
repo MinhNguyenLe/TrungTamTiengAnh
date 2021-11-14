@@ -2555,7 +2555,9 @@ select {
 .object-scale-down {
   object-fit: scale-down;
 }
-
+.opacity-25 {
+  opacity: 0.25;
+}
 .opacity-50 {
   opacity: 0.5;
 }
@@ -3633,7 +3635,12 @@ select {
 .z-50 {
   z-index: 50;
 }
-
+.inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
 .gap-6 {
   gap: 1.5rem;
 }

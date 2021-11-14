@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.3",
+    "@headlessui/react": "^0.0.0-dev.50d9fd3",
     "@popperjs/core": "2.9.1",
     "@tailwindcss/forms": "0.2.1",
     "axios": "^0.22.0",
@@ -25,7 +26,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "tailwindcss": "2.0.4"
+    "tailwindcss": "^2.2.19"
   },
   "scripts": {
     "start": "next start",
