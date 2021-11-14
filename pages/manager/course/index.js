@@ -12,25 +12,15 @@ import Admin from "layouts/Admin.js";
 import use18n from "i18n/use18n";
 export default function Courses() {
   const t = use18n();
-
-  const [open, setOpen] = useState(true);
-
-  const openModal = () => {
-    setOpen(true);
-    console.log(open);
-  };
-
   return (
     <>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-12/12 px-4">
-          <ContactCourse page="create" />
+          <CourseForm page="create" />
         </div>
         <div className="w-full lg:w-12/12 px-4">
           <CourseList />
         </div>
-        <button onClick={() => openModal()}>shsdfsdfsdfow</button>
-        <CourseForm page="create" />
       </div>
     </>
   );

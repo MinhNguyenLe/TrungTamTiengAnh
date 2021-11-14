@@ -2516,6 +2516,10 @@ select {
   max-width: 580px;
 }
 
+.max-w-1200 {
+  max-width: 1200px;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
