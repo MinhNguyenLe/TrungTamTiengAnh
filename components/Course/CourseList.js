@@ -118,8 +118,13 @@ export default function CourseList({ setShowModal }) {
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {course.members}
                   </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course?.idClass?.length}
+                  <td
+                    style={{ display: "flex", flexDirection: "column" }}
+                    className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                  >
+                    {course.classes.map((item) => (
+                      <span>{item.code}</span>
+                    ))}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {new Intl.NumberFormat("vi-VN", {
