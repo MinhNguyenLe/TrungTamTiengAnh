@@ -6,11 +6,11 @@ import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setListCourse } from "redux/actions/course";
+import { setListCourse, setTargetCourse } from "redux/actions/course";
 
 import Link from "next/link";
 
-export default function ClassList() {
+export default function CourseList({ setShowModal }) {
   const t = use18n();
 
   const host = useHostAPI();
@@ -39,6 +39,11 @@ export default function ClassList() {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const gotoEdit = (id) => {
+    dispatch(setTargetCourse(id));
+    setShowModal(true);
   };
 
   return (
@@ -135,10 +140,11 @@ export default function ClassList() {
                       {t["24"]}
                     </Link>
                   </th>
-                  <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <Link href={`${router.pathname}/${course.id}/edit`}>
-                      {t["23"]}
-                    </Link>
+                  <th
+                    onClick={() => gotoEdit(course.id)}
+                    className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                  >
+                    {t["23"]}
                   </th>
                   <th className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     <button

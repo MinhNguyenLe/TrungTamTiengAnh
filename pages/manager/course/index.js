@@ -1,7 +1,6 @@
-import { Fragment, useRef, useState } from "react";
+import { useState } from "react";
 // components
 
-import ContactCourse from "components/Forms/ContactCourse.js";
 import CourseList from "components/Course/CourseList.js";
 import CourseForm from "components/Dialog/CourseForm";
 
@@ -12,14 +11,37 @@ import Admin from "layouts/Admin.js";
 import use18n from "i18n/use18n";
 export default function Courses() {
   const t = use18n();
+
+  const [showModal, setShowModal] = useState(false);
+  const [showModalE, setShowModalE] = useState(false);
   return (
     <>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-12/12 px-4">
-          <CourseForm page="create" />
+          <button
+            className="relative bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            onClick={() => setShowModal(true)}
+          >
+            Add new course
+          </button>
+          {showModal ? (
+            <CourseForm
+              showModal={showModal}
+              setShowModal={setShowModal}
+              page="create"
+            />
+          ) : null}
+          {showModalE ? (
+            <CourseForm
+              showModal={showModalE}
+              setShowModal={setShowModalE}
+              page="edit"
+            />
+          ) : null}
         </div>
         <div className="w-full lg:w-12/12 px-4">
-          <CourseList />
+          <CourseList setShowModal={setShowModalE} />
         </div>
       </div>
     </>

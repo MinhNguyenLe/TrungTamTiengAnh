@@ -6,3 +6,12 @@ export const setListCourse = (list) => {
     },
   };
 };
+
+export const setTargetCourse = (id) => {
+  return {
+    type: "SET-TARGET-COURSE",
+    payload: {
+      id: id,
+    },
+  };
+};
