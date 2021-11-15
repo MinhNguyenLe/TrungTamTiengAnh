@@ -1,6 +1,7 @@
 import React from "react";
-
+import { useDispatch, useSelector } from "react-redux";
 export default function HeaderClass() {
+  const target = useSelector((state) => state.class.target);
   return (
     <>
       <div className="relative bg-blueGray-800 md:pt-32 pb-32 pt-12">
@@ -11,10 +12,10 @@ export default function HeaderClass() {
                 <div className="flex-auto p-4">
                   <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
                     <h5 className="text-blueGray-400 uppercase font-bold text-xs">
-                      IT002
+                      {target.code}
                     </h5>
                     <span className="font-semibold text-xl text-blueGray-700">
-                      Lap trinh huong doi tuong
+                      {target.name}
                     </span>
                     <div className="relative w-auto flex-initial">
                       GV : Nguyen Le Minh

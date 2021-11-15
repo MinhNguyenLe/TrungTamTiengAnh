@@ -73,9 +73,10 @@ export const en = {
   43: "address",
   44: "time table",
   45: "Delete",
-  46: "Edit",
+  46: "Edit information",
   47: "Detail",
-  48: "Add timetable",
+  48: "Add Timetable",
+  69: "Timetable",
   /**
    *components/Dialog/ClassForm.js
    */
@@ -86,4 +87,19 @@ export const en = {
   53: "Code",
   54: "Save",
   55: "Edit class information",
+  /**
+   *components/Dialog/ClassForm.js
+   */
+  58: "Add new Classroom",
+  59: "Close",
+  60: "Create new classroom",
+  61: "classroom information",
+  62: "classroom'name",
+  63: "Address",
+  64: "Create new classroom",
+  65: "Edit",
+  66: "Save",
+  67: "Add classroom",
+  68: "Created at",
 };
+//70
