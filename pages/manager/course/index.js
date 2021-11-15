@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import CourseList from "components/Course/CourseList.js";
 import CourseForm from "components/Dialog/CourseForm";
-
+import ClassForm from "components/Dialog/ClassForm";
 // layout for page
 
 import Admin from "layouts/Admin.js";
@@ -14,6 +14,8 @@ export default function Courses() {
 
   const [showModal, setShowModal] = useState(false);
   const [showModalE, setShowModalE] = useState(false);
+  const [showModalAddClass, setShowModalAddClass] = useState(false);
+
   return (
     <>
       <div className="flex flex-wrap">
@@ -39,9 +41,19 @@ export default function Courses() {
               page="edit"
             />
           ) : null}
+          {showModalAddClass ? (
+            <ClassForm
+              showModal={showModalAddClass}
+              setShowModal={setShowModalAddClass}
+              page="create"
+            />
+          ) : null}
         </div>
         <div className="w-full lg:w-12/12 px-4">
-          <CourseList setShowModal={setShowModalE} />
+          <CourseList
+            setShowModalEdit={setShowModalE}
+            setShowModalAddClass={setShowModalAddClass}
+          />
         </div>
       </div>
     </>

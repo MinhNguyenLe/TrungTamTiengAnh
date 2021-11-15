@@ -3,7 +3,7 @@
  */
 export const en = {
   /*
-   *components/Forms/ContactCourse.js
+   *components/Dialog/CourseForm.js
    */
   1: "Create new course",
   2: "add course",
@@ -28,10 +28,10 @@ export const en = {
   18: "Begin at",
   19: "End at",
   20: "Level",
-  21: "Course detail",
+  21: "Add class",
   22: "Delete",
   23: "Edit",
-  24: "Detail",
+  24: "Add",
   /*
    * components/Course/CourseList.js -> edit course
    */
@@ -74,4 +74,14 @@ export const en = {
   46: "Edit",
   47: "Detail",
   48: "Add timetable",
+  /**
+   *components/Dialog/ClassForm.js
+   */
+  49: "Create new class with this course",
+  50: "Class information",
+  51: "Add class",
+  52: "Class's name",
+  53: "Code",
+  54: "Save",
+  55: "Edit class information",
 };
