@@ -1,13 +1,8 @@
-export const setPeople = (user) => {
+export const setAccount = (account) => {
   return {
-    type: "SET-PEOPLE",
+    type: "SET-ACCOUNT",
     payload: {
-      email: user.email,
-      permission: user.permission,
-      id: user._id,
-      username: user.username,
-      name: user.name,
-      createdAt: user.createdAt,
+      account: account,
     },
   };
 };

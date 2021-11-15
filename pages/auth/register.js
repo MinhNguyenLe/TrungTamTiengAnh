@@ -29,15 +29,17 @@ export default function Register() {
         account: {
           userName: userName.current.value,
           password: password.current.value,
-          phoneNumber: phone.current.value,
           email: email.current.value,
-          firstName: firstName.current.value,
           lastName: lastName.current.value,
-          dateBirth: dateBirth.current.value,
+          firstName: firstName.current.value,
           placeBirth: placeBirth.current.value,
+          dateBirth: dateBirth.current.value,
+          phoneNumber: phone.current.value,
           gender: gender.current.value ? 1 : 0,
           address: address.current.value,
-          roleId: 1,
+          //cheat
+          nameRole: "student",
+          permission: 3,
         },
       }),
     ])

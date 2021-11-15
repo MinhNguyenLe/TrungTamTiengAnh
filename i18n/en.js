@@ -41,6 +41,8 @@ export const en = {
    *components/Sidebar/Sidebar.js
    */
   27: "MANAGER",
+  56: "TEACHER",
+  57: "STUDENT",
   28: "COURSES",
   29: "CLASSROOMS",
   /**
