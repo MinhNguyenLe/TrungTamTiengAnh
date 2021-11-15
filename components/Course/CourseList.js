@@ -10,7 +10,7 @@ import { setListCourse, setTargetCourse } from "redux/actions/course";
 
 import Link from "next/link";
 
-export default function CourseList({ setShowModal }) {
+export default function CourseList({ setShowModalEdit, setShowModalAddClass }) {
   const t = use18n();
 
   const host = useHostAPI();
@@ -43,7 +43,12 @@ export default function CourseList({ setShowModal }) {
 
   const gotoEdit = (id) => {
     dispatch(setTargetCourse(id));
-    setShowModal(true);
+    setShowModalEdit(true);
+  };
+
+  const gotoAddClass = (id) => {
+    setShowModalAddClass(true);
+    dispatch(setTargetCourse(id));
   };
 
   return (
@@ -122,9 +127,9 @@ export default function CourseList({ setShowModal }) {
                     style={{ display: "flex", flexDirection: "column" }}
                     className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                   >
-                    {course.classes.map((item) => (
-                      <span>{item.code}</span>
-                    ))}
+                    {course?.classes?.length
+                      ? course.classes.map((item) => <span>{item.code}</span>)
+                      : null}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {new Intl.NumberFormat("vi-VN", {
@@ -140,10 +145,11 @@ export default function CourseList({ setShowModal }) {
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {new Date(course.timeEnd).toLocaleDateString()}
                   </td>
-                  <th className="text-lightBlue-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <Link href={`${router.pathname}/${course.id}`}>
-                      {t["24"]}
-                    </Link>
+                  <th
+                    onClick={() => gotoAddClass(course.id)}
+                    className="text-lightBlue-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                  >
+                    {t["24"]}
                   </th>
                   <th
                     onClick={() => gotoEdit(course.id)}
