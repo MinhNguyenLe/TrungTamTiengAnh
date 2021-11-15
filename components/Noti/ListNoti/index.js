@@ -1,20 +1,29 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
 
 export default function ListNoti() {
+  const target = useSelector((state) => state.class.target);
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
         <div className="flex-auto p-4">
           <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-            <span className="font-semibold text-xl text-blueGray-700">
+            <div
+              style={{ borderBottom: "1px solid #333", paddingBottom: "8px" }}
+              className="font-semibold text-xl text-blueGray-700"
+            >
               List notification
-            </span>
+            </div>
             <div className="relative w-auto flex-initial">
-              <div> Tài liệu lý thuyếtFolder Tài liệu thực hành</div>
-              <div>[Lý thuyết] Bài tập lý thuyết 20/9/2021</div>
-              <div>[Lý thuyết] Bài tập lý thuyết 20/9/2021</div>
-              <div>[Lý thuyết] Bài tập buổi 27/9/2021</div>
-              <div>Bài tập buổi 4/10/2021</div>
+              {target.noti
+                ? target.noti.map((item) => (
+                    <Link key={`${item.id}notilist`} href="/">
+                      {item.content}
+                    </Link>
+                  ))
+                : null}
             </div>
           </div>
         </div>

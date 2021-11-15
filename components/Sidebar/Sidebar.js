@@ -211,7 +211,10 @@ export default function Sidebar() {
                   {t["57"]}
                 </h6>
                 {listCode.map((item) => (
-                  <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+                  <ul
+                    key={`${item}listCode`}
+                    className="md:flex-col md:min-w-full flex flex-col list-none"
+                  >
                     <li className="items-center">
                       <Link href={`/student/class/${item}`}>
                         <a
