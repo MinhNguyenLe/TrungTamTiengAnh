@@ -1,5 +1,6 @@
 const CLASS_STATE = {
   listCode: [],
+  target: {},
 };
 
 export const reducerClass = (state = CLASS_STATE, action) => {
@@ -8,6 +9,11 @@ export const reducerClass = (state = CLASS_STATE, action) => {
       return {
         ...state,
         listCode: action.payload.listCode,
+      };
+    case "SET-TARGET-CLASS":
+      return {
+        ...state,
+        target: action.payload.target,
       };
     default:
       return state;

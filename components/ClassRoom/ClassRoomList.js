@@ -1,9 +1,16 @@
 import React from "react";
 
 import use18n from "i18n/use18n";
+import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
 
 export default function ClassRoomList() {
   const t = use18n();
+  const dispatch = useDispatch();
+  const classrooms = useSelector((state) => state.classroom.list);
+
+  const deleteClassroom = () => {};
+  const editClassroom = () => {};
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
@@ -36,10 +43,10 @@ export default function ClassRoomList() {
                   {t["43"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["44"]}
+                  {t["69"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["47"]}
+                  {t["68"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   {t["48"]}
@@ -53,29 +60,49 @@ export default function ClassRoomList() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                  /argon/
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  4,569
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  12.00 : 13.00
-                </td>
-                <th className="text-lightBlue-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                  {t["47"]}
-                </th>
-                <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                  {t["48"]}
-                </th>
-                <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                  {t["46"]}
-                </th>
-                <th className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                  {t["45"]}
-                </th>
-              </tr>
+              {classrooms
+                ? classrooms.map((item) => (
+                    <tr>
+                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                        {item.name}
+                      </th>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        {item.address}
+                      </td>
+                      <td
+                        style={{ display: "flex", flexDirection: "column" }}
+                        className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                      >
+                        {item.timetable.length
+                          ? item.timetable.map((i) => (
+                              <span key={`${i.id}listtimetableclassroom`}>
+                                {i.begin}:{i.end}
+                              </span>
+                            ))
+                          : null}
+                      </td>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        {new Date(item.createdAt).toLocaleDateString()}
+                      </td>
+                      <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                        <Link href="/">{t["24"]}</Link>
+                      </th>
+
+                      <th
+                        onClick={editClassroom}
+                        className="cursor-pointer text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                      >
+                        {t["65"]}
+                      </th>
+                      <th
+                        onClick={deleteClassroom}
+                        className="cursor-pointer text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                      >
+                        {t["45"]}
+                      </th>
+                    </tr>
+                  ))
+                : null}
             </tbody>
           </table>
         </div>

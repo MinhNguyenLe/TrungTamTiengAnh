@@ -25,19 +25,21 @@ export default function Sidebar() {
   const host = useHostAPI();
 
   useEffect(() => {
-    Promise.all([
-      axios.post(`${host}/api/users/code-class`, {
-        role: account.nameRole,
-        idUser: account.id,
-      }),
-    ])
-      .then(([res]) => {
-        dispatch(setListCode(res.data));
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (account.permission !== 1) {
+      Promise.all([
+        axios.post(`${host}/api/users/code-class`, {
+          role: account.nameRole,
+          idUser: account.id,
+        }),
+      ])
+        .then(([res]) => {
+          dispatch(setListCode(res.data));
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
   return (
     <>
@@ -211,7 +213,10 @@ export default function Sidebar() {
                   {t["57"]}
                 </h6>
                 {listCode.map((item) => (
-                  <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+                  <ul
+                    key={`${item}listCode`}
+                    className="md:flex-col md:min-w-full flex flex-col list-none"
+                  >
                     <li className="items-center">
                       <Link href={`/student/class/${item}`}>
                         <a

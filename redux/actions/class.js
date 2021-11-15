@@ -6,3 +6,12 @@ export const setListCode = (list) => {
     },
   };
 };
+
+export const setTargetClass = (target) => {
+  return {
+    type: "SET-TARGET-CLASS",
+    payload: {
+      target: target,
+    },
+  };
+};
