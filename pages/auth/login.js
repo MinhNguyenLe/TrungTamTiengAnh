@@ -4,10 +4,16 @@ import axios from "axios";
 import React, { useRef } from "react";
 import Auth from "layouts/Auth.js";
 import { useRouter } from "next/router";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setAccount } from "redux/actions/user";
 export default function Login() {
   const router = useRouter();
   const userName = useRef("");
   const password = useRef("");
+
+  const dispatch = useDispatch();
+
   const Login = () => {
     Promise.all([
       axios.post("http://localhost:8888/api/auth/login", {
@@ -17,26 +23,13 @@ export default function Login() {
     ])
       .then(([res]) => {
         router.push("../admin/dashboard");
-        console.log(JSON.stringify(res.data));
-       })
+        dispatch(setAccount(res.data.user));
+      })
       .catch((err) => {
         console.log(JSON.stringify(err));
       });
   };
-//  const Login = async () => {
-//     try {
-//       const res = await axios.post("http://localhost:8888/api/auth/login",{
-//               account: {
-//                 userName: userName.current.value,
-//                 password: password.current.value,
-//               },
-//             });
-//       const data = res.data;
-//       console.log(data);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
