@@ -6,7 +6,7 @@ import CourseForm from "components/Dialog/CourseForm";
 import ClassForm from "components/Dialog/ClassForm";
 // layout for page
 
-import Admin from "layouts/Admin.js";
+import ClassLayout from "layouts/ClassLayout.js";
 
 import use18n from "i18n/use18n";
 export default function StudentClass() {
@@ -60,4 +60,4 @@ export default function StudentClass() {
   );
 }
 
-StudentClass.layout = Admin;
+StudentClass.layout = ClassLayout;
