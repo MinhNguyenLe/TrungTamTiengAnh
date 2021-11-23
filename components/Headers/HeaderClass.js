@@ -42,10 +42,11 @@ export default function HeaderClass() {
                     <Link
                       href={`${router.asPath}/list-student`}
                       style={{
-                        cursor: "pointer",
+                        cursor: "none",
+                        color: "blue !important",
                       }}
                     >
-                      List student
+                      {t["96"]}
                     </Link>
                   </div>
                 </div>

@@ -136,9 +136,25 @@ export const en = {
   93: "Add",
   94: "Close",
   95: "Student's email",
-  96: "",
-  97: "",
-  98: "",
-  99: "",
+  96: " List student",
+  /**
+   *page/class/[code]
+   */
+  97: "Add new notification",
+  98: "Create new notification",
+  99: "Notification Content",
+  100: "Save",
+  101: "Close",
+  102: "Title",
+  103: "Content",
+  /**
+   *components/noti/ListNoti
+   */
+  104: "List notification",
+  105: "",
+  106: "",
+  107: "",
+  108: "",
+  109: "",
 };
 //70

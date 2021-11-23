@@ -8,6 +8,8 @@ import use18n from "i18n/use18n";
 import { useDispatch, useSelector } from "react-redux";
 import { setTargetClass } from "redux/actions/class";
 
+import NotiForm from "components/Dialog/NotiForm";
+
 import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
 export default function Class() {
@@ -17,6 +19,7 @@ export default function Class() {
   const router = useRouter();
 
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     console.log(router);
@@ -34,9 +37,24 @@ export default function Class() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-12/12 px-4 mb-6">
+          <button
+            className="relative bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            onClick={() => setShowModal(true)}
+          >
+            {t["97"]}
+          </button>
+          {showModal ? (
+            <NotiForm
+              showModal={showModal}
+              setShowModal={setShowModal}
+              page="create"
+            />
+          ) : null}
+        </div>
+        <div className="w-full lg:w-12/12 px-4 mb-6">
           <ListNoti />
         </div>
-        <div className="w-full lg:w-12/12 px-4"></div>
       </div>
     </>
   );
