@@ -128,7 +128,14 @@ export default function CourseList({ setShowModalEdit, setShowModalAddClass }) {
                     className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                   >
                     {course?.classes?.length
-                      ? course.classes.map((item) => <span>{item.code}</span>)
+                      ? course.classes.map((item) => (
+                          <Link
+                            key={`codeclass${item.id}`}
+                            href={`/class/${item.code}`}
+                          >
+                            {item.code}
+                          </Link>
+                        ))
                       : null}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

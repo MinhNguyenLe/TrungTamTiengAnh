@@ -101,5 +101,6 @@ export const en = {
   66: "Save",
   67: "Add classroom",
   68: "Created at",
+  70: "class",
 };
 //70
