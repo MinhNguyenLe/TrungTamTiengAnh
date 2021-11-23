@@ -16,7 +16,7 @@ import { setListClassroom } from "redux/actions/classroom";
 export default function ClassRoom() {
   const t = use18n();
   const [showModal, setShowModal] = useState(false);
-
+  const [showModalE, setShowModalE] = useState(false);
   const dispatch = useDispatch();
 
   const host = useHostAPI();
@@ -47,9 +47,16 @@ export default function ClassRoom() {
               showModal={showModal}
             />
           ) : null}
+          {showModalE ? (
+            <ClassRoomForm
+              page="edit"
+              setShowModal={setShowModalE}
+              showModal={showModalE}
+            />
+          ) : null}
         </div>
         <div className="w-full lg:w-12/12 px-4">
-          <ClassRoomList />
+          <ClassRoomList setShowModal={setShowModalE} />
         </div>
       </div>
     </>
