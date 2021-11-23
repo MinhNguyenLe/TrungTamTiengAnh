@@ -1,6 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import use18n from "i18n/use18n";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 export default function HeaderClass() {
+  const t = use18n();
+  const router = useRouter();
   const target = useSelector((state) => state.class.target);
   return (
     <>
@@ -17,9 +23,31 @@ export default function HeaderClass() {
                     <span className="font-semibold text-xl text-blueGray-700">
                       {target.name}
                     </span>
-                    <div className="relative w-auto flex-initial">
-                      GV : Nguyen Le Minh
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <div>{t["77"]}</div>
+                      {target.teacherClass
+                        ? target?.teacherClass.map((i) => (
+                            <div
+                              key={`nameteacherclassbycode${i.teacher.id}`}
+                              style={{ marginLeft: "4px" }}
+                            >
+                              <div className="relative w-auto flex-initial">
+                                {i.teacher.user.firstName}{" "}
+                                {i.teacher.user.lastName}
+                              </div>
+                            </div>
+                          ))
+                        : null}
                     </div>
+                    <Link
+                      href={`${router.asPath}/list-student`}
+                      style={{
+                        cursor: "none",
+                        color: "blue !important",
+                      }}
+                    >
+                      {t["96"]}
+                    </Link>
                   </div>
                 </div>
               </div>
