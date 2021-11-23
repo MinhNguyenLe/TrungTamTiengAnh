@@ -168,6 +168,29 @@ export default function Sidebar() {
                       </a>
                     </Link>
                   </li>
+                  <li className="items-center">
+                    <Link href={`/manager/class`}>
+                      <a
+                        href="#pablo"
+                        className={
+                          "text-xs uppercase py-3 font-bold block " +
+                          (router.pathname.indexOf(`/manager/class`) !== -1
+                            ? "text-lightBlue-500 hover:text-lightBlue-600"
+                            : "text-blueGray-700 hover:text-blueGray-500")
+                        }
+                      >
+                        <i
+                          className={
+                            "fas fa-tools mr-2 text-sm " +
+                            (router.pathname.indexOf(`/manager/class`) !== -1
+                              ? "opacity-75"
+                              : "text-blueGray-300")
+                          }
+                        ></i>{" "}
+                        {t["70"]}
+                      </a>
+                    </Link>
+                  </li>
                 </ul>
               </>
             ) : account.permission === 2 ? (

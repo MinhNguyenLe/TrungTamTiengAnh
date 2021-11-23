@@ -1,9 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function ListNoti() {
   const target = useSelector((state) => state.class.target);
+  const router = useRouter();
 
   return (
     <>
@@ -19,7 +21,10 @@ export default function ListNoti() {
             <div className="relative w-auto flex-initial">
               {target.noti
                 ? target.noti.map((item) => (
-                    <Link key={`${item.id}notilist`} href="/">
+                    <Link
+                      key={`${item.id}notilist`}
+                      href={`${router.asPath}/${item.id}`}
+                    >
                       {item.content}
                     </Link>
                   ))

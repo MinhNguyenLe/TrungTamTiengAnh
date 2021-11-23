@@ -10,7 +10,7 @@ import { setTargetClass } from "redux/actions/class";
 
 import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
-export default function StudentClass() {
+export default function Class() {
   const t = use18n();
   const host = useHostAPI();
 
@@ -19,6 +19,7 @@ export default function StudentClass() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(router);
     Promise.all([axios.get(`${host}/api/classes/${router.query.code}`)])
       .then(([res]) => {
         dispatch(setTargetClass(res.data));
@@ -41,4 +42,4 @@ export default function StudentClass() {
   );
 }
 
-StudentClass.layout = ClassLayout;
+Class.layout = ClassLayout;
