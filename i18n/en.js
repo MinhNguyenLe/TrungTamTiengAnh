@@ -102,5 +102,43 @@ export const en = {
   67: "Add classroom",
   68: "Created at",
   70: "class",
+  /**
+   *components/Dialog/TimeTableForm.js
+   */
+  71: "Add timetable",
+  72: "Timetable information",
+  73: "Begin",
+  74: "End",
+  75: "Add",
+  76: "Close",
+  /**
+   *page/class/[code]
+   */
+  77: "Teacher: ",
+  /**
+   *page/class/[code]/list-student
+   */
+  78: "List Student in class",
+  82: "Name",
+  85: "Gender",
+  81: "Email",
+  83: "Phone number",
+  84: "Address",
+  86: "Date of Birth",
+  88: "Education",
+  87: "Level",
+  79: "Is paid",
+  80: "Kick",
+  89: "Female",
+  90: "Male",
+  91: "Add student",
+  92: "Student information",
+  93: "Add",
+  94: "Close",
+  95: "Student's email",
+  96: "",
+  97: "",
+  98: "",
+  99: "",
 };
 //70
