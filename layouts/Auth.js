@@ -2,13 +2,15 @@ import React from "react";
 
 // components
 
-import Navbar from "components/Navbars/AuthNavbar.js";
+// import Navbar from "components/Navbars/AuthNavbar.js";
 import FooterSmall from "components/Footers/FooterSmall.js";
 
+import IndexNavbar from "components/Navbars/IndexNavbar.js";
 export default function Auth({ children }) {
   return (
     <>
-      <Navbar transparent />
+      <IndexNavbar transparent />
+      {/* <Navbar transparent /> */}
       <main>
         <section className="relative w-full h-full py-40 min-h-screen">
           <div

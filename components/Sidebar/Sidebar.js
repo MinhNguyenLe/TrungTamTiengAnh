@@ -59,7 +59,7 @@ export default function Sidebar() {
               href="#pablo"
               className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             >
-              Notus NextJS
+              MR SMITH
             </a>
           </Link>
           {/* User */}
@@ -87,7 +87,7 @@ export default function Sidebar() {
                       href="#pablo"
                       className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     >
-                      Notus NextJS
+                      MR SMITH
                     </a>
                   </Link>
                 </div>
@@ -241,13 +241,13 @@ export default function Sidebar() {
                     className="md:flex-col md:min-w-full flex flex-col list-none"
                   >
                     <li className="items-center">
-                      <Link href={`/student/class/${item}`}>
+                      <Link href={`/class/${item}`}>
                         <a
                           href="#pablo"
                           className={
                             "text-xs uppercase py-3 font-bold block " +
                             (router.pathname.indexOf(
-                              `/student/class/${item}`
+                              `/class/${item}`
                             ) !== -1
                               ? "text-lightBlue-500 hover:text-lightBlue-600"
                               : "text-blueGray-700 hover:text-blueGray-500")
@@ -257,7 +257,7 @@ export default function Sidebar() {
                             className={
                               "fas fa-tools mr-2 text-sm " +
                               (router.pathname.indexOf(
-                                `/student/class/${item}`
+                                `/class/${item}`
                               ) !== -1
                                 ? "opacity-75"
                                 : "text-blueGray-300")

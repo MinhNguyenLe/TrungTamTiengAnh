@@ -76,12 +76,14 @@ export default function Navbar(props) {
               </a>
               </li>
               <li className="flex items-center">
+              <Link href="/courses">
               <a
                 className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                
               >
                 Course
               </a>
+              </Link>
               </li>
               <li className="flex items-center">
               <a
@@ -99,9 +101,9 @@ export default function Navbar(props) {
                 Contact
               </a>
               </li>
-              <li className="flex items-center">
+              {/* <li className="flex items-center">
                 <IndexDropdown />
-              </li>
+              </li> */}
               <li className="flex items-center">
                 <Link href="/auth/login">
                   
