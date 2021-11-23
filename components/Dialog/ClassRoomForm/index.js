@@ -17,12 +17,25 @@ export default function ClassRoomForm({ page, setShowModal, showModal }) {
   const t = use18n();
 
   const dispatch = useDispatch();
-  const targetCourse = useSelector((state) => state.course.target);
+  const target = useSelector((state) => state.classroom.target);
 
   const host = useHostAPI();
 
   const address = useVali({ require: [1] });
   const name = useVali({ require: [1] });
+
+  useEffect(() => {
+    if (page === "edit") {
+      Promise.all([axios.get(`${host}/api/classrooms/${target}`)])
+        .then(([res]) => {
+          name.ref.current.value = res.data.name;
+          address.ref.current.value = res.data.address;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   const createClassRoom = () => {
     // check error for each field
@@ -50,23 +63,29 @@ export default function ClassRoomForm({ page, setShowModal, showModal }) {
     }
   };
 
-  const editCourse = () => {
+  const editClassRoom = () => {
     // check error for each field
     name.checkErr();
     address.checkErr();
-
+    console.log(
+      name.success,
+      "---------------",
+      target,
+      name.ref.current.value,
+      address.ref.current.value
+    );
     if (name.success && address.success) {
       Promise.all([
-        axios.post(`${host}/api/courses/edit`, {
+        axios.post(`${host}/api/classrooms/edit`, {
           content: {
-            id: router.query.id,
+            id: target,
             name: name.ref.current.value,
             address: address.ref.current.value,
           },
         }),
       ])
         .then(([res]) => {
-          dispatch(setListCourse(res.data));
+          dispatch(setListClassroom(res.data));
           name.ref.current.value = "";
           address.ref.current.value = "";
           setShowModal(false);
@@ -96,13 +115,11 @@ export default function ClassRoomForm({ page, setShowModal, showModal }) {
               </h6>
               <div>
                 <button
-                  onClick={() => {
-                    page === "create" ? createClassRoom() : editCourse();
-                  }}
+                  onClick={page === "create" ? createClassRoom : editClassRoom}
                   className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   type="button"
                 >
-                  {page === "create" ? t["67"] : t["65"]}
+                  {page === "create" ? t["67"] : t["66"]}
                 </button>
                 <button
                   onClick={() => {
@@ -111,7 +128,7 @@ export default function ClassRoomForm({ page, setShowModal, showModal }) {
                   className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   type="button"
                 >
-                  {page === "create" ? t["59"] : t["66"]}
+                  {t["59"]}
                 </button>
               </div>
             </div>

@@ -6,3 +6,11 @@ export const setListClassroom = (list) => {
     },
   };
 };
+export const setTargetClassRoom = (id) => {
+  return {
+    type: "SET-TARGET-CLASSROOM",
+    payload: {
+      id: id,
+    },
+  };
+};

@@ -65,7 +65,7 @@ export const useVali = (obj) => {
   const [success, setSuccess] = useState(false);
 
   const checkErr = () => {
-    if (obj.test === 1) console.log(ref.current.value);
+    console.log(ref.current.value);
     for (let i = 0; i < obj.require.length; i++) {
       const out = validate({
         value: ref.current.value,
