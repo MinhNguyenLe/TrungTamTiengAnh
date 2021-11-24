@@ -38,7 +38,7 @@
   56: "GIÁO VIÊN",
   57: "HỌC VIÊN",
   28: "KHÓA HỌC",
-  29: "LỚP HỌC",
+  29: "Phòng học",
   /**
    * ROUTER
    */
@@ -90,7 +90,7 @@
   61: "thông tin phòng học",
   62: "tên phòng học",
   63: "Địa chỉ",
-  64: "Tại phòng học mới",
+  64: "Tạo phòng học mới",
   65: "Chỉnh sửa",
   66: "Lưu",
   67: "Thêm phòng học",

@@ -1,6 +1,6 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
-
+import Link from "next/link";
 const UserDropdown = () => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
@@ -71,15 +71,17 @@ const UserDropdown = () => {
           Something else here
         </a>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
+        <Link href="/">
         <a
           href="#pablo"
           className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-red-500"
           }
           onClick={(e) => e.preventDefault()}
         >
-          Seprated link
+          Log out
         </a>
+        </Link>
       </div>
     </>
   );

@@ -86,20 +86,24 @@ export default function Navbar(props) {
               </Link>
               </li>
               <li className="flex items-center">
+              <Link href="/about">
               <a
                 className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 
               >
                 About
               </a>
+              </Link>
               </li>
               <li className="flex items-center">
+              <Link href="/contact">
               <a
                 className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                
               >
                 Contact
               </a>
+              </Link>
               </li>
               {/* <li className="flex items-center">
                 <IndexDropdown />
