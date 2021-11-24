@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import use18n from "i18n/use18n";
 import debounce from "lodash.debounce";
 
@@ -17,11 +17,28 @@ export default function NotiForm({ page, setShowModal, showModal }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const target = useSelector((state) => state.class.target);
+  const listType = useSelector((state) => state.notiType.list);
 
   const host = useHostAPI();
 
   const title = useVali({ require: [1] });
   const content = useVali({ require: [1] });
+  const type = useRef();
+
+  useEffect(() => {
+    if (page === "edit") {
+      Promise.all([axios.get(`${host}/api/noti/${router.query.id}`)])
+        .then(([res]) => {
+          console.log(res.data);
+          title.ref.current.value = res.data.title;
+          type.ref.current.value = res.data.type.name;
+          content.ref.current.value = res.data.content;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   const addNoti = () => {
     // check error for each field
@@ -34,7 +51,7 @@ export default function NotiForm({ page, setShowModal, showModal }) {
             title: title.ref.current.value,
             idClass: target.id,
             content: content.ref.current.value,
-            idType: 2,
+            idType: parseInt(type.current.value),
           },
         }),
       ])
@@ -64,7 +81,9 @@ export default function NotiForm({ page, setShowModal, showModal }) {
         <div className="max-w-580-px relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
           <div className="rounded-t bg-white mb-0 px-6 py-6">
             <div className="text-center flex justify-between">
-              <h6 className="text-blueGray-700 text-xl font-bold">{t["98"]}</h6>
+              <h6 className="text-blueGray-700 text-xl font-bold">
+                {page === "create" ? t["98"] : t["116"]}
+              </h6>
               <div>
                 <button
                   onClick={addNoti}
@@ -91,6 +110,25 @@ export default function NotiForm({ page, setShowModal, showModal }) {
                 {t["99"]}
               </h6>
               <div className="flex flex-wrap">
+                <div className="w-full lg:w-12/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                      <span className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                        Select
+                      </span>
+                      <select
+                        ref={type}
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      >
+                        {listType
+                          ? listType?.map((item) => (
+                              <option value={item.id}>{item.name}</option>
+                            ))
+                          : null}
+                      </select>
+                    </label>
+                  </div>
+                </div>
                 <div className="w-full lg:w-12/12 px-4">
                   <div className="relative w-full mb-3">
                     <label
