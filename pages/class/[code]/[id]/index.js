@@ -14,6 +14,7 @@ import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
 
 import { setListNotiType } from "redux/actions/notiType";
+import { setListComment } from "redux/actions/comment";
 
 import debounce from "lodash.debounce";
 import { useVali } from "customHook/useVali";
@@ -36,10 +37,12 @@ export default function DetailNoti() {
     Promise.all([
       axios.get(`${host}/api/noti/${router.query.id}`),
       axios.get(`${host}/api/noti-type`),
+      axios.get(`${host}/api/comments/noti/${router.query.id}`),
     ])
-      .then(([res, noti]) => {
+      .then(([res, noti, comment]) => {
         dispatch(setTargetNoti(res.data));
         dispatch(setListNotiType(noti.data));
+        dispatch(setListComment(comment.data));
       })
       .catch((err) => {
         console.log(err);

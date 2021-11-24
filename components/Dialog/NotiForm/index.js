@@ -17,6 +17,8 @@ export default function NotiForm({ page, setShowModal, showModal }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const target = useSelector((state) => state.class.target);
+  const account = useSelector((state) => state.user.account);
+
   const listType = useSelector((state) => state.notiType.list);
 
   const host = useHostAPI();
@@ -45,27 +47,49 @@ export default function NotiForm({ page, setShowModal, showModal }) {
     title.checkErr();
     console.log(title.success, router.query.code);
     if (title.success) {
-      Promise.all([
-        axios.post(`${host}/api/noti/create`, {
-          content: {
-            title: title.ref.current.value,
-            idClass: target.id,
-            content: content.ref.current.value,
-            idType: parseInt(type.current.value),
-          },
-        }),
-      ])
-        .then(([res]) => {
-          console.log(res.data);
-          dispatch(setTargetClass(res.data));
-          title.ref.current.value = "";
-          content.ref.current.value = "";
-          setShowModal(false);
-        })
-        .catch((err) => {
-          console.log(err);
+      console.log(account.user);
+      if (account.user.nameRole === "student") {
+        account.studentClass.forEach((item) => {
+          console.log(item);
+          if (router.query.code === item.classes.code) {
+            addWithAPI(item.id, "student");
+          }
         });
+      } else if (account.user.nameRole === "teacher") {
+        account.teacherClass.forEach((item) => {
+          if (router.query.code === item.classes.id) {
+            addWithAPI(item.id, "teacher");
+          }
+        });
+      } else {
+        console.log("this is adminnnn --------");
+      }
     }
+  };
+
+  const addWithAPI = (id, role) => {
+    Promise.all([
+      axios.post(`${host}/api/noti/create`, {
+        content: {
+          title: title.ref.current.value,
+          idClass: target.id,
+          content: content.ref.current.value,
+          idType: parseInt(type.current.value),
+          role: role,
+          idUserClass: id,
+        },
+      }),
+    ])
+      .then(([res]) => {
+        console.log(res.data);
+        dispatch(setTargetClass(res.data));
+        title.ref.current.value = "";
+        content.ref.current.value = "";
+        setShowModal(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // debounce when fill input
