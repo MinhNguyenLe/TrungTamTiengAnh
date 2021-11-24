@@ -23,7 +23,7 @@ export default function Login() {
     ])
       .then(([res]) => {
         router.push("../admin/dashboard");
-        dispatch(setAccount(res.data.user));
+        dispatch(setAccount(res.data.account));
       })
       .catch((err) => {
         console.log(JSON.stringify(err));

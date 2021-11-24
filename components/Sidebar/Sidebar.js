@@ -28,8 +28,8 @@ export default function Sidebar() {
     if (account.permission !== 1) {
       Promise.all([
         axios.post(`${host}/api/users/code-class`, {
-          role: account.nameRole,
-          idUser: account.id,
+          role: account.user.nameRole,
+          idUser: account.user.id,
         }),
       ])
         .then(([res]) => {
