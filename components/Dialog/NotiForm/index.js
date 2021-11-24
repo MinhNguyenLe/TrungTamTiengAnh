@@ -25,6 +25,21 @@ export default function NotiForm({ page, setShowModal, showModal }) {
   const content = useVali({ require: [1] });
   const type = useRef();
 
+  useEffect(() => {
+    if (page === "edit") {
+      Promise.all([axios.get(`${host}/api/noti/${router.query.id}`)])
+        .then(([res]) => {
+          console.log(res.data);
+          title.ref.current.value = res.data.title;
+          type.ref.current.value = res.data.type.name;
+          content.ref.current.value = res.data.content;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
+
   const addNoti = () => {
     // check error for each field
     title.checkErr();
@@ -66,7 +81,9 @@ export default function NotiForm({ page, setShowModal, showModal }) {
         <div className="max-w-580-px relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
           <div className="rounded-t bg-white mb-0 px-6 py-6">
             <div className="text-center flex justify-between">
-              <h6 className="text-blueGray-700 text-xl font-bold">{t["98"]}</h6>
+              <h6 className="text-blueGray-700 text-xl font-bold">
+                {page === "create" ? t["98"] : t["116"]}
+              </h6>
               <div>
                 <button
                   onClick={addNoti}
