@@ -170,9 +170,18 @@ export const en = {
   110: "Created at",
   111: "Edit",
   112: "Delete",
-  115: "",
-  116: "",
-  117: "",
+  /**
+   *pages/class/[code]/[id]
+   */
+  115: "Edit Notification",
+  /**
+   *components/dialog/NotiForm
+   */
+  116: "Change information notification",
+  /**
+   *pages/class/[code]/[id]
+   */
+  117: "Comment",
   118: "",
   119: "",
   120: "",
