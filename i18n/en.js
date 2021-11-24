@@ -151,10 +151,49 @@ export const en = {
    *components/noti/ListNoti
    */
   104: "List notification",
-  105: "",
-  106: "",
-  107: "",
-  108: "",
-  109: "",
+  /**
+   *sidebar
+   */
+  105: "Type of Notification",
+  /**
+   *page/manager/noti-type
+   */
+  106: "Add new Notification's Type",
+  107: "Information",
+  108: "Name of Type",
+  113: "Save",
+  114: "Change name of Notification's Type",
+  /**
+   *components/NotiTypw/ListNotiType
+   */
+  109: "Name",
+  110: "Created at",
+  111: "Edit",
+  112: "Delete",
+  115: "",
+  116: "",
+  117: "",
+  118: "",
+  119: "",
+  120: "",
+  121: "",
+  122: "",
+  123: "",
+  124: "",
+  125: "",
+  126: "",
+  127: "",
+  128: "",
+  129: "",
+  130: "",
+  131: "",
+  132: "",
+  133: "",
+  134: "",
+  135: "",
+  136: "",
+  137: "",
+  138: "",
+  139: "",
 };
 //70

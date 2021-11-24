@@ -191,6 +191,30 @@ export default function Sidebar() {
                       </a>
                     </Link>
                   </li>
+                  <li className="items-center">
+                    <Link href={`/manager/noti-type`}>
+                      <a
+                        href="#pablo"
+                        className={
+                          "text-xs uppercase py-3 font-bold block " +
+                          (router.pathname.indexOf(`/manager/noti-type`) !== -1
+                            ? "text-lightBlue-500 hover:text-lightBlue-600"
+                            : "text-blueGray-700 hover:text-blueGray-500")
+                        }
+                      >
+                        <i
+                          className={
+                            "fas fa-tools mr-2 text-sm " +
+                            (router.pathname.indexOf(`/manager/noti-type`) !==
+                            -1
+                              ? "opacity-75"
+                              : "text-blueGray-300")
+                          }
+                        ></i>{" "}
+                        {t["105"]}
+                      </a>
+                    </Link>
+                  </li>
                 </ul>
               </>
             ) : account.permission === 2 ? (
@@ -246,9 +270,7 @@ export default function Sidebar() {
                           href="#pablo"
                           className={
                             "text-xs uppercase py-3 font-bold block " +
-                            (router.pathname.indexOf(
-                              `/class/${item}`
-                            ) !== -1
+                            (router.pathname.indexOf(`/class/${item}`) !== -1
                               ? "text-lightBlue-500 hover:text-lightBlue-600"
                               : "text-blueGray-700 hover:text-blueGray-500")
                           }
@@ -256,9 +278,7 @@ export default function Sidebar() {
                           <i
                             className={
                               "fas fa-tools mr-2 text-sm " +
-                              (router.pathname.indexOf(
-                                `/class/${item}`
-                              ) !== -1
+                              (router.pathname.indexOf(`/class/${item}`) !== -1
                                 ? "opacity-75"
                                 : "text-blueGray-300")
                             }

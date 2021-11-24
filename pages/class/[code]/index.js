@@ -7,6 +7,7 @@ import ClassLayout from "layouts/ClassLayout.js";
 import use18n from "i18n/use18n";
 import { useDispatch, useSelector } from "react-redux";
 import { setTargetClass } from "redux/actions/class";
+import { setListNotiType } from "redux/actions/notiType";
 
 import NotiForm from "components/Dialog/NotiForm";
 
@@ -23,10 +24,13 @@ export default function Class() {
 
   useEffect(() => {
     console.log(router);
-    Promise.all([axios.get(`${host}/api/classes/${router.query.code}`)])
-      .then(([res]) => {
+    Promise.all([
+      axios.get(`${host}/api/classes/${router.query.code}`),
+      axios.get(`${host}/api/noti-type`),
+    ])
+      .then(([res, noti]) => {
         dispatch(setTargetClass(res.data));
-        console.log(res.data);
+        dispatch(setListNotiType(noti.data));
       })
       .catch((err) => {
         console.log(err);

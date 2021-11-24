@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import use18n from "i18n/use18n";
 import debounce from "lodash.debounce";
 
@@ -17,11 +17,13 @@ export default function NotiForm({ page, setShowModal, showModal }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const target = useSelector((state) => state.class.target);
+  const listType = useSelector((state) => state.notiType.list);
 
   const host = useHostAPI();
 
   const title = useVali({ require: [1] });
   const content = useVali({ require: [1] });
+  const type = useRef();
 
   const addNoti = () => {
     // check error for each field
@@ -34,7 +36,7 @@ export default function NotiForm({ page, setShowModal, showModal }) {
             title: title.ref.current.value,
             idClass: target.id,
             content: content.ref.current.value,
-            idType: 2,
+            idType: parseInt(type.current.value),
           },
         }),
       ])
@@ -91,6 +93,25 @@ export default function NotiForm({ page, setShowModal, showModal }) {
                 {t["99"]}
               </h6>
               <div className="flex flex-wrap">
+                <div className="w-full lg:w-12/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                      <span className="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                        Select
+                      </span>
+                      <select
+                        ref={type}
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      >
+                        {listType
+                          ? listType?.map((item) => (
+                              <option value={item.id}>{item.name}</option>
+                            ))
+                          : null}
+                      </select>
+                    </label>
+                  </div>
+                </div>
                 <div className="w-full lg:w-12/12 px-4">
                   <div className="relative w-full mb-3">
                     <label
