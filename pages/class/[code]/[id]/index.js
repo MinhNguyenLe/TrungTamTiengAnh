@@ -30,7 +30,7 @@ export default function DetailNoti() {
   const [showModal, setShowModal] = useState(false);
 
   const noti = useSelector((state) => state.noti.target);
-  const account = useSelector((state) => state.user.account.user);
+  const account = useSelector((state) => state.user.account);
 
   const comment = useVali({ require: [1] });
 
