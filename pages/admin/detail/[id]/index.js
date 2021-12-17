@@ -22,31 +22,7 @@ export default function Detail({ setShowModalEdit, setShowModalAddClass }) {
 
   const dispatch = useDispatch();
   const course = useSelector((state) => state.course.target);
-  const Registration = () => {
-    Promise.all([
-      axios.post("http://localhost:8888/api/users/register", {
-        account: {
-          userName: userName.current.value,
-          password: password.current.value,
-          email: email.current.value,
-          lastName: lastName.current.value,
-          firstName: firstName.current.value,
-          placeBirth: placeBirth.current.value,
-          dateBirth: dateBirth.current.value,
-          phoneNumber: phone.current.value,
-          gender: gender.current.value ? 1 : 0,
-          address: address.current.value,
-          //cheat
-          nameRole: "student",
-          permission: 3,
-        },
-      }),
-    ])
-      .then(([res]) => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  
   useEffect(() => {
     Promise.all([axios.get(`${host}/api/courses/${router.query.id}`)])
       .then(([res]) => {

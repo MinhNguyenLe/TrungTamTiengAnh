@@ -17,7 +17,7 @@ export default function NotiForm({ page, setShowModal, showModal }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const target = useSelector((state) => state.class.target);
-  const account = useSelector((state) => state.user.account);
+  const account = useSelector((state) => state.user.account.user);
 
   const listType = useSelector((state) => state.notiType.list);
 
