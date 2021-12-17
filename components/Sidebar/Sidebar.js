@@ -18,14 +18,14 @@ export default function Sidebar() {
   const router = useRouter();
 
   const dispatch = useDispatch();
-  const account = useSelector((state) => state.user.account.user);
+  const account = useSelector((state) => state.user.account);
   const listCode = useSelector((state) => state.class.listCode);
 
   const t = use18n();
   const host = useHostAPI();
 
   useEffect(() => {
-    if (account.permission !== 1 && account?.user?.nameRole !== "admin") {
+    if (account?.user.permission !== 1 && account?.user?.nameRole !== "admin") {
       Promise.all([
         axios.post(`${host}/api/users/code-class`, {
           role: account?.user?.nameRole,
@@ -113,7 +113,7 @@ export default function Sidebar() {
               </div>
             </form>
 
-            {account.permission === 1 ? (
+            {account.user.permission === 1 ? (
               <>
                 <hr className="my-4 md:min-w-full" />
 
@@ -217,7 +217,7 @@ export default function Sidebar() {
                   </li>
                 </ul>
               </>
-            ) : account.permission === 2 ? (
+            ) : account.user.permission === 2 ? (
               <>
                 <hr className="my-4 md:min-w-full" />
 
