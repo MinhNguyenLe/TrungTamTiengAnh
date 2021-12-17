@@ -25,11 +25,11 @@ export default function Sidebar() {
   const host = useHostAPI();
 
   useEffect(() => {
-    if (account.permission !== 1 && account.user.nameRole !== "admin") {
+    if (account.permission !== 1 && account?.user?.nameRole !== "admin") {
       Promise.all([
         axios.post(`${host}/api/users/code-class`, {
-          role: account.user.nameRole,
-          idUser: account.user.id,
+          role: account?.user?.nameRole,
+          idUser: account?.user?.id,
         }),
       ])
         .then(([res]) => {

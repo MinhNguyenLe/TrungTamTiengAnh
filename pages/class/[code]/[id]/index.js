@@ -70,14 +70,14 @@ export default function DetailNoti() {
   };
   const submitCmt = (e) => {
     if (e.key === "Enter") {
-      if (account.user.nameRole === "student") {
+      if (account?.user?.nameRole === "student") {
         account.studentClass.forEach((item) => {
           console.log(item);
           if (router.query.code === item.classes.code) {
             apiCreateCmt(item.id, "student");
           }
         });
-      } else if (account.user.nameRole === "teacher") {
+      } else if (account?.user?.nameRole === "teacher") {
         account.teacherClass.forEach((item) => {
           if (router.query.code === item.classes.id) {
             apiCreateCmt(item.id, "teacher");

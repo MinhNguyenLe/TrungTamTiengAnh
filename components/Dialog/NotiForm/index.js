@@ -48,14 +48,14 @@ export default function NotiForm({ page, setShowModal, showModal }) {
     console.log(title.success, router.query.code);
     if (title.success) {
       console.log(account.user);
-      if (account.user.nameRole === "student") {
+      if (account?.user?.nameRole === "student") {
         account.studentClass.forEach((item) => {
           console.log(item);
           if (router.query.code === item.classes.code) {
             addWithAPI(item.id, "student");
           }
         });
-      } else if (account.user.nameRole === "teacher") {
+      } else if (account?.user?.nameRole === "teacher") {
         account.teacherClass.forEach((item) => {
           if (router.query.code === item.classes.id) {
             addWithAPI(item.id, "teacher");
