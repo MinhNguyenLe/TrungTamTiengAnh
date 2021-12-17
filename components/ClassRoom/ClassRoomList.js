@@ -99,8 +99,8 @@ export default function ClassRoomList({ setShowModal }) {
                         style={{ display: "flex", flexDirection: "column" }}
                         className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                       >
-                        {item.timetable.length
-                          ? item.timetable.map((i) => (
+                        {item?.timetable?.length
+                          ? item?.timetable?.map((i) => (
                               <button
                                 style={{
                                   cursor: "default",
