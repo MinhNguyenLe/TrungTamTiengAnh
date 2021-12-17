@@ -324,7 +324,7 @@ export default function Register() {
         <Messenger
           showModal={showModalFalse}
           setShowModal={setShowModalFalse}
-          string="Thành công"
+          string="Thất bại"
           page="create"
         />
       ) : null}
