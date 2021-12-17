@@ -13,7 +13,11 @@ export default function Login() {
   const password = useRef("");
 
   const dispatch = useDispatch();
+  const [loading, setLoading] = React.useState(false);
 
+  React.useEffect(() => {
+    setLoading(true);
+  }, []);
   const Login = () => {
     Promise.all([
       axios.post("http://localhost:8888/api/auth/login", {
@@ -23,9 +27,11 @@ export default function Login() {
     ])
       .then(([res]) => {
         router.push("../admin/dashboard");
+        console.log("Duong" + JSON.stringify(res.data.account.user));
         dispatch(setAccount(res.data.account));
       })
       .catch((err) => {
+        
         console.log(JSON.stringify(err));
       });
   };
@@ -42,7 +48,7 @@ export default function Login() {
                     Sign in with
                   </h6>
                 </div>
-                <div className="btn-wrapper text-center">
+                {/* <div className="btn-wrapper text-center">
                   <button
                     className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
@@ -58,12 +64,12 @@ export default function Login() {
                     Google
                   </button>
                 </div>
-                <hr className="mt-6 border-b-1 border-blueGray-300" />
+                <hr className="mt-6 border-b-1 border-blueGray-300" /> */}
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <div className="text-blueGray-400 text-center mb-3 font-bold">
+                {/* <div className="text-blueGray-400 text-center mb-3 font-bold">
                   <small>Or sign in with credentials</small>
-                </div>
+                </div> */}
                 <form>
                   <div className="relative w-full mb-3">
                     <label
@@ -94,7 +100,7 @@ export default function Login() {
                       placeholder="Password"
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <label className="inline-flex items-center cursor-pointer">
                       <input
                         id="customCheckLogin"
@@ -105,8 +111,25 @@ export default function Login() {
                         Remember me
                       </span>
                     </label>
+                  </div> */}
+                  <div className="flex flex-wrap mt-6 relative">
+                    <div className="w-1/2">
+                      <a
+                        href="#pablo"
+                        onClick={(e) => e.preventDefault()}
+                        className="text-blueGray-600"
+                      >
+                        <small>Forgot password?</small>
+                      </a>
+                    </div>
+                    {/* <div className="w-1/2 text-right">
+                      <Link href="/auth/register">
+                        <a href="#pablo" className="text-blueGray-600">
+                          <small>Create new account</small>
+                        </a>
+                      </Link>
+                    </div> */}
                   </div>
-
                   <div className="text-center mt-6">
                     <button
                       onClick={Login}
@@ -129,24 +152,7 @@ export default function Login() {
                 </form>
               </div>
             </div>
-            <div className="flex flex-wrap mt-6 relative">
-              <div className="w-1/2">
-                <a
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  className="text-blueGray-200"
-                >
-                  <small>Forgot password?</small>
-                </a>
-              </div>
-              <div className="w-1/2 text-right">
-                <Link href="/auth/register">
-                  <a href="#pablo" className="text-blueGray-200">
-                    <small>Create new account</small>
-                  </a>
-                </Link>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>

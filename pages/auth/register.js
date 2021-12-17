@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 // layout for page
 import axios from "axios";
-
+import Messenger from "components/Dialog/Messenger/Index";
 import Auth from "layouts/Auth.js";
 
 import { useSelector } from "react-redux";
@@ -43,12 +44,16 @@ export default function Register() {
         },
       }),
     ])
-      .then(([res]) => {})
+      .then(([res]) => {
+        setShowModalSuccess(true);
+       })
       .catch((err) => {
+        setShowModalFalse(true);
         console.log(err);
       });
   };
-
+  const [showModalFalse, setShowModalFalse] = useState(false);
+  const [showModalSuccess, setShowModalSuccess] = useState(false);
   const inputAccount = () => {
     // console.log(111, user);
   };
@@ -68,7 +73,7 @@ export default function Register() {
                     Sign up with
                   </h6>
                 </div>
-                <div className="btn-wrapper text-center">
+                {/* <div className="btn-wrapper text-center">
                   <button
                     onClick={pushRouter}
                     className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
@@ -84,13 +89,13 @@ export default function Register() {
                     <img alt="..." className="w-5 mr-1" src="/img/google.svg" />
                     Google
                   </button>
-                </div>
-                <hr className="mt-6 border-b-1 border-blueGray-300" />
+                </div> */}
+                {/* <hr className="mt-6 border-b-1 border-blueGray-300" /> */}
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <div className="text-blueGray-400 text-center mb-3 font-bold">
+                {/* <div className="text-blueGray-400 text-center mb-3 font-bold">
                   <small>Or sign up with credentials</small>
-                </div>
+                </div> */}
                 <form>
                   <div className=" flex flex-wrap">
                     <div className="md:w-4/12 ml-10rem">
@@ -273,7 +278,7 @@ export default function Register() {
                         <a
                           href="#pablo"
                           className="text-lightBlue-500"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={() => setShowModal(true)}
                         >
                           Privacy Policy
                         </a>
@@ -307,6 +312,22 @@ export default function Register() {
           </div>
         </div>
       </div>
+      {showModalSuccess ? (
+        <Messenger
+          showModal={showModalSuccess}
+          setShowModal={setShowModalSuccess}
+          string="Thành công"
+          page="create"
+        />
+      ) : null}
+      {showModalFalse ? (
+        <Messenger
+          showModal={showModalFalse}
+          setShowModal={setShowModalFalse}
+          string="Thành công"
+          page="create"
+        />
+      ) : null}
     </>
   );
 }
