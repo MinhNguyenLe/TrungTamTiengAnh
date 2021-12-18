@@ -44,6 +44,7 @@ export default function DetailNoti() {
         dispatch(setTargetNoti(res.data));
         dispatch(setListNotiType(noti.data));
         dispatch(setListComment(comment.data));
+        console.log(comment.data);
       })
       .catch((err) => {
         console.log(err);
@@ -68,6 +69,24 @@ export default function DetailNoti() {
         console.log(err);
       });
   };
+  const submit = () => {
+    if (account?.user?.nameRole === "student") {
+      account.studentClass.forEach((item) => {
+        console.log(item);
+        if (router.query.code === item.classes.code) {
+          apiCreateCmt(item.id, "student");
+        }
+      });
+    } else if (account?.user?.nameRole === "teacher") {
+      account.teacherClass.forEach((item) => {
+        if (router.query.code === item.classes.id) {
+          apiCreateCmt(item.id, "teacher");
+        }
+      });
+    } else {
+      console.log("this is adminnnn --------");
+    }
+  }
   const submitCmt = (e) => {
     if (e.key === "Enter") {
       if (account?.user?.nameRole === "student") {
@@ -110,11 +129,11 @@ export default function DetailNoti() {
                   >
                     {noti && noti.studentClass
                       ? new Date(
-                          noti?.studentClass?.student?.user?.createdAt
-                        ).toLocaleDateString()
+                        noti?.studentClass?.student?.user?.createdAt
+                      ).toLocaleDateString()
                       : new Date(
-                          noti?.teacherClass?.teacher?.user?.createdAt
-                        ).toLocaleDateString()}
+                        noti?.teacherClass?.teacher?.user?.createdAt
+                      ).toLocaleDateString()}
                   </div>
                   <div
                     style={{ display: "flex", flexDirection: "column" }}
@@ -173,6 +192,15 @@ export default function DetailNoti() {
               type="text"
               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
             />
+            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+              <button
+                onClick={() => submit()}
+                className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+              >
+                Submit
+              </button>
+            </div>
             {comment.error && (
               <span className="text-red-500">{comment.error}</span>
             )}
@@ -185,11 +213,34 @@ export default function DetailNoti() {
             />
           ) : null}
         </div>
-        <div className="w-full lg:w-12/12 px-4 mb-6">
-          {noti?.comment?.map((item) => (
-            <div key={`commentofnoti${item.id}`}>{item.content}</div>
-          ))}
-        </div>
+        {noti?.comment?.map((item) => (
+          <div className="w-full lg:w-12/12">
+            <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+              <div className="rounded-t mb-0 px-4 py-3 border-0 ">
+                <div className="flex flex-wrap items-center">
+                  <div className="w-full lg:w-12/12">
+
+                    <div className="mb-2 text-blueGray-600">
+                      <i className="fas fa-clock mr-2 text-lg text-blueGray-400"></i>
+                      {new Date(item.createdAt).toLocaleTimeString()}
+                    </div>
+                    <div className="mb-2 text-blueGray-600">
+                      <i className="fas fa-calendar mr-2 text-lg text-blueGray-400"></i>
+                      {new Date(item.createdAt).toLocaleDateString()}
+                    </div>
+                  </div>
+                  <div className="w-full lg:w-12/12 font-semibold text-blueGray-700">
+
+                    <div key={`commentofnoti${item.id}`}>
+                      {item.content}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );

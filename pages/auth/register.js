@@ -316,7 +316,7 @@ export default function Register() {
         <Messenger
           showModal={showModalSuccess}
           setShowModal={setShowModalSuccess}
-          string="Thành công"
+          string="Success"
           page="create"
         />
       ) : null}
@@ -324,7 +324,7 @@ export default function Register() {
         <Messenger
           showModal={showModalFalse}
           setShowModal={setShowModalFalse}
-          string="Thất bại"
+          string="failure"
           page="create"
         />
       ) : null}

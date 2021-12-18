@@ -5,6 +5,8 @@ import React, { useRef } from "react";
 import Auth from "layouts/Auth.js";
 import { useRouter } from "next/router";
 
+import Messenger from "components/Dialog/Messenger/Index";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAccount } from "redux/actions/user";
 export default function Login() {
@@ -31,11 +33,12 @@ export default function Login() {
         dispatch(setAccount(res.data.account));
       })
       .catch((err) => {
-        
+        setShowModalFalse(true);
         console.log(JSON.stringify(err));
       });
   };
 
+  const [showModalFalse, setShowModalFalse] = useState(false);
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -156,6 +159,14 @@ export default function Login() {
           </div>
         </div>
       </div>
+      {showModalFalse ? (
+        <Messenger
+          showModal={showModalFalse}
+          setShowModal={setShowModalFalse}
+          string="Authentication False"
+          page="create"
+        />
+      ) : null}
     </>
   );
 }

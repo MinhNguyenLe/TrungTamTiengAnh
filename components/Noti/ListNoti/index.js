@@ -30,7 +30,7 @@ export default function ListNoti() {
                       key={`${item.id}notilist`}
                       href={`${router.asPath}/${item.id}`}
                     >
-                      {item.title}
+                     <a>* {item.title} - {new Date(item.createdAt).toLocaleDateString()}</a> 
                     </Link>
                   ))
                 : null}
