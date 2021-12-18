@@ -6,23 +6,30 @@ import Link from "next/link";
 import axios from "axios";
 import Messenger from "components/Dialog/Messenger/Index";
 import Auth from "layouts/Auth.js";
-
+import DatePicker from "react-datepicker";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
 export default function Register() {
   const router = useRouter();
-
+  const [startDate, setStartDate] = useState(new Date());
   const userName = useRef("");
   const email = useRef("");
   const firstName = useRef("");
   const lastName = useRef("");
   const password = useRef("");
-  const gender = useRef(false); // false : Nu, true : Nam
+  // const gender = useRef(false); // false : Nu, true : Nam
   const address = useRef("");
   const phone = useRef("");
   const ethetic = useRef("");
   const dateBirth = useRef("");
   const placeBirth = useRef("");
-
+  const gender = [
+    { value: 1, label: 'Male' },
+  { value: 0, label: 'Female' },
+  ];
+  const defaultOption = gender[0];
   // const { user } = useSelector((state) => state.user);
   const createAccount = () => {
     Promise.all([
@@ -34,9 +41,9 @@ export default function Register() {
           lastName: lastName.current.value,
           firstName: firstName.current.value,
           placeBirth: placeBirth.current.value,
-          dateBirth: dateBirth.current.value,
+          dateBirth: startDate.toLocaleDateString(),
           phoneNumber: phone.current.value,
-          gender: gender.current.value ? 1 : 0,
+          gender: defaultOption.value,
           address: address.current.value,
           //cheat
           nameRole: "student",
@@ -57,7 +64,7 @@ export default function Register() {
   const inputAccount = () => {
     // console.log(111, user);
   };
-
+  
   const pushRouter = () => {
     router.push("./login");
   };
@@ -181,12 +188,13 @@ export default function Register() {
                       >
                         Gender
                       </label>
-                      <input
+                      <Dropdown options={gender} value={defaultOption} placeholder="Select an option" />
+                      {/* <input
                         ref={gender}
                         type="Gender"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Gender"
-                      />
+                      /> */}
                     </div>
                   </div>
                   <div className=" flex flex-wrap mb-3 mt-4">
@@ -227,12 +235,13 @@ export default function Register() {
                       >
                         Date Of Birth
                       </label>
-                      <input
+                      <DatePicker ref={dateBirth} selected={startDate} onChange={(date) => setStartDate(date)} className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"/>
+                      {/* <input
                         ref={dateBirth}
                         type="Date Of Birth"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Date Of Birth"
-                      />
+                      /> */}
                     </div>
                     <div className="md:w-4/12 ml-4rem">
                       <label

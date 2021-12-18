@@ -5,6 +5,7 @@ import use18n from "i18n/use18n";
 import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
 
+import Messenger from "components/Dialog/Messenger/Index";
 import { useDispatch, useSelector } from "react-redux";
 import { setListCourse, setTargetCourse } from "redux/actions/course";
 import { setAccount } from "redux/actions/user";
@@ -33,10 +34,12 @@ export default function Detail({ setShowModalEdit, setShowModalAddClass }) {
         console.log(course);
       })
       .catch((err) => {
+        setShowModalFalse(true);
         console.log(err);
       });
   }, []);
 
+  const [showModalFalse, setShowModalFalse] = useState(false);
   const registerClass=(cls)=>{
     Promise.all([axios.post(`${host}/api/classes/create-student-class/student`,{
       content: {
@@ -50,6 +53,7 @@ export default function Detail({ setShowModalEdit, setShowModalAddClass }) {
         router.push(`../../class/${cls.code}`);
       })
       .catch((err) => {
+
         console.log(err);
       });
   }
@@ -57,6 +61,14 @@ export default function Detail({ setShowModalEdit, setShowModalAddClass }) {
 
   return (
     <>
+    {showModalFalse ? (
+        <Messenger
+          showModal={showModalFalse}
+          setShowModal={setShowModalFalse}
+          string="Authentication False"
+          page="create"
+        />
+      ) : null}
       {/* <IndexNavbar transparent /> */}
       {/* <Navbar transparent /> */}
       <main>

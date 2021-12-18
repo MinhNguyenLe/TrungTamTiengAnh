@@ -214,7 +214,7 @@ export default function DetailNoti() {
           ) : null}
         </div>
         {noti?.comment?.map((item) => (
-          <div className="w-full lg:w-12/12">
+          <div className="w-full lg:w-12/12 mb-6">
             <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
               <div className="rounded-t mb-0 px-4 py-3 border-0 ">
                 <div className="flex flex-wrap items-center">
