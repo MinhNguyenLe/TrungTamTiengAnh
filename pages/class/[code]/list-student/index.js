@@ -26,7 +26,7 @@ export default function ListStudentClass() {
             <AddWithEmail
               showModal={showModal}
               setShowModal={setShowModal}
-              page="create"
+              role="student"
             />
           ) : null}
         </div>

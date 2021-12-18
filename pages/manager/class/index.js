@@ -1,45 +1,58 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
+// components
 
-import use18n from "i18n/use18n";
+import ClassList from "components/Class/ClassList.js";
+import CourseForm from "components/Dialog/CourseForm";
+import ClassForm from "components/Dialog/ClassForm";
+
+import AddWithEmail from "components/Dialog/Student/AddWithEmail";
 
 import Admin from "layouts/Admin.js";
-import axios from "axios";
-import { useHostAPI } from "customHook/nonReact";
 
-import { useDispatch, useSelector } from "react-redux";
-import { setListClass } from "redux/actions/Class";
-export default function Class() {
+import use18n from "i18n/use18n";
+export default function Classes() {
   const t = use18n();
-  const [showModal, setShowModal] = useState(false);
+  const [showModalE, setShowModalE] = useState(false);
+  const [addStudentModal, setAddStudentModal] = useState(false);
+  const [addTeacherModal, setAddTeacherModal] = useState(false);
 
-  const dispatch = useDispatch();
-
-  const host = useHostAPI();
-  // useEffect(() => {
-  //   Promise.all([axios.get(`${host}/api/Classs`)])
-  //     .then(([res]) => {
-  //       dispatch(setListClass(res.data));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
   return (
     <>
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-6/12 px-4">
-          <button
-            className="relative bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            type="button"
-            onClick={() => setShowModal(true)}
-          >
-            {t["58"]}
-          </button>
+        <div className="w-full lg:w-12/12 px-4">
+          {showModalE ? (
+            <ClassForm
+              showModal={showModalE}
+              setShowModal={setShowModalE}
+              page="edit"
+            />
+          ) : null}
+          {addStudentModal ? (
+            <AddWithEmail
+              showModal={addStudentModal}
+              setShowModal={setAddStudentModal}
+              role="student"
+            />
+          ) : null}
+          {addTeacherModal ? (
+            <AddWithEmail
+              showModal={addTeacherModal}
+              setShowModal={setAddTeacherModal}
+              role="teacher"
+              page="all"
+            />
+          ) : null}
         </div>
-        <div className="w-full lg:w-12/12 px-4"></div>
+        <div className="w-full lg:w-12/12 px-4">
+          <ClassList
+          setAddStudentModal={setAddStudentModal}
+          setAddTeacherModal={setAddTeacherModal}
+            setShowModalEdit={setShowModalE}
+          />
+        </div>
       </div>
     </>
   );
 }
 
-Class.layout = Admin;
+Classes.layout = Admin;
