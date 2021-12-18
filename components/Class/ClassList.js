@@ -19,7 +19,7 @@ export default function ClassList({ setShowModalEdit,setAddStudentModal,setAddTe
 
   const dispatch = useDispatch();
   const listClass = useSelector((state) => state.class.list);
-
+  
   useEffect(() => {
     console.log(router);
     Promise.all([axios.get(`${host}/api/classes`)])
@@ -45,7 +45,7 @@ export default function ClassList({ setShowModalEdit,setAddStudentModal,setAddTe
     dispatch(setTargetClass(cls));
     setShowModalEdit(true);
   };
-
+ 
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
@@ -132,11 +132,7 @@ export default function ClassList({ setShowModalEdit,setAddStudentModal,setAddTe
                     ))}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {cls.studentClass.map((student,index)=>(
-                      <div key={`listClassStudentClass${index}`}>
-                      <span>{student.student.user.userName}</span>
-                      </div>
-                    ))}
+                  {cls.studentClass.length}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {cls.noti.length}

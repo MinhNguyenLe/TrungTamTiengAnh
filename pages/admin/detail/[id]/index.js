@@ -35,7 +35,7 @@ export default function Detail({ setShowModalEdit, setShowModalAddClass }) {
   }, []);
   return (
     <>
-      <IndexNavbar transparent />
+      {/* <IndexNavbar transparent /> */}
       {/* <Navbar transparent /> */}
       <main>
         

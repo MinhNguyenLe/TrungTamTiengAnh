@@ -190,7 +190,7 @@ export const en = {
   120: "CODE",
   126: "COURSE",
   122: "TEACHERS",
-  123: "STUDENTS",
+  123: "NUMBER STUDENTS",
   124: "NOTIFICATIONS",
   125: "TIMETABLE",
   121: "CREATED AT",

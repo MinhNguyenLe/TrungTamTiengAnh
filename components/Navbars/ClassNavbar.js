@@ -14,7 +14,7 @@ export default function ClassNavbar() {
             href="#pablo"
             onClick={(e) => e.preventDefault()}
           >
-            Dashboard
+            Class
           </a>
           {/* Form */}
           <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
@@ -30,9 +30,9 @@ export default function ClassNavbar() {
             </div>
           </form>
           {/* User */}
-          <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
+          {/* <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
             <UserDropdown />
-          </ul>
+          </ul> */}
         </div>
       </nav>
       {/* End Navbar */}
