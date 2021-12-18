@@ -15,3 +15,12 @@ export const setTargetClass = (target) => {
     },
   };
 };
+
+export const setListClass = (list) => {
+  return {
+    type: "SET-LIST-CLASS",
+    payload: {
+      list: list,
+    },
+  };
+};

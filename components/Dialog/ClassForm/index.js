@@ -10,18 +10,32 @@ import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setListCourse } from "redux/actions/course";
+import { setListClass } from "redux/actions/class";
 
 import router from "next/router";
 export default function ClassForm({ page, setShowModal, showModal }) {
   const t = use18n();
 
   const dispatch = useDispatch();
-  const targetCourse = useSelector((state) => state.course.target);
+  const targetClass = useSelector((state) => state.class.target);
 
   const host = useHostAPI();
 
   const code = useVali({ require: [1] });
   const name = useVali({ require: [1] });
+
+  useEffect(()=>{
+    if (page === "edit") {
+      Promise.all([axios.get(`${host}/api/classes/${targetClass.code}`)])
+        .then(([res]) => {
+          name.ref.current.value = res.data.name;
+          code.ref.current.value = res.data.code;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  },[])
 
   const createClass = () => {
     // check error for each field
@@ -31,7 +45,7 @@ export default function ClassForm({ page, setShowModal, showModal }) {
       Promise.all([
         axios.post(`${host}/api/classes/create`, {
           content: {
-            course: targetCourse,
+            id: targetClass.id,
             name: name.ref.current.value,
             code: code.ref.current.value,
           },
@@ -50,23 +64,23 @@ export default function ClassForm({ page, setShowModal, showModal }) {
     }
   };
 
-  const editCourse = () => {
+  const editClass = () => {
     // check error for each field
     name.checkErr();
     code.checkErr();
 
     if (name.success && code.success) {
       Promise.all([
-        axios.post(`${host}/api/courses/edit`, {
+        axios.post(`${host}/api/classes/edit`, {
           content: {
-            id: router.query.id,
+            id:targetClass.id,
             name: name.ref.current.value,
             code: code.ref.current.value,
           },
         }),
       ])
         .then(([res]) => {
-          dispatch(setListCourse(res.data));
+          dispatch(setListClass(res.data));
           name.ref.current.value = "";
           code.ref.current.value = "";
           setShowModal(false);
@@ -97,7 +111,7 @@ export default function ClassForm({ page, setShowModal, showModal }) {
               <div>
                 <button
                   onClick={() => {
-                    page === "create" ? createClass() : editCourse();
+                    page === "create" ? createClass() : editClass();
                   }}
                   className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   type="button"
