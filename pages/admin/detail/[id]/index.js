@@ -7,6 +7,8 @@ import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setListCourse, setTargetCourse } from "redux/actions/course";
+import { setAccount } from "redux/actions/user";
+
 import Admin from "layouts/Admin.js";
 import Link from "next/link";
 
@@ -22,7 +24,8 @@ export default function Detail({ setShowModalEdit, setShowModalAddClass }) {
 
   const dispatch = useDispatch();
   const course = useSelector((state) => state.course.target);
-  
+  const account = useSelector((state) => state.user.account);
+
   useEffect(() => {
     Promise.all([axios.get(`${host}/api/courses/${router.query.id}`)])
       .then(([res]) => {
@@ -33,6 +36,25 @@ export default function Detail({ setShowModalEdit, setShowModalAddClass }) {
         console.log(err);
       });
   }, []);
+
+  const registerClass=(cls)=>{
+    Promise.all([axios.post(`${host}/api/classes/create-student-class/student`,{
+      content: {
+        email: account.user.email,
+        code: cls.code,
+        isPaid: false,
+      },
+    })])
+      .then(([res]) => {
+        dispatch(setAccount(res.data));
+        router.push(`../../class/${cls.code}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
   return (
     <>
       <IndexNavbar transparent />
@@ -57,11 +79,9 @@ export default function Detail({ setShowModalEdit, setShowModalAddClass }) {
                       <p className="text-lg font-light mr-12 float-left leading-relaxed text-blueGray-600">
                         {classes.name}
                       </p>
-                      <Link href={`/admin/courses`}>
-                        <a href="#pablo" className="font-bold float-right text-blueGray-700 " >
+                      <button onClick={()=>registerClass(classes)}>
                           Registration!
-                        </a>
-                      </Link>
+                      </button>
                     </div>
                   </tr>
                 ))}
