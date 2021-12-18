@@ -207,8 +207,19 @@ export const en = {
   134: "Teacher's email",
   135: "Teacher's wage",
   136: "Bonus",
-  137: "",
-  138: "",
-  139: "",
+  /**
+   * components/Schedule/ScheduleList
+   */
+  146:"COURSE",
+  137: "CLASS NAME",
+  138: "CLASS'S CODE",
+  139: "TIMETABLE",
+  142:"JOIN AT",
+  143:"TEACHERS",
+  144:"IS PAID",
+  148:"TIME BEGIN",
+  145:"TIME END",
+  147:"Schedule",
+  149:"",
 };
 //70

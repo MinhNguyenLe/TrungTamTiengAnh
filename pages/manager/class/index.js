@@ -32,6 +32,7 @@ export default function Classes() {
               showModal={addStudentModal}
               setShowModal={setAddStudentModal}
               role="student"
+              page="all"
             />
           ) : null}
           {addTeacherModal ? (

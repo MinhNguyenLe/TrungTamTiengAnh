@@ -294,6 +294,41 @@ export default function Sidebar() {
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
+{account.user.permission !== 1?
+<>
+<h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+  For you!
+</h6>
+<ul className="md:flex-col md:min-w-full flex flex-col list-none">
+  <li className="items-center">
+    <Link href={`/profile/${account.user.id}`}>
+      <a
+        href="#pablo"
+        className={
+          "text-xs uppercase py-3 font-bold block " +
+          (router.pathname.indexOf(`/profile/${account.user.id}`) !== -1
+            ? "text-lightBlue-500 hover:text-lightBlue-600"
+            : "text-blueGray-700 hover:text-blueGray-500")
+        }
+      >
+        <i
+          className={
+            "fas fa-tv mr-2 text-sm " +
+            (router.pathname.indexOf(`/profile/${account.user.id}`) !== -1
+              ? "opacity-75"
+              : "text-blueGray-300")
+          }
+        ></i>
+        My Profile
+      </a>
+    </Link>
+  </li>
+
+</ul>
+</>
+:null}
+
+            <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Information Page
