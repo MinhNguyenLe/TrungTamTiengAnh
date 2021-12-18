@@ -87,13 +87,13 @@ export default function ScheduleList({ setShowModal }) {
                 ? account?.studentClass?.map((cls) => (
                     <tr>
                       <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                        {cls.classes.course.name}
+                        {cls?.classes.course.name}
                       </th>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {cls.classes.name}
+                        {cls?.classes.name}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {cls.classes.code}
+                        {cls?.classes.code}
                       </td>
                       <td
                         style={{ display: "flex", flexDirection: "column" }}
@@ -132,7 +132,7 @@ export default function ScheduleList({ setShowModal }) {
                         {new Date(cls.createdAt).toLocaleDateString()}
                       </td>
                       <td style={{display:"flex",flexDirection:"column"}} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {cls.classes.teacherClass.map((teacher,index)=>(
+                      {cls?.classes.teacherClass.map((teacher,index)=>(
                         <div key={`listClassTeacherClassProile${index}`}>
                         <span>{teacher.teacher.user.userName}</span>
                         </div>
@@ -142,10 +142,10 @@ export default function ScheduleList({ setShowModal }) {
                       {cls.classes.course.tuition}
                     </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {new Date(cls.classes.course.timeBegin).toLocaleDateString()}
+                        {new Date(cls?.classes.course.timeBegin).toLocaleDateString()}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {new Date(cls.classes.course.timeEnd).toLocaleDateString()}
+                        {new Date(cls?.classes.course.timeEnd).toLocaleDateString()}
                       </td>
                     </tr>
                   ))
