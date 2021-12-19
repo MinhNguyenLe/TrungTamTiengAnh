@@ -19,12 +19,21 @@ export default function AllStudent() {
     Promise.all([axios.get(`${host}/api/users/student`)])
       .then(([res]) => {
         dispatch(setStudent(res.data));
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  const deleteStudent=(id)=>{
+    Promise.all([axios.delete(`${host}/api/users/student/${id}`)])
+    .then(([res]) => {
+      dispatch(setStudent(res.data));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
@@ -107,7 +116,7 @@ export default function AllStudent() {
                   <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   {new Date(item.createdAt).toLocaleDateString()}
                   </th>
-                  <th className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  <th onClick={()=>deleteStudent(item.id)} className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       {t["161"]}
                   </th>
                 </tr>
