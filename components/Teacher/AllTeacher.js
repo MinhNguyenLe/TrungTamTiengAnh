@@ -6,29 +6,29 @@ import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setStudent } from "redux/actions/user";
+import { setTeacher } from "redux/actions/user";
 
-export default function AllStudent() {
+export default function AllTeacher() {
   const t = use18n();
 
   const host = useHostAPI();
 
   const dispatch = useDispatch();
-  const allStudent = useSelector((state) => state.user.student);
+  const allTeacher = useSelector((state) => state.user.teacher);
   useEffect(() => {
-    Promise.all([axios.get(`${host}/api/users/student`)])
+    Promise.all([axios.get(`${host}/api/users/teacher`)])
       .then(([res]) => {
-        dispatch(setStudent(res.data));
+        dispatch(setTeacher(res.data));
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const deleteStudent=(id)=>{
-    Promise.all([axios.delete(`${host}/api/users/student/${id}`)])
+  const deleteTeacher=(id)=>{
+    Promise.all([axios.delete(`${host}/api/users/teacher/${id}`)])
     .then(([res]) => {
-      dispatch(setStudent(res.data));
+      dispatch(setTeacher(res.data));
     })
     .catch((err) => {
       console.log(err);
@@ -41,7 +41,7 @@ export default function AllStudent() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-base text-blueGray-700">
-                {t["160"]}
+                {t["164"]}
               </h3>
             </div>
           </div>
@@ -52,42 +52,39 @@ export default function AllStudent() {
             <thead>
               <tr>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["151"]}
+                  {t["165"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["150"]}
+                  {t["166"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["157"]}
+                  {t["167"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["152"]}
+                  {t["168"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["153"]}
+                  {t["169"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["154"]}
+                  {t["170"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["163"]}
+                  {t["171"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["155"]}
+                  {t["172"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["156"]}
+                  {t["173"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["158"]}
-                </th>
-                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["161"]}
+                  {t["174"]}
                 </th>
               </tr>
             </thead>
             <tbody>
-              {allStudent.length ? allStudent?.map((item,index) => (
+              {allTeacher.length ? allTeacher?.map((item,index) => (
                 <tr
                   className="cursor-pointer hover:bg-lightBlue-600"
                   key={`list-studentclass-manager-${index}`}
@@ -99,7 +96,7 @@ export default function AllStudent() {
                     {item.user.email}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.studentClass.length}
+                    {item.teacherClass.length}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   {item.user.phoneNumber}
@@ -108,22 +105,19 @@ export default function AllStudent() {
                     {item.user.address}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.education}
+                    {item.user.certificate}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {item.level}
+                  {item.user.level}
                 </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {item.user.gender === 0 ? t["89"] : t["90"]}
                   </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.user.dateBirth}
-                  </td>
                   <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   {new Date(item.createdAt).toLocaleDateString()}
                   </th>
-                  <th onClick={()=>deleteStudent(item.id)} className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {t["161"]}
+                  <th onClick={()=>deleteTeacher(item.id)} className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {t["174"]}
                   </th>
                 </tr>
               )) : null}
