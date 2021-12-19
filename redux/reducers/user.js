@@ -16,6 +16,8 @@ const USER_STATE = {
     createdAt: "",
     schedule: null,
   },
+  student:[],
+  teacher:[]
 };
 
 export const reducerUser = (state = USER_STATE, action) => {
@@ -25,6 +27,16 @@ export const reducerUser = (state = USER_STATE, action) => {
         ...state,
         account: action.payload.account,
       };
+      case "SET-LIST-STUDENT":
+        return {
+          ...state,
+          student: action.payload.student,
+        };
+        case "SET-LIST-TEACHER":
+          return {
+            ...state,
+            teacher: action.payload.teacher,
+          };
     default:
       return state;
   }

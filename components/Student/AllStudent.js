@@ -6,34 +6,34 @@ import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setTargetClass } from "redux/actions/class";
+import { setListStudent } from "redux/actions/user";
 
-import Link from "next/link";
-
-export default function StudentList({
-  setShowModalEdit,
-  setShowModalAddClass,
-}) {
+export default function AllStudent() {
   const t = use18n();
 
   const host = useHostAPI();
 
-  const router = useRouter();
-
   const dispatch = useDispatch();
-  const listCourse = useSelector((state) => state.class.target);
-
+  const allStudent = useSelector((state) => state.user.student);
   useEffect(() => {
-    console.log(router);
-    Promise.all([axios.get(`${host}/api/classes/${router.query.code}`)])
+    Promise.all([axios.get(`${host}/api/users/student`)])
       .then(([res]) => {
-        dispatch(setTargetClass(res.data));
-        console.log(res.data);
+        dispatch(setListStudent(res.data));
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  const deleteStudent=(id)=>{
+    Promise.all([axios.delete(`${host}/api/users/student/${id}`)])
+    .then(([res]) => {
+      dispatch(setListStudent(res.data));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
@@ -41,16 +41,8 @@ export default function StudentList({
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-base text-blueGray-700">
-                {t["78"]}
+                {t["160"]}
               </h3>
-            </div>
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-              <button
-                className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
-                {t["13"]}
-              </button>
             </div>
           </div>
         </div>
@@ -60,77 +52,81 @@ export default function StudentList({
             <thead>
               <tr>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["82"]}
+                  {t["151"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["85"]}
+                  {t["150"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["81"]}
+                  {t["157"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["83"]}
+                  {t["152"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["84"]}
+                  {t["153"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["86"]}
+                  {t["154"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["88"]}
+                  {t["163"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["87"]}
+                  {t["155"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["79"]}
+                  {t["156"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["80"]}
+                  {t["158"]}
+                </th>
+                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  {t["161"]}
                 </th>
               </tr>
             </thead>
             <tbody>
-              {listCourse?.studentClass.length ? listCourse?.studentClass?.map((item) => (
+              {allStudent.length ? allStudent?.map((item,index) => (
                 <tr
                   className="cursor-pointer hover:bg-lightBlue-600"
-                  key={`list-studentclass-${item.id}`}
+                  key={`list-studentclass-manager-${index}`}
                 >
                   <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {item.student.user.firstName}
+                    {item.user.userName}
                   </th>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.user.gender === 0 ? t["89"] : t["90"]}
+                    {item.user.email}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.user.email}
+                    {item.studentClass.length}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.user.phoneNumber}
+                  {item.user.phoneNumber}
+                </td>
+                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {item.user.address}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.user.address}
+                    {item.education}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.user.dateBirth}
+                  {item.level}
+                </td>
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {item.user.gender === 0 ? t["89"] : t["90"]}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.education}
+                    {item.user.dateBirth}
                   </td>
-                  <th className="text-lightBlue-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.level}
-                  </th>
                   <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.isPaid.toString()}
+                  {new Date(item.createdAt).toLocaleDateString()}
                   </th>
-                  <th className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <button className="outline-none focus:outline-none">
-                      {t["80"]}
-                    </button>
+                  <th onClick={()=>deleteStudent(item.id)} className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {t["161"]}
                   </th>
                 </tr>
-              )): null}
+              )) : null}
             </tbody>
           </table>
         </div>

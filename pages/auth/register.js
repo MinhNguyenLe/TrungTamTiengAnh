@@ -287,7 +287,7 @@ export default function Register() {
                         <a
                           href="#pablo"
                           className="text-lightBlue-500"
-                          onClick={() => setShowModal(true)}
+                          // onClick={() => setShowModal(true)}
                         >
                           Privacy Policy
                         </a>
