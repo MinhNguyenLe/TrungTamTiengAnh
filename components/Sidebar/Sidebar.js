@@ -216,12 +216,12 @@ export default function Sidebar() {
                     </Link>
                   </li>
                   <li className="items-center">
-                  <Link href={`/manager/user`}>
+                  <Link href={`/manager/student`}>
                     <a
                       href="#pablo"
                       className={
                         "text-xs uppercase py-3 font-bold block " +
-                        (router.pathname.indexOf(`/manager/user`) !== -1
+                        (router.pathname.indexOf(`/manager/student`) !== -1
                           ? "text-lightBlue-500 hover:text-lightBlue-600"
                           : "text-blueGray-700 hover:text-blueGray-500")
                       }
@@ -229,13 +229,37 @@ export default function Sidebar() {
                       <i
                         className={
                           "fas fa-tools mr-2 text-sm " +
-                          (router.pathname.indexOf(`/manager/user`) !==
+                          (router.pathname.indexOf(`/manager/student`) !==
                             -1
                             ? "opacity-75"
                             : "text-blueGray-300")
                         }
                       ></i>{" "}
                       {t["149"]}
+                    </a>
+                  </Link>
+                </li>
+                <li className="items-center">
+                  <Link href={`/manager/teacher`}>
+                    <a
+                      href="#pablo"
+                      className={
+                        "text-xs uppercase py-3 font-bold block " +
+                        (router.pathname.indexOf(`/manager/teacher`) !== -1
+                          ? "text-lightBlue-500 hover:text-lightBlue-600"
+                          : "text-blueGray-700 hover:text-blueGray-500")
+                      }
+                    >
+                      <i
+                        className={
+                          "fas fa-tools mr-2 text-sm " +
+                          (router.pathname.indexOf(`/manager/teacher`) !==
+                            -1
+                            ? "opacity-75"
+                            : "text-blueGray-300")
+                        }
+                      ></i>{" "}
+                      {t["162"]}
                     </a>
                   </Link>
                 </li>

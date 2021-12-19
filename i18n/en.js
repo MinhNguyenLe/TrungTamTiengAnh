@@ -45,6 +45,8 @@ export const en = {
   57: "STUDENT",
   28: "COURSES",
   29: "CLASSROOMS",
+  149:"STUDENT",
+  162:"TEACHER",
   /**
    * ROUTER
    */
@@ -220,17 +222,26 @@ export const en = {
   148:"TIME BEGIN",
   145:"TIME END",
   147:"Schedule",
-  149:"USER",
-  150:"",
-  151:"",
-  152:"",
-  153:"", 
-  154:"",
-  155:"",
-  156:"", 
-  157:"", 
-  158:"", 
-  159:"",
-  160:"",
+  /**components/Student/AllStudent*/
+  151:"USERNAME",
+  150:"EMAIL",
+  152:"PHONE NUMBER",
+  153:"ADDRESS", 
+  154:"ROLE",
+  155:"GENDER",
+  156:"BIRTH", 
+  157:"CLASS", 
+  158:"CREATED AT", 
+  160:"List student",
+  161:"DELETE",
+  159:"ADD NEW USER",
+  /**page/manager/teacher*/
+  163:"",
+  164:"",
+  165:"",
+  166:"",
+  167:"",
+  168:"",
+  169:"",
 };
 //70

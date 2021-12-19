@@ -92,7 +92,7 @@ export default function StudentList({
               </tr>
             </thead>
             <tbody>
-              {listCourse?.studentClass?.map((item) => (
+              {listCourse?.studentClass.length ? listCourse?.studentClass?.map((item) => (
                 <tr
                   className="cursor-pointer hover:bg-lightBlue-600"
                   key={`list-studentclass-${item.id}`}
@@ -130,7 +130,7 @@ export default function StudentList({
                     </button>
                   </th>
                 </tr>
-              ))}
+              )): null}
             </tbody>
           </table>
         </div>

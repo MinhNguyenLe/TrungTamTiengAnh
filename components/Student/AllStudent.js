@@ -6,51 +6,25 @@ import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setListCourse, setTargetCourse } from "redux/actions/course";
+import { setStudent } from "redux/actions/user";
 
-import Link from "next/link";
-
-export default function UserList({ setShowModalEdit, setShowModalAddClass }) {
+export default function AllStudent() {
   const t = use18n();
 
   const host = useHostAPI();
 
-  const router = useRouter();
-
   const dispatch = useDispatch();
-  const listCourse = useSelector((state) => state.course.list);
-
+  const allStudent = useSelector((state) => state.user.student);
   useEffect(() => {
-    console.log(router);
-    Promise.all([axios.get(`${host}/api/courses`)])
+    Promise.all([axios.get(`${host}/api/users/student`)])
       .then(([res]) => {
-        dispatch(setListCourse(res.data));
+        dispatch(setStudent(res.data));
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
-  const deleteCourse = (id) => {
-    Promise.all([axios.delete(`${host}/api/courses/${id}`)])
-      .then(([res]) => {
-        dispatch(setListCourse(res.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const gotoEdit = (id) => {
-    dispatch(setTargetCourse(id));
-    setShowModalEdit(true);
-  };
-
-  const gotoAddClass = (id) => {
-    setShowModalAddClass(true);
-    dispatch(setTargetCourse(id));
-  };
-
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
@@ -58,16 +32,8 @@ export default function UserList({ setShowModalEdit, setShowModalAddClass }) {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-base text-blueGray-700">
-                {t["12"]}
+                {t["160"]}
               </h3>
-            </div>
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-              <button
-                className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
-                {t["13"]}
-              </button>
             </div>
           </div>
         </div>
@@ -77,103 +43,75 @@ export default function UserList({ setShowModalEdit, setShowModalAddClass }) {
             <thead>
               <tr>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["14"]}
+                  {t["151"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["20"]}
+                  {t["150"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["15"]}
+                  {t["157"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["16"]}
+                  {t["152"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["17"]}
+                  {t["153"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["18"]}
+                  {t["154"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["19"]}
+                  {t["155"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["21"]}
+                  {t["156"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["23"]}
+                  {t["158"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["22"]}
+                  {t["161"]}
                 </th>
               </tr>
             </thead>
             <tbody>
-              {listCourse?.map((course) => (
+              {allStudent.length ? allStudent?.map((item,index) => (
                 <tr
                   className="cursor-pointer hover:bg-lightBlue-600"
-                  key={`list-course-${course.id}`}
+                  key={`list-studentclass-manager-${index}`}
                 >
                   <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {course.name}
+                    {item.user.userName}
                   </th>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.level}
+                    {item.user.email}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {course.members}
-                  </td>
-                  <td
-                    style={{ display: "flex", flexDirection: "column" }}
-                    className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    {course?.classes?.length
-                      ? course.classes.map((item) => (
-                          <Link
-                            key={`codeclass${item.id}`}
-                            href={`/class/${item.code}`}
-                          >
-                            {item.code}
-                          </Link>
-                        ))
-                      : null}
+                    {item.studentClass.length}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {new Intl.NumberFormat("vi-VN", {
-                      style: "currency",
-                      currency: "VND",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 0,
-                    }).format(course.tuition)}
+                  {item.user.phoneNumber}
+                </td>
+                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {item.user.address}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {new Date(course.timeBegin).toLocaleDateString()}
+                    {item.user.nameRole}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {new Date(course.timeEnd).toLocaleDateString()}
+                    {item.user.gender === 0 ? t["89"] : t["90"]}
                   </td>
-                  <th
-                    onClick={() => gotoAddClass(course.id)}
-                    className="text-lightBlue-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    {t["24"]}
-                  </th>
-                  <th
-                    onClick={() => gotoEdit(course.id)}
-                    className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    {t["23"]}
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {item.user.dateBirth}
+                  </td>
+                  <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  {new Date(item.createdAt).toLocaleDateString()}
                   </th>
                   <th className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <button
-                      className="outline-none focus:outline-none"
-                      onClick={() => deleteCourse(course.id)}
-                    >
-                      {t["22"]}
-                    </button>
+                      {t["161"]}
                   </th>
                 </tr>
-              ))}
+              )) : null}
             </tbody>
           </table>
         </div>
