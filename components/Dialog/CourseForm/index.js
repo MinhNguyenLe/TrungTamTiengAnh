@@ -86,7 +86,7 @@ export default function CourseForm({ page, setShowModal, showModal }) {
       ])
         .then(([res]) => {
           dispatch(setListCourse(res.data));
-
+          setShowModal(false);
           name.ref.current.value = "";
           infor.ref.current.value = "";
           level.ref.current.value = "";
@@ -95,8 +95,6 @@ export default function CourseForm({ page, setShowModal, showModal }) {
           mems.ref.current.value = "";
           begin.ref.current.value = "";
           end.ref.current.value = "";
-
-          setShowModal(false);
         })
         .catch((err) => {
           console.log(err);
@@ -141,7 +139,7 @@ export default function CourseForm({ page, setShowModal, showModal }) {
       ])
         .then(([res]) => {
           dispatch(setListCourse(res.data));
-
+          setShowModal(false);
           name.ref.current.value = "";
           infor.ref.current.value = "";
           level.ref.current.value = "";
@@ -150,8 +148,6 @@ export default function CourseForm({ page, setShowModal, showModal }) {
           mems.ref.current.value = "";
           begin.ref.current.value = "";
           end.ref.current.value = "";
-
-          setShowModal(false);
         })
         .catch((err) => {
           console.log(err);

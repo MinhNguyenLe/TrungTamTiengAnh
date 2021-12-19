@@ -11,7 +11,7 @@ import { useHostAPI } from "customHook/nonReact";
 import { useDispatch, useSelector } from "react-redux";
 import { setListTeacher } from "redux/actions/user";
 
-export default function UserRegisterForm({  setShowModal, showModal }) {
+export default function UserRegisterForm({ setShowModal, showModal }) {
   const t = use18n();
 
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export default function UserRegisterForm({  setShowModal, showModal }) {
 
   const email = useVali({ require: [1] });
   const password = useVali({ require: [1] });
-  const username= useVali({ require: [1] });
+  const username = useVali({ require: [1] });
 
   const createClass = () => {
     email.checkErr();
@@ -34,18 +34,17 @@ export default function UserRegisterForm({  setShowModal, showModal }) {
             email: email.ref.current.value,
             password: password.ref.current.value,
             userName: username.ref.current.value,
-            nameRole:"teacher",
-            permission:2
+            nameRole: "teacher",
+            permission: 2
           },
         }),
       ])
         .then(([res]) => {
           dispatch(setListTeacher(res.data));
+          setShowModal(false);
           email.ref.current.value = "";
           password.ref.current.value = "";
           username.ref.current.value = "";
-
-          setShowModal(false);
         })
         .catch((err) => {
           console.log(err);

@@ -11,7 +11,7 @@ import Admin from "layouts/Admin.js";
 
 import use18n from "i18n/use18n";
 export default function Classes() {
-  const t = use18n();
+    const t = use18n();
   const [showModalE, setShowModalE] = useState(false);
   const [addStudentModal, setAddStudentModal] = useState(false);
   const [addTeacherModal, setAddTeacherModal] = useState(false);

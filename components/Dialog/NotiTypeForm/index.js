@@ -48,8 +48,8 @@ export default function NotiTypeForm({ page, setShowModal, showModal }) {
       ])
         .then(([res]) => {
           dispatch(setListNotiType(res.data));
-          name.ref.current.value = "";
           setShowModal(false);
+          name.ref.current.value = "";
         })
         .catch((err) => {
           console.log(err);
@@ -71,8 +71,8 @@ export default function NotiTypeForm({ page, setShowModal, showModal }) {
       ])
         .then(([res]) => {
           dispatch(setListNotiType(res.data));
-          name.ref.current.value = "";
           setShowModal(false);
+          name.ref.current.value = "";
         })
         .catch((err) => {
           console.log(err);

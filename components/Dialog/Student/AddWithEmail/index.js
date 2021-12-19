@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setListClass, setTargetClass } from "redux/actions/class";
 
 import router, { useRouter } from "next/router";
-export default function AddWithEmail({page, role, setShowModal, showModal }) {
+export default function AddWithEmail({ page, role, setShowModal, showModal }) {
   const t = use18n();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export default function AddWithEmail({page, role, setShowModal, showModal }) {
     email.checkErr();
     console.log(email.success);
     if (email.success) {
-      if(role === "student" && page==="one"){
+      if (role === "student" && page === "one") {
         Promise.all([
           axios.post(`${host}/api/classes/create-student-class`, {
             content: {
@@ -42,14 +42,14 @@ export default function AddWithEmail({page, role, setShowModal, showModal }) {
         ])
           .then(([res]) => {
             dispatch(setTargetClass(res.data));
-            email.ref.current.value = "";
             setShowModal(false);
+            email.ref.current.value = "";
           })
           .catch((err) => {
             console.log(err);
           });
-      } 
-      if(role === "student" && page==="all"){
+      }
+      if (role === "student" && page === "all") {
         Promise.all([
           axios.post(`${host}/api/classes/create-student-class/all`, {
             content: {
@@ -61,14 +61,14 @@ export default function AddWithEmail({page, role, setShowModal, showModal }) {
         ])
           .then(([res]) => {
             dispatch(setListClass(res.data));
-            email.ref.current.value = "";
             setShowModal(false);
+            email.ref.current.value = "";
           })
           .catch((err) => {
             console.log(err);
           });
-      } 
-       if(role === "teacher" && wage.success && bonus.success){
+      }
+      if (role === "teacher" && wage.success && bonus.success) {
         Promise.all([
           axios.post(`${host}/api/classes/create-teacher-class`, {
             content: {
@@ -76,16 +76,16 @@ export default function AddWithEmail({page, role, setShowModal, showModal }) {
               code: target.code,
               isPaid: false,
               wage: parseFloat(wage.ref.current.value),
-              bonus:parseFloat(bonus.ref.current.value),
+              bonus: parseFloat(bonus.ref.current.value),
             },
           }),
         ])
           .then(([res]) => {
             dispatch(setListClass(res.data));
-            email.ref.current.value = "";
-            wage.ref.current.value ="";
-            bonus.ref.current.value=""
             setShowModal(false);
+            email.ref.current.value = "";
+            wage.ref.current.value = "";
+            bonus.ref.current.value = ""
           })
           .catch((err) => {
             console.log(err);
@@ -146,7 +146,7 @@ export default function AddWithEmail({page, role, setShowModal, showModal }) {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      {role==="student" ? t["95"] : t["134"]}
+                      {role === "student" ? t["95"] : t["134"]}
                     </label>
                     <input
                       onInput={() => debEmail()}
@@ -159,47 +159,47 @@ export default function AddWithEmail({page, role, setShowModal, showModal }) {
                     )}
                   </div>
                   {
-                    role === "teacher" ? 
-                  <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    {t["135"]}
-                  </label>
-                  <input
-                    onInput={() => debWage()}
-                    ref={wage.ref}
-                    type="number"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  />
-                  {wage.error && (
-                    <span className="text-red-500">{wage.error}</span>
-                  )}
-                </div>
-                  : null
-                }
-                {
-                  role === "teacher" ? 
-                <div className="relative w-full mb-3">
-                <label
-                  className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                  htmlFor="grid-password"
-                >
-                  {t["136"]}
-                </label>
-                <input
-                  onInput={() => debBonus()}
-                  ref={bonus.ref}
-                  type="number"
-                  className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                />
-                {bonus.error && (
-                  <span className="text-red-500">{bonus.error}</span>
-                )}
-              </div>
-                : null
-              }
+                    role === "teacher" ?
+                      <div className="relative w-full mb-3">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          {t["135"]}
+                        </label>
+                        <input
+                          onInput={() => debWage()}
+                          ref={wage.ref}
+                          type="number"
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        />
+                        {wage.error && (
+                          <span className="text-red-500">{wage.error}</span>
+                        )}
+                      </div>
+                      : null
+                  }
+                  {
+                    role === "teacher" ?
+                      <div className="relative w-full mb-3">
+                        <label
+                          className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                          htmlFor="grid-password"
+                        >
+                          {t["136"]}
+                        </label>
+                        <input
+                          onInput={() => debBonus()}
+                          ref={bonus.ref}
+                          type="number"
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        />
+                        {bonus.error && (
+                          <span className="text-red-500">{bonus.error}</span>
+                        )}
+                      </div>
+                      : null
+                  }
                 </div>
               </div>
             </form>
