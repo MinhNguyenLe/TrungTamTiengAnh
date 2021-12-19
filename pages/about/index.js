@@ -172,7 +172,7 @@ To become best–in-class in the education and training industry. We do this thr
                 <div className="px-6">
                   <img
                     alt="..."
-                    src="https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.18169-9/18664568_1888197294801546_5994602151833589855_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=fSr3r_qO6d4AX94XXq5&_nc_ht=scontent.fsgn8-2.fna&oh=232bc39965923b1449b6723dfcd17f3d&oe=61B00A5B"
+                    src="https://scontent.fvca1-3.fna.fbcdn.net/v/t1.18169-9/18664568_1888197294801546_5994602151833589855_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=5a1emDMQvroAX_hJdex&_nc_ht=scontent.fvca1-3.fna&oh=00_AT_ICzKTwszqMBgECcel7GDPecdrY_FssoxkeX22NOD11Q&oe=61E374DB"
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">
@@ -207,7 +207,7 @@ To become best–in-class in the education and training industry. We do this thr
                 <div className="px-6">
                   <img
                     alt="..."
-                    src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t39.30808-6/173529759_515814552965085_880187288006118906_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=uaEc0hvEGccAX8gWL88&tn=xX0ud6hsKSOBZLrs&_nc_ht=scontent.fsgn4-1.fna&oh=d7df3dfec054dc18cef1d2116493a73b&oe=61A3AD1F"
+                    src="https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-6/173529759_515814552965085_880187288006118906_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=174925&_nc_ohc=K49lCnIzgsgAX8E1AG_&tn=xX0ud6hsKSOBZLrs&_nc_ht=scontent.fvca1-4.fna&oh=00_AT-qHE0YX5Ik280H9ibH1yOaSUG928rqObaMHmOxhHTVXg&oe=61C3511F"
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">

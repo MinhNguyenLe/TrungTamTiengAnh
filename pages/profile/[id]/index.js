@@ -10,8 +10,12 @@ import use18n from "i18n/use18n";
 
 import { useDispatch, useSelector } from "react-redux";
 
+<<<<<<< Updated upstream
 import ProfileForm from "components/Dialog/ProfileForm";
 
+=======
+import Admin from "layouts/Admin.js";
+>>>>>>> Stashed changes
 export default function Profile() {
   const t = use18n();
 
@@ -24,8 +28,8 @@ export default function Profile() {
 
   return (
     <>
-      <Navbar transparent />
       <main className="profile-page">
+<<<<<<< Updated upstream
       {changeModal ? (
         <ProfileForm
           showModal={changeModal}
@@ -65,6 +69,10 @@ export default function Profile() {
               ></polygon>
             </svg>
           </div>
+=======
+        <section className="relative block h-300-px">
+
+>>>>>>> Stashed changes
         </section>
         <section className="relative py-16 bg-blueGray-200">
           <div className="container mx-auto px-4">
@@ -80,6 +88,7 @@ export default function Profile() {
                       />
                     </div>
                   </div>
+<<<<<<< Updated upstream
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                     <div className="py-6 px-3 mt-32 sm:mt-0">
                       <button
@@ -93,24 +102,32 @@ export default function Profile() {
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-1">
                   </div>
+=======
+
+>>>>>>> Stashed changes
                 </div>
-                <div className="text-center mt-12">
+                <div className="text-center mt-20">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                   {account.user.userName}
+                    {account.user.userName}
                   </h3>
+                  <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                    <i className="fas fa-birthday-cake mr-2 text-lg text-blueGray-400"></i>{" "}
+                    {account.user.dateBirth} - {account.user.placeBirth}
+                  </div>
                   <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
                     {account.user.address}
                   </div>
                   <div className="mb-2 text-blueGray-600 mt-10">
-                    <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                    {account.user.phoneNumber}
+                    <i className="fas fa-venus-mars mr-2 text-lg text-blueGray-400"></i>
+                    {account.user.gender ? "Nam" : "Nu"}
                   </div>
                   <div className="mb-2 text-blueGray-600">
-                    <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-                    {account.user.nameRole}- {account.user.gender ? "Nam" : "Nu"}
+                    <i className="fas fa-address-card mr-2 text-lg text-blueGray-400"></i>
+                    {account.user.nameRole}
                   </div>
                   <div className="mb-2 text-blueGray-600">
+<<<<<<< Updated upstream
                   <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
                   {account.user.dateBirth}- {account.user.placeBirth}
                 </div>
@@ -136,6 +153,14 @@ export default function Profile() {
                     {t["183"]}
               </span>
                     <ScheduleList setShowModal={()=> console.log()}/>
+=======
+                    <i className="fas fa-phone mr-2 text-lg text-blueGray-400"></i>
+                    {account.user.phoneNumber}
+                  </div>
+                </div>
+                <div className="mt-10 py-10 border-t border-blueGray-200">
+                  <ScheduleList setShowModal={() => console.log()} />
+>>>>>>> Stashed changes
                 </div>
               </div>
             </div>
@@ -146,3 +171,4 @@ export default function Profile() {
     </>
   );
 }
+Profile.layout = Admin;

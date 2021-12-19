@@ -432,7 +432,7 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-              <li className="items-center">
+              {/* <li className="items-center">
                 <Link href="/admin/tables">
                   <a
                     href="#pablo"
@@ -454,7 +454,7 @@ export default function Sidebar() {
                     Tables
                   </a>
                 </Link>
-              </li>
+              </li> */}
             </ul>
 
           </div>

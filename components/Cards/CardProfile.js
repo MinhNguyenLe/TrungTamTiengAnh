@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 // components
 
+import Link from "next/link";
 export default function CardProfile() {
   const account = useSelector((state) => state.user.account);
   return (
@@ -46,16 +47,36 @@ export default function CardProfile() {
             {account.user.firstName} {account.user.lastName}
             </h3>
             <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+              <i className="fas fa-birthday-cake mr-2 text-lg text-blueGray-400"></i>{" "}
+              {account.user.dateBirth} - {account.user.placeBirth}
+            </div>
+            <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
               <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
               {account.user.address}
             </div>
             <div className="mb-2 text-blueGray-600 mt-10">
               <i className="fas fa-venus-mars mr-2 text-lg text-blueGray-400"></i>
-              {account.user.gender}
+              {account.user.gender ? "Nam" : "Nu"}
+            </div>
+            <div className="mb-2 text-blueGray-600">
+              <i className="fas fa-address-card mr-2 text-lg text-blueGray-400"></i>
+              {account.user.nameRole}
             </div>
             <div className="mb-2 text-blueGray-600">
               <i className="fas fa-phone mr-2 text-lg text-blueGray-400"></i>
               {account.user.phoneNumber}
+            </div>
+
+            <div className="mb-2 text-blueGray-600">
+            <Link href="/">
+                  <button
+                    className="bg-red-500 text-white active:bg-red-500 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                    type="button"
+                   
+                  >
+                    Logout
+                  </button>
+            </Link>
             </div>
           </div>
           

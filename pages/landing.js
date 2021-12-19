@@ -201,11 +201,9 @@ export default function Landing() {
                   <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blueGray-200">
                     <i className="fas fa-rocket text-xl"></i>
                   </div>
-                  <h3 className="text-3xl font-semibold">A growing company</h3>
+                  <h3 className="text-3xl font-semibold">About Mr Smith</h3>
                   <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                    The extension comes with three pre-built pages to help you
-                    get started faster. You can change the text and images and
-                    you're good to go.
+                  Mr Smith is a foreign-owned educational and training company, founded in 1998.We offer a broad range of educational programmes and services, such as English language programmes for children and adults, International exam preparation, Teaching Training, Corporate training and Overseas study placement services and consultation
                   </p>
                   <ul className="list-none mt-6">
                     <li className="py-2">
@@ -217,7 +215,7 @@ export default function Landing() {
                         </div>
                         <div>
                           <h4 className="text-blueGray-500">
-                            Carefully crafted components
+                          HONORS
                           </h4>
                         </div>
                       </div>
@@ -231,7 +229,7 @@ export default function Landing() {
                         </div>
                         <div>
                           <h4 className="text-blueGray-500">
-                            Amazing page examples
+                          VISION AND MISSION
                           </h4>
                         </div>
                       </div>
@@ -245,7 +243,7 @@ export default function Landing() {
                         </div>
                         <div>
                           <h4 className="text-blueGray-500">
-                            Dynamic components
+                          COMMIT
                           </h4>
                         </div>
                       </div>
