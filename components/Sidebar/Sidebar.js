@@ -163,18 +163,18 @@ export default function Sidebar() {
                               ? "opacity-75"
                               : "text-blueGray-300")
                           }
-                        ></i>{" "}
+                        ></i>
                         {t["29"]}
                       </a>
                     </Link>
                   </li>
                   <li className="items-center">
-                    <Link href={`/manager/class`}>
+                    <Link href={`/manager/classes`}>
                       <a
                         href="#pablo"
                         className={
                           "text-xs uppercase py-3 font-bold block " +
-                          (router.pathname.indexOf(`/manager/class`) !== -1
+                          (router.pathname.indexOf(`/manager/classes`) !== -1
                             ? "text-lightBlue-500 hover:text-lightBlue-600"
                             : "text-blueGray-700 hover:text-blueGray-500")
                         }
@@ -182,11 +182,11 @@ export default function Sidebar() {
                         <i
                           className={
                             "fas fa-tools mr-2 text-sm " +
-                            (router.pathname.indexOf(`/manager/class`) !== -1
+                            (router.pathname.indexOf(`/manager/classes`) !== -1
                               ? "opacity-75"
                               : "text-blueGray-300")
                           }
-                        ></i>{" "}
+                        ></i>
                         {t["70"]}
                       </a>
                     </Link>
@@ -215,6 +215,30 @@ export default function Sidebar() {
                       </a>
                     </Link>
                   </li>
+                  <li className="items-center">
+                  <Link href={`/manager/user`}>
+                    <a
+                      href="#pablo"
+                      className={
+                        "text-xs uppercase py-3 font-bold block " +
+                        (router.pathname.indexOf(`/manager/user`) !== -1
+                          ? "text-lightBlue-500 hover:text-lightBlue-600"
+                          : "text-blueGray-700 hover:text-blueGray-500")
+                      }
+                    >
+                      <i
+                        className={
+                          "fas fa-tools mr-2 text-sm " +
+                          (router.pathname.indexOf(`/manager/user`) !==
+                            -1
+                            ? "opacity-75"
+                            : "text-blueGray-300")
+                        }
+                      ></i>{" "}
+                      {t["149"]}
+                    </a>
+                  </Link>
+                </li>
                 </ul>
               </>
             ) : account.user.permission === 2 ? (
