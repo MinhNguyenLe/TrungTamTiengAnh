@@ -27,12 +27,12 @@ export const reducerUser = (state = USER_STATE, action) => {
         ...state,
         account: action.payload.account,
       };
-      case "SET-STUDENT":
+      case "SET-LIST-STUDENT":
         return {
           ...state,
           student: action.payload.student,
         };
-        case "SET-TEACHER":
+        case "SET-LIST-TEACHER":
           return {
             ...state,
             teacher: action.payload.teacher,

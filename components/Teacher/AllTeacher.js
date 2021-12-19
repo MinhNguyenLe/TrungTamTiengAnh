@@ -6,7 +6,7 @@ import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setTeacher } from "redux/actions/user";
+import { setListTeacher } from "redux/actions/user";
 
 export default function AllTeacher() {
   const t = use18n();
@@ -18,7 +18,7 @@ export default function AllTeacher() {
   useEffect(() => {
     Promise.all([axios.get(`${host}/api/users/teacher`)])
       .then(([res]) => {
-        dispatch(setTeacher(res.data));
+        dispatch(setListTeacher(res.data));
       })
       .catch((err) => {
         console.log(err);
@@ -28,7 +28,7 @@ export default function AllTeacher() {
   const deleteTeacher=(id)=>{
     Promise.all([axios.delete(`${host}/api/users/teacher/${id}`)])
     .then(([res]) => {
-      dispatch(setTeacher(res.data));
+      dispatch(setListTeacher(res.data));
     })
     .catch((err) => {
       console.log(err);

@@ -7,18 +7,18 @@ export const setAccount = (account) => {
   };
 };
 
-export const setStudent = (student) => {
+export const setListStudent = (student) => {
   return {
-    type: "SET-STUDENT",
+    type: "SET-LIST-STUDENT",
     payload: {
       student: student,
     },
   };
 };
 
-export const setTeacher = (teacher) => {
+export const setListTeacher = (teacher) => {
   return {
-    type: "SET-TEACHER",
+    type: "SET-LIST-TEACHER",
     payload: {
       teacher: teacher,
     },

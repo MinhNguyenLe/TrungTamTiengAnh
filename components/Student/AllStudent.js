@@ -6,7 +6,7 @@ import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setStudent } from "redux/actions/user";
+import { setListStudent } from "redux/actions/user";
 
 export default function AllStudent() {
   const t = use18n();
@@ -18,7 +18,7 @@ export default function AllStudent() {
   useEffect(() => {
     Promise.all([axios.get(`${host}/api/users/student`)])
       .then(([res]) => {
-        dispatch(setStudent(res.data));
+        dispatch(setListStudent(res.data));
       })
       .catch((err) => {
         console.log(err);
@@ -28,7 +28,7 @@ export default function AllStudent() {
   const deleteStudent=(id)=>{
     Promise.all([axios.delete(`${host}/api/users/student/${id}`)])
     .then(([res]) => {
-      dispatch(setStudent(res.data));
+      dispatch(setListStudent(res.data));
     })
     .catch((err) => {
       console.log(err);
