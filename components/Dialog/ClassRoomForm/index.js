@@ -52,10 +52,9 @@ export default function ClassRoomForm({ page, setShowModal, showModal }) {
       ])
         .then(([res]) => {
           dispatch(setListClassroom(res.data));
+          setShowModal(false);
           name.ref.current.value = "";
           address.ref.current.value = "";
-
-          setShowModal(false);
         })
         .catch((err) => {
           console.log(err);
@@ -86,9 +85,9 @@ export default function ClassRoomForm({ page, setShowModal, showModal }) {
       ])
         .then(([res]) => {
           dispatch(setListClassroom(res.data));
+          setShowModal(false);
           name.ref.current.value = "";
           address.ref.current.value = "";
-          setShowModal(false);
         })
         .catch((err) => {
           console.log(err);

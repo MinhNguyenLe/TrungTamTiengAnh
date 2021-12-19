@@ -84,24 +84,24 @@ export default function ScheduleList({ setShowModal }) {
             </thead>
             <tbody>
               {account?.studentClass
-                ? account?.studentClass?.map((cls) => (
-                    <tr>
-                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                        {cls?.classes?.course?.name}
-                      </th>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {cls?.classes.name}
-                      </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {cls?.classes.code}
-                      </td>
-                      <td
-                        style={{ display: "flex", flexDirection: "column" }}
-                        className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                      >
-                        {cls?.classes?.timetable?.length
-                          ? cls?.classes?.timetable?.map((i) => (
-                            <div key={`${i.id}listtimetableclassroomProfile`} className="flex">
+                ? account?.studentClass?.map((cls, index) => (
+                  <tr key={`keyofscheduleList${index}`}>
+                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                      {cls?.classes?.course?.name}
+                    </th>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {cls?.classes.name}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {cls?.classes.code}
+                    </td>
+                    <td
+                      style={{ display: "flex", flexDirection: "column" }}
+                      className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      {cls?.classes?.timetable?.length
+                        ? cls?.classes?.timetable?.map((i) => (
+                          <div key={`${i.id}listtimetableclassroomProfile`} className="flex">
                             <button
                               style={{
                                 cursor: "default",
@@ -120,35 +120,35 @@ export default function ScheduleList({ setShowModal }) {
                                 className="far fa-trash-alt text-sm"
                               ></i>
                             </button>
-                            <div className="flex" style={{flexDirection:"column"}}>
-                            <span>Classroom's name: {i.classroom.name}</span>
-                            <span>ADdress: {i.classroom.address}</span>
+                            <div className="flex" style={{ flexDirection: "column" }}>
+                              <span>Classroom's name: {i.classroom.name}</span>
+                              <span>ADdress: {i.classroom.address}</span>
                             </div>
-                            </div>
-                            ))
-                          : null}
-                      </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {new Date(cls.createdAt).toLocaleDateString()}
-                      </td>
-                      <td style={{display:"flex",flexDirection:"column"}} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {cls?.classes?.teacherClass?.map((teacher,index)=>(
+                          </div>
+                        ))
+                        : null}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {new Date(cls.createdAt).toLocaleDateString()}
+                    </td>
+                    <td style={{ display: "flex", flexDirection: "column" }} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {cls?.classes?.teacherClass?.map((teacher, index) => (
                         <div key={`listClassTeacherClassProile${index}`}>
-                        <span>{teacher?.teacher?.user?.userName}</span>
+                          <span>{teacher?.teacher?.user?.userName}</span>
                         </div>
                       ))}
                     </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       {cls.classes.course.tuition}
                     </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {new Date(cls?.classes?.course?.timeBegin).toLocaleDateString()}
-                      </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {new Date(cls?.classes?.course?.timeEnd).toLocaleDateString()}
-                      </td>
-                    </tr>
-                  ))
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {new Date(cls?.classes?.course?.timeBegin).toLocaleDateString()}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {new Date(cls?.classes?.course?.timeEnd).toLocaleDateString()}
+                    </td>
+                  </tr>
+                ))
                 : null}
             </tbody>
           </table>

@@ -83,9 +83,9 @@ export default function NotiForm({ page, setShowModal, showModal }) {
       .then(([res]) => {
         console.log(res.data);
         dispatch(setTargetClass(res.data));
+        setShowModal(false);
         title.ref.current.value = "";
         content.ref.current.value = "";
-        setShowModal(false);
       })
       .catch((err) => {
         console.log(err);
@@ -146,8 +146,8 @@ export default function NotiForm({ page, setShowModal, showModal }) {
                       >
                         {listType
                           ? listType?.map((item) => (
-                              <option value={item.id}>{item.name}</option>
-                            ))
+                            <option value={item.id}>{item.name}</option>
+                          ))
                           : null}
                       </select>
                     </label>

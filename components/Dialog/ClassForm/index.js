@@ -24,7 +24,7 @@ export default function ClassForm({ page, setShowModal, showModal }) {
   const code = useVali({ require: [1] });
   const name = useVali({ require: [1] });
 
-  useEffect(()=>{
+  useEffect(() => {
     if (page === "edit") {
       Promise.all([axios.get(`${host}/api/classes/${targetClass.code}`)])
         .then(([res]) => {
@@ -35,7 +35,7 @@ export default function ClassForm({ page, setShowModal, showModal }) {
           console.log(err);
         });
     }
-  },[])
+  }, [])
 
   const createClass = () => {
     // check error for each field
@@ -53,10 +53,9 @@ export default function ClassForm({ page, setShowModal, showModal }) {
       ])
         .then(([res]) => {
           dispatch(setListCourse(res.data));
+          setShowModal(false);
           name.ref.current.value = "";
           code.ref.current.value = "";
-
-          setShowModal(false);
         })
         .catch((err) => {
           console.log(err);
@@ -73,7 +72,7 @@ export default function ClassForm({ page, setShowModal, showModal }) {
       Promise.all([
         axios.post(`${host}/api/classes/edit`, {
           content: {
-            id:targetClass.id,
+            id: targetClass.id,
             name: name.ref.current.value,
             code: code.ref.current.value,
           },
@@ -81,9 +80,9 @@ export default function ClassForm({ page, setShowModal, showModal }) {
       ])
         .then(([res]) => {
           dispatch(setListClass(res.data));
+          setShowModal(false);
           name.ref.current.value = "";
           code.ref.current.value = "";
-          setShowModal(false);
         })
         .catch((err) => {
           console.log(err);
