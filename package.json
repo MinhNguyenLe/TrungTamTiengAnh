@@ -8,6 +8,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.3",
     "@headlessui/react": "^0.0.0-dev.50d9fd3",
+    "@material-ui/core": "^4.12.3",
     "@popperjs/core": "2.9.1",
     "@tailwindcss/forms": "0.2.1",
     "axios": "^0.22.0",
@@ -31,12 +32,18 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.3.3",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^2.2.19",
+    "v-calendar": "^2.3.4"
   },
   "scripts": {
     "start": "next start",
     "build": "next build",
     "dev": "next dev",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run",
+    "e2e": "start-server-and-test start http://localhost:3000 cypress",
+    "e2e:headless": "start-server-and-test start http://localhost:3000 cypress:headless",
+    "test:e2e": "playwright test",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build:tailwind && npm run dev",
     "build:tailwind": "tailwind build styles/index.css -o styles/tailwind.css"
   },
@@ -60,6 +67,7 @@
   },
   "devDependencies": {
     "autoprefixer": "10.2.5",
+    "jest": "^27.4.5",
     "postcss": "8.2.8"
   }
 }

@@ -55,12 +55,17 @@ export default function Sidebar() {
           </button>
           {/* Brand */}
           <Link href="/">
-            <a
+            {/* <a
               href="#pablo"
               className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             >
               MR SMITH
-            </a>
+            </a> */}
+            <img
+              alt="..."
+              src="/img/logo-mrsmith.png"
+              className="mx-auto max-w-100-px"
+            />
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -112,7 +117,87 @@ export default function Sidebar() {
                 />
               </div>
             </form>
+            <hr className="my-4 md:min-w-full" />
+            {/* Heading */}
+            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+              Information Page
+            </h6>
+            {/* Navigation */}
 
+            <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+              <li className="items-center">
+                <Link href="/admin/MyCourses">
+                  <a
+                    href="#pablo"
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/MyCourses") !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-table mr-2 text-sm " +
+                        (router.pathname.indexOf("/admin/MyCourses") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                    My Courses
+                  </a>
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link href="/admin/courses">
+                  <a
+                    href="#pablo"
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/courses") !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-tv mr-2 text-sm " +
+                        (router.pathname.indexOf("/admin/courses") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                    Course
+                  </a>
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link href="/admin/settings">
+                  <a
+                    href="#pablo"
+                    className={
+                      "text-xs uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/settings") !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-tools mr-2 text-sm " +
+                        (router.pathname.indexOf("/admin/settings") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                    Setting
+                  </a>
+                </Link>
+              </li>
+
+
+            </ul>
             {account.user.permission === 1 ? (
               <>
                 <hr className="my-4 md:min-w-full" />
@@ -216,53 +301,53 @@ export default function Sidebar() {
                     </Link>
                   </li>
                   <li className="items-center">
-                  <Link href={`/manager/student`}>
-                    <a
-                      href="#pablo"
-                      className={
-                        "text-xs uppercase py-3 font-bold block " +
-                        (router.pathname.indexOf(`/manager/student`) !== -1
-                          ? "text-lightBlue-500 hover:text-lightBlue-600"
-                          : "text-blueGray-700 hover:text-blueGray-500")
-                      }
-                    >
-                      <i
+                    <Link href={`/manager/student`}>
+                      <a
+                        href="#pablo"
                         className={
-                          "fas fa-tools mr-2 text-sm " +
-                          (router.pathname.indexOf(`/manager/student`) !==
-                            -1
-                            ? "opacity-75"
-                            : "text-blueGray-300")
+                          "text-xs uppercase py-3 font-bold block " +
+                          (router.pathname.indexOf(`/manager/student`) !== -1
+                            ? "text-lightBlue-500 hover:text-lightBlue-600"
+                            : "text-blueGray-700 hover:text-blueGray-500")
                         }
-                      ></i>{" "}
-                      {t["149"]}
-                    </a>
-                  </Link>
-                </li>
-                <li className="items-center">
-                  <Link href={`/manager/teacher`}>
-                    <a
-                      href="#pablo"
-                      className={
-                        "text-xs uppercase py-3 font-bold block " +
-                        (router.pathname.indexOf(`/manager/teacher`) !== -1
-                          ? "text-lightBlue-500 hover:text-lightBlue-600"
-                          : "text-blueGray-700 hover:text-blueGray-500")
-                      }
-                    >
-                      <i
+                      >
+                        <i
+                          className={
+                            "fas fa-tools mr-2 text-sm " +
+                            (router.pathname.indexOf(`/manager/student`) !==
+                              -1
+                              ? "opacity-75"
+                              : "text-blueGray-300")
+                          }
+                        ></i>{" "}
+                        {t["149"]}
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="items-center">
+                    <Link href={`/manager/teacher`}>
+                      <a
+                        href="#pablo"
                         className={
-                          "fas fa-tools mr-2 text-sm " +
-                          (router.pathname.indexOf(`/manager/teacher`) !==
-                            -1
-                            ? "opacity-75"
-                            : "text-blueGray-300")
+                          "text-xs uppercase py-3 font-bold block " +
+                          (router.pathname.indexOf(`/manager/teacher`) !== -1
+                            ? "text-lightBlue-500 hover:text-lightBlue-600"
+                            : "text-blueGray-700 hover:text-blueGray-500")
                         }
-                      ></i>{" "}
-                      {t["162"]}
-                    </a>
-                  </Link>
-                </li>
+                      >
+                        <i
+                          className={
+                            "fas fa-tools mr-2 text-sm " +
+                            (router.pathname.indexOf(`/manager/teacher`) !==
+                              -1
+                              ? "opacity-75"
+                              : "text-blueGray-300")
+                          }
+                        ></i>{" "}
+                        {t["162"]}
+                      </a>
+                    </Link>
+                  </li>
                 </ul>
               </>
             ) : account.user.permission === 2 ? (
@@ -342,121 +427,39 @@ export default function Sidebar() {
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
-{account.user.permission !== 1?
-<>
-<h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-  For you!
-</h6>
-<ul className="md:flex-col md:min-w-full flex flex-col list-none">
-  <li className="items-center">
-    <Link href={`/profile/${account.user.id}`}>
-      <a
-        href="#pablo"
-        className={
-          "text-xs uppercase py-3 font-bold block " +
-          (router.pathname.indexOf(`/profile/${account.user.id}`) !== -1
-            ? "text-lightBlue-500 hover:text-lightBlue-600"
-            : "text-blueGray-700 hover:text-blueGray-500")
-        }
-      >
-        <i
-          className={
-            "fas fa-tv mr-2 text-sm " +
-            (router.pathname.indexOf(`/profile/${account.user.id}`) !== -1
-              ? "opacity-75"
-              : "text-blueGray-300")
-          }
-        ></i>
-        My Profile
-      </a>
-    </Link>
-  </li>
+            {account.user.permission !== 1 ?
+              <>
+                <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                  For you!
+                </h6>
+                <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+                  <li className="items-center">
+                    <Link href={`/profile/${account.user.id}`}>
+                      <a
+                        href="#pablo"
+                        className={
+                          "text-xs uppercase py-3 font-bold block " +
+                          (router.pathname.indexOf(`/profile/${account.user.id}`) !== -1
+                            ? "text-lightBlue-500 hover:text-lightBlue-600"
+                            : "text-blueGray-700 hover:text-blueGray-500")
+                        }
+                      >
+                        <i
+                          className={
+                            "fas fa-tv mr-2 text-sm " +
+                            (router.pathname.indexOf(`/profile/${account.user.id}`) !== -1
+                              ? "opacity-75"
+                              : "text-blueGray-300")
+                          }
+                        ></i>
+                        My Profile
+                      </a>
+                    </Link>
+                  </li>
 
-</ul>
-</>
-:null}
-
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Information Page
-            </h6>
-            {/* Navigation */}
-
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-              <li className="items-center">
-                <Link href="/admin/courses">
-                  <a
-                    href="#pablo"
-                    className={
-                      "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/courses") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }
-                  >
-                    <i
-                      className={
-                        "fas fa-tv mr-2 text-sm " +
-                        (router.pathname.indexOf("/admin/courses") !== -1
-                          ? "opacity-75"
-                          : "text-blueGray-300")
-                      }
-                    ></i>{" "}
-                    Course
-                  </a>
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link href="/admin/settings">
-                  <a
-                    href="#pablo"
-                    className={
-                      "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }
-                  >
-                    <i
-                      className={
-                        "fas fa-tools mr-2 text-sm " +
-                        (router.pathname.indexOf("/admin/settings") !== -1
-                          ? "opacity-75"
-                          : "text-blueGray-300")
-                      }
-                    ></i>{" "}
-                    Setting
-                  </a>
-                </Link>
-              </li>
-
-              {/* <li className="items-center">
-                <Link href="/admin/tables">
-                  <a
-                    href="#pablo"
-                    className={
-                      "text-xs uppercase py-3 font-bold block " +
-                      (router.pathname.indexOf("/admin/tables") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }
-                  >
-                    <i
-                      className={
-                        "fas fa-table mr-2 text-sm " +
-                        (router.pathname.indexOf("/admin/tables") !== -1
-                          ? "opacity-75"
-                          : "text-blueGray-300")
-                      }
-                    ></i>{" "}
-                    Tables
-                  </a>
-                </Link>
-              </li> */}
-            </ul>
-
+                </ul>
+              </>
+              : null}
           </div>
         </div>
       </nav>

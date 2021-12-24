@@ -20,7 +20,7 @@ export default function NotiForm({ page, setShowModal, showModal }) {
   const account = useSelector((state) => state.user.account);
 
   const listType = useSelector((state) => state.notiType.list);
-
+  console.log(listType);
   const host = useHostAPI();
 
   const title = useVali({ require: [1] });
@@ -29,11 +29,13 @@ export default function NotiForm({ page, setShowModal, showModal }) {
 
   useEffect(() => {
     if (page === "edit") {
-      Promise.all([axios.get(`${host}/api/noti/${router.query.id}`)])
-        .then(([res]) => {
+
+      Promise.all([axios.get(`${host}/api/noti-type`), axios.get(`${host}/api/noti/${router.query.id}`)])
+        .then(([type ,res ]) => {
           console.log(res.data);
           title.ref.current.value = res.data.title;
-          type.ref.current.value = res.data.type.name;
+          // type.ref.current.value = res.data.type.name;
+          dispatch(setListNotiType(type.data));
           content.ref.current.value = res.data.content;
         })
         .catch((err) => {
@@ -146,7 +148,7 @@ export default function NotiForm({ page, setShowModal, showModal }) {
                       >
                         {listType
                           ? listType?.map((item) => (
-                            <option value={item.id}>{item.name}</option>
+                            <option key={`abcd${item.id}`} value={item.name}>{item.name}</option>
                           ))
                           : null}
                       </select>
