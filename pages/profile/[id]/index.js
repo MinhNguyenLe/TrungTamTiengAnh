@@ -58,6 +58,7 @@ export default function Profile() {
                       >
                         {t["182"]}
                       </button>
+                      
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-1">
@@ -83,10 +84,6 @@ export default function Profile() {
                     <i className="fas fa-address-card mr-2 text-lg text-blueGray-400"></i>
                     {account.user.nameRole}
                   </div>
-                  <div className="mb-2 text-blueGray-600">
-                  <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-                  {account.user.dateBirth}- {account.user.placeBirth}
-                </div>
                 {account.user.permission === 2 ? (
                   <div className="mb-2 text-blueGray-600">
                   <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>

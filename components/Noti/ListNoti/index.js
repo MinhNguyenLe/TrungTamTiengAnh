@@ -58,7 +58,7 @@ export default function ListNoti() {
                       key={`${item.id}notilist`}
                       href={`${router.asPath}/${item.id}`}
                     >
-                     <a className="font-bold text-blueGray-700 mt-8">* {item.title} - {new Date(item.createdAt).toLocaleDateString()}</a> 
+                     <a className="font-bold text-indigo-600 mt-8">* {item.title} - {new Date(item.createdAt).toLocaleDateString()}</a> 
                     </Link>
                     <hr className="my-4 md:min-w-full" />
                   </div>
