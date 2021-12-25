@@ -277,14 +277,27 @@ export const en = {
   197: "Level",
   199: "Change my profile",
   200: "Save",
+  /**Quizzes Dialog/ Quizzes Components */
   201: "ADD NEW QUIZZES",
   202: "QUIZZES",
   203: "Answers",
   204: "Solutions",
   205: "Save",
   206: "ANSWER QUIZZES",
-  207: "",
-  208: "",
-  209: "",
+  /**component/Header class */
+  207: "Learning Results",
+  /**components/ResultList  */
+  208: "Learning Results",
+  209: "User name",
+  210: "Email",
+  211: "Phone",
+  212: "Join at",
+  213: "Quizzes's score",
+  214: "Progress's score",
+  215: "Fill Quizzes's score",
+  216: "Fill Progress's score",
+  217: "Add",
+  218: "AUTO CREATE SCORE FOR STUDENT",
+  219: "",
 };
 //70

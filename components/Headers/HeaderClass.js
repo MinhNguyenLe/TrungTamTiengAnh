@@ -27,33 +27,50 @@ export default function HeaderClass() {
                       <div>{t["77"]}</div>
                       {target.teacherClass
                         ? target?.teacherClass.map((i) => (
-                            <div
-                              key={`nameteacherclassbycode${i.teacher.id}`}
-                              style={{ marginLeft: "4px" }}
-                            >
-                              <div className="relative w-auto flex-initial">
-                                {i.teacher.user.firstName}{" "}
-                                {i.teacher.user.lastName}
-                              </div>
+                          <div
+                            key={`nameteacherclassbycode${i.teacher.id}`}
+                            style={{ marginLeft: "4px" }}
+                          >
+                            <div className="relative w-auto flex-initial">
+                              {i.teacher.user.firstName}{" "}
+                              {i.teacher.user.lastName}
                             </div>
-                          ))
+                          </div>
+                        ))
                         : null}
                     </div>
-                    <Link
-                    className="relative bg-purple-500 text-white active:bg-purple-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            
-                      href={`${router.asPath}/list-student`}
-                      style={{
-                        cursor: "none",
-                        color: "blue !important",
-                      }}
-                    >
-                      <a className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-            >
-{t["96"]}
-                      </a>
-                      
-                    </Link>
+                    <div className="flex">
+                      <Link
+                        className="relative bg-purple-500 text-white active:bg-purple-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+
+                        href={`${router.asPath}/list-student`}
+                        style={{
+                          cursor: "none",
+                          color: "blue !important",
+                        }}
+                      >
+                        <a className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        >
+                          {t["96"]}
+                        </a>
+
+                      </Link>
+                      <Link
+                        className="relative bg-purple-500 text-white active:bg-purple-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+
+                        href={`${router.asPath}/result`}
+                        style={{
+                          cursor: "none",
+                          color: "blue !important",
+                        }}
+                      >
+                        <a className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        >
+                          {t["207"]}
+                        </a>
+
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
