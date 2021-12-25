@@ -8,7 +8,7 @@ import { useHostAPI } from "customHook/nonReact";
 import { useDispatch, useSelector } from "react-redux";
 import { setTargetClass } from "redux/actions/class";
 
-export default function ResultList({
+export default function ProgressList({
   setShowModalEdit,
   setShowModalAddClass,
 }) {
@@ -39,7 +39,7 @@ export default function ResultList({
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-base text-blueGray-700">
-                {t["208"]}
+                {t["220"]}
               </h3>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
@@ -51,20 +51,16 @@ export default function ResultList({
             <thead>
               <tr>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["209"]}
+                  {t["221"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["210"]}
+                  {t["222"]}
                 </th>
-                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["211"]}
-                </th>
-                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["212"]}
-                </th>
-                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["213"]}
-                </th>
+                {Array.isArray(classTarget?.session) ? classTarget?.session.map((item, index) => (
+                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    {`${t["223"]} ${index + 1}`}
+                  </th>
+                )) : null}
               </tr>
             </thead>
             <tbody>
@@ -79,15 +75,11 @@ export default function ResultList({
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {item.student.user.email}
                   </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.user.phoneNumber}
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {new Date(item.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item?.quizzesScore || "--"}
-                  </td>
+                  {Array.isArray(item?.scoreProgress) && item?.scoreProgress.length ? item?.scoreProgress?.map((i, index) => (
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {i}
+                    </td>
+                  )) : null}
                 </tr>
               )) : null}
             </tbody>

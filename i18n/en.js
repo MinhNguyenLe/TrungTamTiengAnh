@@ -285,9 +285,9 @@ export const en = {
   205: "Save",
   206: "ANSWER QUIZZES",
   /**component/Header class */
-  207: "Learning Results",
+  207: "Quizzes Results",
   /**components/ResultList  */
-  208: "Learning Results",
+  208: "Quizzes Results",
   209: "User name",
   210: "Email",
   211: "Phone",
@@ -297,6 +297,18 @@ export const en = {
   216: "Fill Progress's score",
   217: "Add",
   218: "AUTO CREATE SCORE FOR STUDENT",
-  219: "",
+  219: "Progress",
+  /**components/ProgressList */
+  220: "Progress's score",
+  221: "User name",
+  222: "Email",
+  223: "Session",
+  224: "Add progress's score for students",
+  /**Dialog/ProgressForm */
+  225: "Add progress's score for students",
+  226: "Score",
+  227: "Session",
+  228: "Student's email",
+  229: "",
 };
 //70
