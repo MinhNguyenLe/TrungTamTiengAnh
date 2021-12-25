@@ -9,6 +9,7 @@ import { reducerClassroom } from "./classroom.js";
 import { reducerNotiType } from "./notiType.js";
 import { reducerNoti } from "./noti.js";
 import { reducerCmt } from "./comment.js";
+import { reducerQuizzes } from "./quizzes.js";
 
 const userPersist = {
   key: "account",
@@ -24,6 +25,7 @@ const reducers = combineReducers({
   notiType: reducerNotiType,
   noti: reducerNoti,
   comment: reducerCmt,
+  quizzes: reducerQuizzes
 });
 
 export default reducers;
