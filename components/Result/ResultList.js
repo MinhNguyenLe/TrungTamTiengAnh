@@ -8,9 +8,7 @@ import { useHostAPI } from "customHook/nonReact";
 import { useDispatch, useSelector } from "react-redux";
 import { setTargetClass } from "redux/actions/class";
 
-import Link from "next/link";
-
-export default function StudentList({
+export default function ResultList({
   setShowModalEdit,
   setShowModalAddClass,
 }) {
@@ -21,7 +19,7 @@ export default function StudentList({
   const router = useRouter();
 
   const dispatch = useDispatch();
-  const listCourse = useSelector((state) => state.class.target);
+  const classTarget = useSelector((state) => state.class.target);
 
   useEffect(() => {
     console.log(router);
@@ -41,7 +39,7 @@ export default function StudentList({
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 className="font-semibold text-base text-blueGray-700">
-                {t["78"]}
+                {t["208"]}
               </h3>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
@@ -49,54 +47,44 @@ export default function StudentList({
           </div>
         </div>
         <div className="block w-full overflow-x-auto">
-          {/* Projects table */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
               <tr>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["82"]}
+                  {t["209"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["85"]}
+                  {t["210"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["81"]}
+                  {t["211"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["83"]}
+                  {t["212"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["84"]}
+                  {t["213"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["86"]}
+                  {t["214"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["88"]}
-                </th>
-                {/* <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["87"]}
+                  {t["215"]}
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["79"]}
+                  {t["216"]}
                 </th>
-                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  {t["80"]}
-                </th> */}
               </tr>
             </thead>
             <tbody>
-              {listCourse?.studentClass?.length ? listCourse?.studentClass?.map((item) => (
+              {classTarget?.studentClass?.length ? classTarget?.studentClass?.map((item) => (
                 <tr
                   className="cursor-pointer hover:bg-lightBlue-600"
                   key={`list-studentclass-${item.id}`}
                 >
                   <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {item.student.user.firstName}
+                    {item.student.user.userName}
                   </th>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.user.gender === 0 ? t["89"] : t["90"]}
-                  </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {item.student.user.email}
                   </td>
@@ -104,25 +92,20 @@ export default function StudentList({
                     {item.student.user.phoneNumber}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.user.address}
+                    {new Date(item.createdAt).toLocaleDateString()}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.user.dateBirth}
+                    {item?.quizzesScore || "--"}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.education}
+                    {item?.quizzesScore || "--"}
                   </td>
-                  {/* <th className="text-lightBlue-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.student.level}
-                  </th>
-                  <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {item.isPaid.toString()}
-                  </th>
-                  <th className="text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <button className="outline-none focus:outline-none">
-                      {t["80"]}
-                    </button>
-                  </th> */}
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {t["217"]}
+                  </td>
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {t["217"]}
+                  </td>
                 </tr>
               )) : null}
             </tbody>
