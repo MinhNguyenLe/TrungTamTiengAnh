@@ -294,7 +294,6 @@ export const en = {
   212: "Join at",
   213: "Quizzes's score",
   214: "Progress's score",
-  215: "Fill Quizzes's score",
   216: "Fill Progress's score",
   217: "Add",
   218: "AUTO CREATE SCORE FOR STUDENT",
