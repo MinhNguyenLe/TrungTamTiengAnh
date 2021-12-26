@@ -17,7 +17,6 @@ export default function ResultClass() {
 
   const dispatch = useDispatch()
 
-  const [showModal, setShowModal] = useState(false);
   const account = useSelector((state) => state.user.account);
 
   const autoCreateScoreQuizzes = () => {
@@ -51,13 +50,6 @@ export default function ResultClass() {
               </button>
             ) : null
           }
-          {showModal ? (
-            <AddWithEmail
-              showModal={showModal}
-              setShowModal={setShowModal}
-              role="student"
-            />
-          ) : null}
         </div>
         <div className="w-full lg:w-12/12 px-4">
           <ResultList />

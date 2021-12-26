@@ -70,6 +70,20 @@ export default function HeaderClass() {
                         </a>
 
                       </Link>
+                      <Link
+                        className="relative bg-purple-500 text-white active:bg-purple-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+
+                        href={`${router.asPath}/progress`}
+                        style={{
+                          cursor: "none",
+                          color: "blue !important",
+                        }}
+                      >
+                        <a className="bg-blueGray-700 active:bg-blueGray-600 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        >
+                          {t["219"]}
+                        </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
