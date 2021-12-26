@@ -7,6 +7,15 @@ export const setListCode = (list) => {
   };
 };
 
+export const setTargetSession = (session) => {
+  return {
+    type: "SET-TARGET-SESSION",
+    payload: {
+      session: session,
+    },
+  };
+};
+
 export const setTargetClass = (target) => {
   return {
     type: "SET-TARGET-CLASS",
