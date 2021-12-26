@@ -140,7 +140,7 @@ export default function Quizzes({ type, setShowModal, showModal}) {
         </div>
               <div className="flex flex-wrap">
                 {list.map((item, index) => (
-                  <div className="w-full lg:w-4/12 px-4">
+                  <div key={`aaaa${index}`} className="w-full lg:w-4/12 px-4">
                     <div className="relative w-full mb-3 flex" style={{ alignItems: "center" }}>
                       <span style={{ marginRight: "12px" }}>{`${index}.`}</span>
                       <Field text="text" index={index} />

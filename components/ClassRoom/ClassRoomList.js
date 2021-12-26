@@ -87,63 +87,63 @@ export default function ClassRoomList({ setShowModal }) {
             </thead>
             <tbody>
               {classrooms
-                ? classrooms.map((item) => (
-                    <tr>
-                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                        {item.name}
-                      </th>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {item.address}
-                      </td>
-                      <td
-                        style={{ display: "flex", flexDirection: "column" }}
-                        className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                      >
-                        {item?.timetable?.length
-                          ? item?.timetable?.map((i) => (
-                              <button
-                                style={{
-                                  cursor: "default",
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  width: "66%",
-                                  alignItems: "center",
-                                }}
-                                className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="button"
-                                key={`${i.id}listtimetableclassroom`}
-                              >
-                                {i.begin}:{i.end}
-                                <i
-                                  onClick={() => deleteTimetable(i.id)}
-                                  style={{ cursor: "pointer" }}
-                                  className="far fa-trash-alt text-sm"
-                                ></i>
-                              </button>
-                            ))
-                          : null}
-                      </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {new Date(item.createdAt).toLocaleDateString()}
-                      </td>
-                      <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                        <Link href="/">{t["24"]}</Link>
-                      </th>
+                ? classrooms.map((item, index) => (
+                  <tr key={`12345d${index}`}>
+                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                      {item.name}
+                    </th>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {item.address}
+                    </td>
+                    <td
+                      style={{ display: "flex", flexDirection: "column" }}
+                      className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                    >
+                      {item?.timetable?.length
+                        ? item?.timetable?.map((i) => (
+                          <button
+                            style={{
+                              cursor: "default",
+                              display: "flex",
+                              justifyContent: "space-between",
+                              width: "66%",
+                              alignItems: "center",
+                            }}
+                            className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            type="button"
+                            key={`${i.id}listtimetableclassroom`}
+                          >
+                            {i.begin}:{i.end}
+                            <i
+                              onClick={() => deleteTimetable(i.id)}
+                              style={{ cursor: "pointer" }}
+                              className="far fa-trash-alt text-sm"
+                            ></i>
+                          </button>
+                        ))
+                        : null}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {new Date(item.createdAt).toLocaleDateString()}
+                    </td>
+                    <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                      <Link href="/">{t["24"]}</Link>
+                    </th>
 
-                      <th
-                        onClick={() => editClassroom(item.id)}
-                        className="cursor-pointer text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                      >
-                        {t["65"]}
-                      </th>
-                      <th
-                        onClick={() => deleteClassroom(item.id)}
-                        className="cursor-pointer text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                      >
-                        {t["45"]}
-                      </th>
-                    </tr>
-                  ))
+                    <th
+                      onClick={() => editClassroom(item.id)}
+                      className="cursor-pointer text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                    >
+                      {t["65"]}
+                    </th>
+                    <th
+                      onClick={() => deleteClassroom(item.id)}
+                      className="cursor-pointer text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                    >
+                      {t["45"]}
+                    </th>
+                  </tr>
+                ))
                 : null}
             </tbody>
           </table>
