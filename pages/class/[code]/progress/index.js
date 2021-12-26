@@ -4,7 +4,6 @@ import ProgressList from "components/Progress/ProgressList.js";
 
 import Admin from "layouts/Admin.js";
 import { useDispatch, useSelector } from "react-redux";
-import { setTargetClass } from "redux/actions/class";
 
 import use18n from "i18n/use18n";
 

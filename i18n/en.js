@@ -311,6 +311,26 @@ export const en = {
   228: "Student's email",
   229: "Add score",
   230: "Add",
-  231: "Content"
+  231: "Content",
+  /**components/Editor/Quill */
+  232: "Review",
+  /**page/progress */
+  233: "Create content",
+  234: "Edit content",
+  235: "Editor",
+  /**List noti */
+  236: "Session ",
+  237: "",
+  238: "",
+  239: "",
+  241: "",
+  242: "",
+  243: "",
+  244: "",
+  245: "",
+  246: "",
+  247: "",
+  248: "",
+  249: "",
 };
 //70

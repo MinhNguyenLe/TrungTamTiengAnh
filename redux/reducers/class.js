@@ -1,7 +1,8 @@
 const CLASS_STATE = {
   listCode: [],
   target: {},
-  list:[]
+  list: [],
+  session: ""
 };
 
 export const reducerClass = (state = CLASS_STATE, action) => {
@@ -11,12 +12,17 @@ export const reducerClass = (state = CLASS_STATE, action) => {
         ...state,
         listCode: action.payload.listCode,
       };
+    case "SET-TARGET-SESSION":
+      return {
+        ...state,
+        session: action.payload.session,
+      };
     case "SET-TARGET-CLASS":
       return {
         ...state,
         target: action.payload.target,
       };
-      case "SET-LIST-CLASS":
+    case "SET-LIST-CLASS":
       return {
         ...state,
         list: action.payload.list,
