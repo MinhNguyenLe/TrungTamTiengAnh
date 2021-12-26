@@ -10,6 +10,7 @@ import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setTargetClass } from "redux/actions/class";
+import { setListNotiType } from "redux/actions/notiType";
 
 import router, { useRouter } from "next/router";
 export default function NotiForm({ page, setShowModal, showModal }) {
@@ -29,9 +30,8 @@ export default function NotiForm({ page, setShowModal, showModal }) {
 
   useEffect(() => {
     if (page === "edit") {
-
       Promise.all([axios.get(`${host}/api/noti-type`), axios.get(`${host}/api/noti/${router.query.id}`)])
-        .then(([type ,res ]) => {
+        .then(([type, res]) => {
           console.log(res.data);
           title.ref.current.value = res.data.title;
           // type.ref.current.value = res.data.type.name;
@@ -45,11 +45,8 @@ export default function NotiForm({ page, setShowModal, showModal }) {
   }, []);
 
   const addNoti = () => {
-    // check error for each field
     title.checkErr();
-    console.log(title.success, router.query.code);
     if (title.success) {
-      console.log(account.user);
       if (account?.user?.nameRole === "student") {
         account.studentClass.forEach((item) => {
           console.log(item);
@@ -59,7 +56,7 @@ export default function NotiForm({ page, setShowModal, showModal }) {
         });
       } else if (account?.user?.nameRole === "teacher") {
         account.teacherClass.forEach((item) => {
-          if (router.query.code === item.classes.id) {
+          if (router.query.code === item.classes.code) {
             addWithAPI(item.id, "teacher");
           }
         });
@@ -70,6 +67,7 @@ export default function NotiForm({ page, setShowModal, showModal }) {
   };
 
   const addWithAPI = (id, role) => {
+    console.log(parseInt(type.current.value), type.current.value, "............")
     Promise.all([
       axios.post(`${host}/api/noti/create`, {
         content: {
@@ -83,7 +81,6 @@ export default function NotiForm({ page, setShowModal, showModal }) {
       }),
     ])
       .then(([res]) => {
-        console.log(res.data);
         dispatch(setTargetClass(res.data));
         setShowModal(false);
         title.ref.current.value = "";
@@ -148,7 +145,7 @@ export default function NotiForm({ page, setShowModal, showModal }) {
                       >
                         {listType
                           ? listType?.map((item) => (
-                            <option key={`abcd${item.id}`} value={item.name}>{item.name}</option>
+                            <option key={`abcd${item.id}`} value={item.id}>{item.name}</option>
                           ))
                           : null}
                       </select>
