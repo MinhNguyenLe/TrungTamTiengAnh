@@ -7,6 +7,8 @@ import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setTargetClass } from "redux/actions/class";
+import ProgressForm from "components/Dialog/ProgressForm";
+import { setTargetStudent } from "redux/actions/user";
 
 export default function ProgressList({
   setShowModalEdit,
@@ -17,6 +19,7 @@ export default function ProgressList({
   const host = useHostAPI();
 
   const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
   const classTarget = useSelector((state) => state.class.target);
@@ -35,6 +38,13 @@ export default function ProgressList({
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+        {showModal ? (
+          <ProgressForm
+            showModal={showModal}
+            setShowModal={setShowModal}
+            role="student"
+          />
+        ) : null}
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
@@ -57,10 +67,13 @@ export default function ProgressList({
                   {t["222"]}
                 </th>
                 {Array.isArray(classTarget?.session) ? classTarget?.session.map((item, index) => (
-                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  <th key={`1234${index}`} className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                     {`${t["223"]} ${index + 1}`}
                   </th>
                 )) : null}
+                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  {t["229"]}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -75,11 +88,23 @@ export default function ProgressList({
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {item.student.user.email}
                   </td>
-                  {Array.isArray(item?.scoreProgress) && item?.scoreProgress.length ? item?.scoreProgress?.map((i, index) => (
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                  {Array.isArray(item?.scoreProgress) && item?.scoreProgress.length ? item?.scoreProgress?.map((i, _index) => (
+                    <td key={`abcd${_index}`} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       {i}
                     </td>
-                  )) : null}
+                  )) :
+                    classTarget?.session.map(i => (
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+
+                      </td>
+                    ))
+                  }
+                  <td onClick={() => {
+                    dispatch(setTargetStudent(item))
+                    setShowModal(true)
+                  }} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {t["230"]}
+                  </td>
                 </tr>
               )) : null}
             </tbody>

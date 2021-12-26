@@ -309,6 +309,8 @@ export const en = {
   226: "Score",
   227: "Session",
   228: "Student's email",
-  229: "",
+  229: "Add score",
+  230: "Add",
+  231: "Content"
 };
 //70

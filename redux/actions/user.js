@@ -24,3 +24,12 @@ export const setListTeacher = (teacher) => {
     },
   };
 };
+
+export const setTargetStudent = (target) => {
+  return {
+    type: "SET-TARGET-STUDENT",
+    payload: {
+      target: target,
+    },
+  };
+};
