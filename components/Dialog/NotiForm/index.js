@@ -11,6 +11,7 @@ import { useHostAPI } from "customHook/nonReact";
 import { useDispatch, useSelector } from "react-redux";
 import { setTargetClass } from "redux/actions/class";
 import { setListNotiType } from "redux/actions/notiType";
+import { setTargetNoti } from "redux/actions/noti";
 
 import router, { useRouter } from "next/router";
 export default function NotiForm({ page, setShowModal, showModal }) {
@@ -45,29 +46,52 @@ export default function NotiForm({ page, setShowModal, showModal }) {
   }, []);
 
   const addNoti = () => {
-    title.checkErr();
-    if (title.success) {
-      if (account?.user?.nameRole === "student") {
-        account.studentClass.forEach((item) => {
-          console.log(item);
-          if (router.query.code === item.classes.code) {
-            addWithAPI(item.id, "student");
-          }
-        });
-      } else if (account?.user?.nameRole === "teacher") {
-        account.teacherClass.forEach((item) => {
-          if (router.query.code === item.classes.code) {
-            addWithAPI(item.id, "teacher");
-          }
-        });
-      } else {
-        console.log("this is adminnnn --------");
+    if (page === "create") {
+      title.checkErr();
+      if (title.success) {
+        if (account?.user?.nameRole === "student") {
+          account.studentClass.forEach((item) => {
+            console.log(item);
+            if (router.query.code === item.classes.code) {
+              addWithAPI(item.id, "student");
+            }
+          });
+        } else if (account?.user?.nameRole === "teacher") {
+          account.teacherClass.forEach((item) => {
+            if (router.query.code === item.classes.code) {
+              addWithAPI(item.id, "teacher");
+            }
+          });
+        } else {
+          console.log("this is adminnnn --------");
+        }
       }
+    }
+    if (page === "edit") {
+      Promise.all([
+        axios.post(`${host}/api/noti/edit`, {
+          content: {
+            title: title.ref.current.value,
+            id: router.query.id,
+            content: content.ref.current.value,
+            idType: parseInt(type.current.value),
+          },
+        }),
+      ])
+        .then(([res]) => {
+          dispatch(setTargetNoti(res.data))
+          title.ref.current.value = "";
+          content.ref.current.value = "";
+          setShowModal(false);
+        })
+        .catch((err) => {
+          console.log(err, "???????????????????");
+        });
     }
   };
 
   const addWithAPI = (id, role) => {
-    console.log(parseInt(type.current.value), type.current.value, "............")
+    console.log(parseInt(type.current.value), type.current.value, "..................................")
     Promise.all([
       axios.post(`${host}/api/noti/create`, {
         content: {
@@ -82,12 +106,12 @@ export default function NotiForm({ page, setShowModal, showModal }) {
     ])
       .then(([res]) => {
         dispatch(setTargetClass(res.data));
-        setShowModal(false);
         title.ref.current.value = "";
         content.ref.current.value = "";
+        setShowModal(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err, "???????????????????");
       });
   };
 
