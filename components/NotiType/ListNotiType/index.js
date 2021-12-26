@@ -56,28 +56,28 @@ export default function ListNotiType({ setShowModal }) {
             </thead>
             <tbody>
               {notiType
-                ? notiType.map((item) => (
-                    <tr>
-                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                        {item.name}
-                      </th>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {new Date(item.createdAt).toLocaleDateString()}
-                      </td>
-                      <th
-                        onClick={() => {
-                          dispatch(setTargetNotiType(item.id));
-                          setShowModal(true);
-                        }}
-                        className="cursor-pointer text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                      >
-                        {t["111"]}
-                      </th>
-                      <th className="cursor-pointer text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                        {t["112"]}
-                      </th>
-                    </tr>
-                  ))
+                ? notiType.map((item, index) => (
+                  <tr key={`ddddd${index}`}>
+                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                      {item.name}
+                    </th>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {new Date(item.createdAt).toLocaleDateString()}
+                    </td>
+                    <th
+                      onClick={() => {
+                        dispatch(setTargetNotiType(item.id));
+                        setShowModal(true);
+                      }}
+                      className="cursor-pointer text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                    >
+                      {t["111"]}
+                    </th>
+                    <th className="cursor-pointer text-red-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                      {t["112"]}
+                    </th>
+                  </tr>
+                ))
                 : null}
             </tbody>
           </table>
