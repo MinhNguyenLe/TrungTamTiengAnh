@@ -357,34 +357,36 @@ export default function Sidebar() {
                 <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
                   {t["56"]}
                 </h6>
-                <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-                  <li className="items-center">
-                    <Link href={`/${t["30"]}/${t["31"]}`}>
-                      <a
-                        href="#pablo"
-                        className={
-                          "text-xs uppercase py-3 font-bold block " +
-                          (router.pathname.indexOf(`/${t["30"]}/${t["31"]}`) !==
-                            -1
-                            ? "text-lightBlue-500 hover:text-lightBlue-600"
-                            : "text-blueGray-700 hover:text-blueGray-500")
-                        }
-                      >
-                        <i
+                {listCode.map((item) => (
+                  <ul
+                    key={`${item}listCode`}
+                    className="md:flex-col md:min-w-full flex flex-col list-none"
+                  >
+                    <li className="items-center">
+                      <Link href={`/class/${item}`}>
+                        <a
+                          href="#pablo"
                           className={
-                            "fas fa-tools mr-2 text-sm " +
-                            (router.pathname.indexOf(
-                              `/${t["30"]}/${t["31"]}`
-                            ) !== -1
-                              ? "opacity-75"
-                              : "text-blueGray-300")
+                            "text-xs uppercase py-3 font-bold block " +
+                            (router.pathname.indexOf(`/class/${item}`) !== -1
+                              ? "text-lightBlue-500 hover:text-lightBlue-600"
+                              : "text-blueGray-700 hover:text-blueGray-500")
                           }
-                        ></i>{" "}
-                        {t["28"]}
-                      </a>
-                    </Link>
-                  </li>
-                </ul>
+                        >
+                          <i
+                            className={
+                              "fas fa-tools mr-2 text-sm " +
+                              (router.pathname.indexOf(`/class/${item}`) !== -1
+                                ? "opacity-75"
+                                : "text-blueGray-300")
+                            }
+                          ></i>
+                          {item}
+                        </a>
+                      </Link>
+                    </li>
+                  </ul>
+                ))}
               </>
             ) : (
               <>

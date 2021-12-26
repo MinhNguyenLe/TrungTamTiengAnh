@@ -11,33 +11,32 @@ export default function ListNoti() {
 
   return target.noti && target.noti.length ? (
     <>
-    <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+      <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
         <div className="flex-auto p-4">
           <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-            
+
             <div
               style={{ display: "flex", flexDirection: "column" }}
               className="relative w-auto flex-initial"
             >
-              {target.noti
-                ? target.noti.map((item) => (
-                    <div>
+              {target?.session
+                ? target.session?.map((item, index) => (
+                  <div>
                     <Link
-                      key={`${item.id}notilist`}
-                      href={`${router.asPath}/${item.id}`}
+                      key={`${item.id}session`}
+                      href={`./${router.query.code}/session/${index + 1}`}
                     >
-                     <a className="font-bold text-lightBlue-600 mt-8">* {item.title} - {new Date(item.createdAt).toLocaleDateString()}</a> 
+                      <a className="font-bold text-lightBlue-600 mt-8">* {t["236"]}{index + 1}</a>
                     </Link>
                     <hr className="my-4 md:min-w-full" />
                   </div>
-                  ))
+                ))
                 : null}
             </div>
           </div>
         </div>
       </div>
 
-    
       <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg mt-10">
         <div className="flex-auto p-4">
           <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
@@ -53,16 +52,16 @@ export default function ListNoti() {
             >
               {target.noti
                 ? target.noti.map((item) => (
-                    <div>
+                  <div>
                     <Link
                       key={`${item.id}notilist`}
                       href={`${router.asPath}/${item.id}`}
                     >
-                     <a className="font-bold text-indigo-600 mt-8">* {item.title} - {new Date(item.createdAt).toLocaleDateString()}</a> 
+                      <a className="font-bold text-indigo-600 mt-8">* {item.title} - {new Date(item.createdAt).toLocaleDateString()}</a>
                     </Link>
                     <hr className="my-4 md:min-w-full" />
                   </div>
-                  ))
+                ))
                 : null}
             </div>
           </div>
