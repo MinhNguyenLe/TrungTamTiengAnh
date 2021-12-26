@@ -19,6 +19,7 @@ import { setListComment } from "redux/actions/comment";
 import debounce from "lodash.debounce";
 import { useVali } from "customHook/useVali";
 import { content } from "tailwindcss/defaulttheme";
+import Quizzes from "components/Dialog/Quizzes";
 
 export default function DetailNoti() {
   const t = use18n();
@@ -107,8 +108,22 @@ export default function DetailNoti() {
       }
     }
   };
+  const [showModalQ, setShowModalQ] = useState(false);
+  const permission = useSelector((state) => state.user.account.user.permission);
   return (
     <>
+         {showModalQ ? (
+            permission === 2 ?
+              <Quizzes
+                showModal={showModalQ}
+                setShowModal={setShowModalQ}
+                type="teacher"
+              /> : <Quizzes
+                showModal={showModalQ}
+                setShowModal={setShowModalQ}
+                type="student"
+              />
+          ) : null}
       <div className="flex flex-wrap">
         <div className="w-full lg:w-12/12 px-4 mb-6">
           <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
@@ -143,13 +158,29 @@ export default function DetailNoti() {
                   </div>
                 </div>
                 <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                  <button
+                {noti?.type?.name === "Test" ? 
+                <button  
+                    onClick={() => setShowModalQ(true)}
+                    className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                  >
+                    {type === "teacher" ? t["204"] : t["203"]}
+                  </button> : null}
+                  <button  
+                    onClick={() => setShowModalQ(true)}
+                    className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                  >
+                    {t["203"]}
+                  </button>
+                  <button  
                     onClick={() => setShowModal(true)}
                     className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                   >
                     {t["115"]}
                   </button>
+
                 </div>
               </div>
             </div>

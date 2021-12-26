@@ -76,7 +76,7 @@ export default function NotiForm({ page, setShowModal, showModal }) {
           title: title.ref.current.value,
           idClass: target.id,
           content: content.ref.current.value,
-          idType: parseInt(type.current.value),
+          idType: parseInt(type.ref.current.value),
           role: role,
           idUserClass: id,
         },

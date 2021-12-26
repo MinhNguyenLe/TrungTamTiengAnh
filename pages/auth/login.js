@@ -28,7 +28,7 @@ export default function Login() {
       }),
     ])
       .then(([res]) => {
-        router.push("../admin/dashboard");
+        router.push("../admin/courses");
         console.log("Duong" + JSON.stringify(res.data.account.user));
         dispatch(setAccount(res.data.account));
       })

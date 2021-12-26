@@ -6,6 +6,7 @@ import use18n from "i18n/use18n";
 
 export default function ListNoti() {
   const target = useSelector((state) => state.class.target);
+  console.log(target.noti);
   const router = useRouter();
   const t = use18n();
 
@@ -14,7 +15,12 @@ export default function ListNoti() {
     <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
         <div className="flex-auto p-4">
           <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-            
+          <div
+              style={{ borderBottom: "1px solid #333", paddingBottom: "8px" }}
+              className="font-semibold text-xl text-blueGray-700 mb-2"
+            >
+              List Exercise
+            </div>
             <div
               style={{ display: "flex", flexDirection: "column" }}
               className="relative w-auto flex-initial"

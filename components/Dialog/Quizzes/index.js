@@ -13,14 +13,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Field from "../../Quizzes/Field"
 import { setListRef, resetRef } from "redux/actions/quizzes";
 
-export default function Quizzes({ type, setShowModal, showModal }) {
+export default function Quizzes({ type, setShowModal, showModal}) {
   const t = use18n();
   const host = useHostAPI();
   const [list, setList] = useState([])
   const router = useRouter();
 
   const refs = useSelector((state) => state.quizzes.refs);
-
+  const noti = useSelector((state) => state.noti.target);
   const teacherClass = useSelector((state) => state.user.account.teacherClass);
   const studentClass = useSelector((state) => state.user.account.studentClass);
   const permission = useSelector((state) => state.user.account.user.permission);
@@ -115,6 +115,29 @@ export default function Quizzes({ type, setShowModal, showModal }) {
               <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                 {type === "teacher" ? t["204"] : t["203"]}
               </h6>
+              <div className="w-full lg:w-12/12 px-4 mb-6">
+          <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+            <div className="flex-auto p-4">
+              <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
+                <div
+                  style={{
+                    borderBottom: "1px solid #333",
+                    paddingBottom: "8px",
+                  }}
+                  className="font-semibold text-xl text-blueGray-700"
+                >
+                  {noti.title}
+                </div>
+                <div
+                  style={{ display: "flex", flexDirection: "column" }}
+                  className="relative w-auto flex-initial"
+                >
+                  {noti.content}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
               <div className="flex flex-wrap">
                 {list.map((item, index) => (
                   <div className="w-full lg:w-4/12 px-4">
