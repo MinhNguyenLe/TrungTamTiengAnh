@@ -18,7 +18,7 @@ export default function ClassForm({ page, setShowModal, showModal }) {
 
   const dispatch = useDispatch();
   const targetClass = useSelector((state) => state.class.target);
-
+  const targetcourse = useSelector((state) => state.course.target);
   const host = useHostAPI();
 
   const code = useVali({ require: [1] });
@@ -41,11 +41,12 @@ export default function ClassForm({ page, setShowModal, showModal }) {
     // check error for each field
     name.checkErr();
     code.checkErr();
+    console.log("Duong"+targetcourse);
     if (name.success && code.success) {
       Promise.all([
         axios.post(`${host}/api/classes/create`, {
           content: {
-            id: targetClass.id,
+            course:targetcourse,
             name: name.ref.current.value,
             code: code.ref.current.value,
           },

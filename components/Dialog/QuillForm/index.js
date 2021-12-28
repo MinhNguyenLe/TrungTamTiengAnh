@@ -45,7 +45,7 @@ export default function QuillForm({ setShowModal }) {
   return (
     <div className="min-w-0">
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="max-w-1200 relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+        <div className="max-w-1200 h-full relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
           <div className="rounded-t bg-white mb-0 px-6 py-6">
             <div className="text-center flex justify-between">
               <h6 className="text-blueGray-700 text-xl font-bold">
@@ -76,7 +76,7 @@ export default function QuillForm({ setShowModal }) {
                 {t["231"]}
               </h6>
               <div className="flex flex-wrap">
-                <div className="w-full lg:w-12/12 px-4">
+                <div className="w-full  lg:w-12/12 px-4">
                   <QuillEditor value={value} setValue={setValue} />
                 </div>
               </div>

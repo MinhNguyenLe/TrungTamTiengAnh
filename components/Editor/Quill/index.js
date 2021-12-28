@@ -58,7 +58,7 @@ function QuillEditor({ value, setValue }) {
   return (
     <div>
       <ReactQuill modules={modules} value={value} onChange={handleChange} formats={formats} theme="snow" />
-      <div style={{ marginTop: "20px" }}>
+      {/* <div style={{ marginTop: "20px" }}>
         <span
           className="text-blueGray-500 hover:text-blueGray-700 text-sm font-semibold py-1"
         >
@@ -67,7 +67,7 @@ function QuillEditor({ value, setValue }) {
         <div style={{ background: "white", border: "1px solid #d2d2d2", marginTop: "4px" }}>
           <Markup content={value} />
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

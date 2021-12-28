@@ -44,7 +44,7 @@ export default function Profile() {
                     <div className="relative">
                       <img
                         alt="..."
-                        src="/img/team-2-800x800.jpg"
+                        src="https://i.pravatar.cc/300"
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                       />
                     </div>
@@ -66,7 +66,7 @@ export default function Profile() {
                 </div>
                 <div className="text-center mt-10">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                    {account.user.userName}
+                  {account.user.firstName} {account.user.lastName}
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                     <i className="fas fa-birthday-cake mr-2 text-lg text-blueGray-400"></i>{" "}
@@ -78,7 +78,7 @@ export default function Profile() {
                   </div>
                   <div className="mb-2 text-blueGray-600 mt-10">
                     <i className="fas fa-venus-mars mr-2 text-lg text-blueGray-400"></i>
-                    {account.user.gender ? "Nam" : "Nu"}
+                    {account.user.gender ? "Male" : "Female"}
                   </div>
                   <div className="mb-2 text-blueGray-600">
                     <i className="fas fa-address-card mr-2 text-lg text-blueGray-400"></i>

@@ -127,7 +127,7 @@ export default function ClassList({ setShowModalEdit,setAddStudentModal,setAddTe
                   <td style={{display:"flex",flexDirection:"column"}} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {cls.teacherClass.map((teacher,index)=>(
                       <div key={`listClassTeacherClass${index}`}>
-                      <span>{teacher.teacher.user.userName}</span>
+                      <span>{teacher.teacher.user.firstName} {teacher.teacher.user.lastName}</span>
                       </div>
                     ))}
                   </td>

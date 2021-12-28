@@ -55,7 +55,7 @@ export default function DetailNoti() {
     Promise.all([
       axios.post(`${host}/api/comments/create`, {
         content: {
-          content: comment.ref.current.value,
+          content: account.user.firstName + account.user.lastName+" - "+ comment.ref.current.value,
           idNoti: router.query.id,
           role: role,
           idUserClass: id,
@@ -80,7 +80,10 @@ export default function DetailNoti() {
       });
     } else if (account?.user?.nameRole === "teacher") {
       account.teacherClass.forEach((item) => {
-        if (router.query.code === item.classes.id) {
+        console.log(item.classes.id);
+        console.log(router.query.code);
+        if (router.query.code === item.classes.code) {
+          
           apiCreateCmt(item.id, "teacher");
         }
       });
@@ -99,7 +102,7 @@ export default function DetailNoti() {
         });
       } else if (account?.user?.nameRole === "teacher") {
         account.teacherClass.forEach((item) => {
-          if (router.query.code === item.classes.id) {
+          if (router.query.code === item.classes.code) {
             apiCreateCmt(item.id, "teacher");
           }
         });
@@ -158,28 +161,14 @@ export default function DetailNoti() {
                   </div>
                 </div>
                 <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                {noti?.type?.name === "Test" ? 
-                <button  
-                    onClick={() => setShowModalQ(true)}
-                    className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                  >
-                    {type === "teacher" ? t["204"] : t["203"]}
-                  </button> : null}
-                  <button  
-                    onClick={() => setShowModalQ(true)}
-                    className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                  >
-                    {t["203"]}
-                  </button>
-                  <button  
+                       {permission ==2?<button  
                     onClick={() => setShowModal(true)}
                     className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                   >
                     {t["115"]}
-                  </button>
+                  </button>:null} 
+                  
 
                 </div>
               </div>

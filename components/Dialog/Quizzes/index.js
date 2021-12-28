@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Field from "../../Quizzes/Field"
 import { setListRef, resetRef } from "redux/actions/quizzes";
+import { Markup } from "interweave";
 
 export default function Quizzes({ type, setShowModal, showModal}) {
   const t = use18n();
@@ -24,7 +25,7 @@ export default function Quizzes({ type, setShowModal, showModal}) {
   const teacherClass = useSelector((state) => state.user.account.teacherClass);
   const studentClass = useSelector((state) => state.user.account.studentClass);
   const permission = useSelector((state) => state.user.account.user.permission);
-
+  const targetClass = useSelector((state) => state.class.target);
   useEffect(() => {
     const result = []
     for (let i = 0; i < 20; i++) {
@@ -126,13 +127,13 @@ export default function Quizzes({ type, setShowModal, showModal}) {
                   }}
                   className="font-semibold text-xl text-blueGray-700"
                 >
-                  {noti.title}
+                  Session {router.query.index}
                 </div>
                 <div
                   style={{ display: "flex", flexDirection: "column" }}
-                  className="relative w-auto flex-initial"
+                  className="relative w-auto flex-initial mt-2"
                 >
-                  {noti.content}
+                  <Markup content={targetClass?.session?.length && targetClass["session"][router.query.index - 1]?.length > 1 ? targetClass["session"][router.query.index - 1] : ""} />
                 </div>
               </div>
             </div>

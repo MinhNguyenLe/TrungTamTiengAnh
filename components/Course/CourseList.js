@@ -47,6 +47,7 @@ export default function CourseList({ setShowModalEdit, setShowModalAddClass }) {
   };
 
   const gotoAddClass = (id) => {
+    console.log(id);
     setShowModalAddClass(true);
     dispatch(setTargetCourse(id));
   };

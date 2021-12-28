@@ -44,20 +44,21 @@ export default function Class() {
     <>
       <div className="flex flex-wrap">
         <div className="w-full lg:w-12/12 px-4 mb-6">
-          <button
+        {permission === 2 ? <button
             className="relative bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="button"
             onClick={() => setShowModal(true)}
           >
             {t["97"]}
-          </button>
-          <button
+          </button> : null}
+          
+          {/* <button
             className="relative bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="button"
             onClick={() => setShowModalQ(true)}
           >
             {permission === 2 ? t["201"] : t["206"]}
-          </button>
+          </button> */}
           {showModal ? (
             <NotiForm
               showModal={showModal}

@@ -24,6 +24,7 @@ export default function ProgressList({
   const dispatch = useDispatch();
   const classTarget = useSelector((state) => state.class.target);
 
+  const permission = useSelector((state) => state.user.account.user.permission);
   useEffect(() => {
     console.log(router);
     Promise.all([axios.get(`${host}/api/classes/${router.query.code}`)])
@@ -71,9 +72,9 @@ export default function ProgressList({
                     {`${t["223"]} ${index + 1}`}
                   </th>
                 )) : null}
-                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                {permission==2?<th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   {t["229"]}
-                </th>
+                </th>:null}
               </tr>
             </thead>
             <tbody>
@@ -89,8 +90,8 @@ export default function ProgressList({
                     {item.student.user.email}
                   </td>
                   {Array.isArray(item?.scoreProgress) && item?.scoreProgress.length ? item?.scoreProgress?.map((i, _index) => (
-                    <td key={`abcd${_index}`} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {i}
+                    <td key={`abcd${_index}`} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs text-center whitespace-nowrap p-4">
+                      {i==1?"-":i}
                     </td>
                   )) :
                     classTarget?.session.map(i => (
@@ -99,12 +100,12 @@ export default function ProgressList({
                       </td>
                     ))
                   }
-                  <td onClick={() => {
+                  {permission==2?<td onClick={() => {
                     dispatch(setTargetStudent(item))
                     setShowModal(true)
                   }} className="text-lightBlue-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {t["230"]}
-                  </td>
+                  </td>:null}
                 </tr>
               )) : null}
             </tbody>
