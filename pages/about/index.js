@@ -167,7 +167,7 @@ To become best–in-class in the education and training industry. We do this thr
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap ml-30p" >
               <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
                 <div className="px-6">
                   <img
@@ -203,7 +203,7 @@ To become best–in-class in the education and training industry. We do this thr
                   </div>
                 </div>
               </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+              {/* <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
                 <div className="px-6">
                   <img
                     alt="..."
@@ -231,8 +231,8 @@ To become best–in-class in the education and training industry. We do this thr
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+              </div> */}
+              {/* <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
                 <div className="px-6">
                   <img
                     alt="..."
@@ -266,7 +266,7 @@ To become best–in-class in the education and training industry. We do this thr
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
                 <div className="px-6">
                   <img

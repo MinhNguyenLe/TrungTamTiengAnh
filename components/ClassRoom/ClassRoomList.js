@@ -120,15 +120,15 @@ export default function ClassRoomList({ setShowModal }) {
                               width: "66%",
                               alignItems: "center",
                             }}
-                            className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            className="bg-indigo-500 text-white  active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                             type="button"
                             key={`${i.id}listtimetableclassroom`}
                           >
-                            {i.begin}:{i.end}
+                            {i.begin+7}:00 {"->"} {i.end+7}:00
                             <i
                               onClick={() => deleteTimetable(i.id)}
                               style={{ cursor: "pointer" }}
-                              className="far fa-trash-alt text-sm"
+                              className="ml-1 far fa-trash-alt text-sm"
                             ></i>
                           </button>
                         ))

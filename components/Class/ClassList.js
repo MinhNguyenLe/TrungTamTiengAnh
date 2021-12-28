@@ -19,7 +19,7 @@ export default function ClassList({ setShowModalEdit,setAddStudentModal,setAddTe
 
   const dispatch = useDispatch();
   const listClass = useSelector((state) => state.class.list);
-  
+  console.log(listClass);
   useEffect(() => {
     console.log(router);
     Promise.all([axios.get(`${host}/api/classes`)])
@@ -138,7 +138,13 @@ export default function ClassList({ setShowModalEdit,setAddStudentModal,setAddTe
                     {cls.noti.length}
                   </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  {cls.timetable.length}
+                  
+                  {cls.timetable?.map((i) => (
+                          <>
+                          {i.begin+7}:00 {"->"} {i.end+7}:00 | {i.classroom.name}
+                          </>
+                        ))
+                        }
                 </td>
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {new Date(cls.createdAt).toLocaleDateString()}

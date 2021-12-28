@@ -102,27 +102,9 @@ export default function ScheduleList({ setShowModal }) {
                       {cls?.classes?.timetable?.length
                         ? cls?.classes?.timetable?.map((i) => (
                           <div key={`${i.id}listtimetableclassroomProfile`} className="flex">
-                            <button
-                              style={{
-                                cursor: "default",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                width: "66%",
-                                alignItems: "center",
-                              }}
-                              className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                              type="button"
-                            >
-                              {i.begin}:{i.end}
-                              <i
-                                onClick={() => deleteTimetable(i.id)}
-                                style={{ cursor: "pointer" }}
-                                className="far fa-trash-alt text-sm"
-                              ></i>
-                            </button>
+                            
                             <div className="flex" style={{ flexDirection: "column" }}>
-                              <span>Classroom's name: {i.classroom.name}</span>
-                              <span>ADdress: {i.classroom.address}</span>
+                              <span>{i.begin+7}:00 {"->"} {i.end+7}:00 | {i.classroom.name}</span>
                             </div>
                           </div>
                         ))
