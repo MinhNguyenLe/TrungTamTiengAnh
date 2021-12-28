@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import use18n from "i18n/use18n";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import axios from "axios";
 import { useHostAPI } from "customHook/nonReact";
 
 import { setListClassroom, setTargetClassRoom } from "redux/actions/classroom";
+import TimeTableForm from "components/Dialog/TimeTableForm";
 export default function ClassRoomList({ setShowModal }) {
   const t = use18n();
   const dispatch = useDispatch();
@@ -28,6 +29,12 @@ export default function ClassRoomList({ setShowModal }) {
     dispatch(setTargetClassRoom(id));
     setShowModal(true);
   };
+  const [showModalT, setShowModalT] = useState(false);
+  const addTimeTable = (id) => {
+    dispatch(setTargetClassRoom(id));
+    setShowModalT(true);
+  };
+  
   const deleteTimetable = (id) => {
     Promise.all([axios.delete(`${host}/api/classrooms/delete-timetable/${id}`)])
       .then(([res]) => {
@@ -39,6 +46,13 @@ export default function ClassRoomList({ setShowModal }) {
   };
   return (
     <>
+    {showModalT ? (
+            <TimeTableForm
+              page="create"
+              setShowModal={setShowModalT}
+              showModal={showModalT}
+            />
+          ) : null}
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
@@ -120,10 +134,15 @@ export default function ClassRoomList({ setShowModal }) {
                         ))
                         : null}
                     </td>
-                    <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                    {/* <th className="text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                       <Link href="/">{t["24"]}</Link>
+                    </th> */}
+                    <th
+                      onClick={() => addTimeTable(item.id)}
+                      className="cursor-pointer text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                    >
+                      {t["24"]}
                     </th>
-
                     <th
                       onClick={() => editClassroom(item.id)}
                       className="cursor-pointer text-teal-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"

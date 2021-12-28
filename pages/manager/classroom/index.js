@@ -13,6 +13,7 @@ import { useHostAPI } from "customHook/nonReact";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setListClassroom } from "redux/actions/classroom";
+import TimeTableForm from "components/Dialog/TimeTableForm";
 export default function ClassRoom() {
   const t = use18n();
   const [showModal, setShowModal] = useState(false);
@@ -39,7 +40,7 @@ export default function ClassRoom() {
             onClick={() => setShowModal(true)}
           >
             {t["58"]}
-          </button>
+          </button>TimeTableForm
           {showModal ? (
             <ClassRoomForm
               page="create"
@@ -54,9 +55,10 @@ export default function ClassRoom() {
               showModal={showModalE}
             />
           ) : null}
+          
         </div>
         <div className="w-full lg:w-12/12 px-4">
-          <ClassRoomList setShowModal={setShowModalE} />
+          <ClassRoomList setShowModal={setShowModalE } />
         </div>
       </div>
     </>
